@@ -1,12 +1,12 @@
 'use client';
 import React from "react";
-import RadioButton from "./ui/button/RadioButton";
+import RadioLink from "./ui/button/RadioLink";
 
 export default function Home() {
   return (
     <>
      <h1>Home Page</h1>
-     <RadioButton label="Search"/>
+     <RadioLink label="Search" url="/feed"/>
     </>
   )
 }
