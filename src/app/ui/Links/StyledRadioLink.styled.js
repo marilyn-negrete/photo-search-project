@@ -1,8 +1,7 @@
-import React from "react";
-import Link from "next/link";
 import styled from "styled-components";
+import Link from "next/link";
 
-const StyledLink = styled(Link)`
+export const StyledRadioLink = styled(Link)`
   text-decoration: none;
   background-color: #aa7d56;
   border-radius: 2rem;
@@ -18,10 +17,3 @@ const StyledLink = styled(Link)`
     background-color: #6d5036;
   }
 `;
-
-const RadioLink = (props) => {
-  const { label, url } = props;
-  return <StyledLink href={url}>{label}</StyledLink>
-};
-
-export default RadioLink;
