@@ -5,9 +5,9 @@ export const StyledRadioLink = styled(Link)`
   text-decoration: none;
   background-color: #aa7d56;
   border-radius: 2rem;
-  padding: 1rem 3rem;
+  padding: 1rem 5rem;
   color: white;
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   font-weight: bold;
   cursor: pointer;
   border: none;

@@ -24,10 +24,11 @@ export const StyledHome = styled.section`
 
         p {
             margin: 1.5rem 0;
+            font-size: 1.35rem;
         }
 
         h1 {
-            font-size: 2.25rem;
+            font-size: 2.75rem;
             font-weight: 400;
             text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
             margin: 0;
