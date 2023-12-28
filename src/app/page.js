@@ -11,14 +11,10 @@ import styled from "styled-components";
 const jua = Jua({ subsets: ['latin'], weight: '400'});
 const kalam = Kalam({ subsets: ['latin'], weight: '300'});
 
-const StyledImage = styled(Image)`
-  z-index: -1;
-`;
-
 export default function Home() {
   return (
     <StyledHome>
-      <StyledImage
+      <Image
         src={thumbnail}
         alt="Thumbnail"
         layout="fill"
