@@ -12,6 +12,10 @@ export const StyledRadioLink = styled(Link)`
   cursor: pointer;
   border: none;
   transition: all .2s;
+  @media(max-width: 425px){
+    padding: .75rem 4rem;
+    font-size: 1.5rem;
+  }
 
   &:hover {
     background-color: #6d5036;
