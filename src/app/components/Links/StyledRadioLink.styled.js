@@ -13,7 +13,7 @@ export const StyledRadioLink = styled(Link)`
   border: none;
   transition: all .2s;
   @media(max-width: 425px){
-    padding: .75rem 4rem;
+    padding: .5rem 2.25rem;
     font-size: 1.5rem;
   }
 
