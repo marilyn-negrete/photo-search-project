@@ -1,3 +1,4 @@
+import Nav from './components/Nav/Nav';
 import StyledComponentsRegistry from './lib/registry'
 import { Inter } from 'next/font/google';
 
@@ -12,6 +13,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
+        <Nav />
         <StyledComponentsRegistry>{children}</StyledComponentsRegistry></body>
     </html>
   )
