@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import Link from "next/link";
 
-export const StyledRadioLink = styled(Link)`
+export const StyledLink = styled(Link)`
   text-decoration: none;
   background-color: #aa7d56;
-  border-radius: 2rem;
+  border-radius: ${ ({isRadius}) => isRadius ? '2rem' : 'none'};
   padding: 1rem 5rem;
   color: white;
   font-size: 1.75rem;
