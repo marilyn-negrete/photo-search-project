@@ -1,5 +1,5 @@
 'use client';
-
+import { Global } from './Global.styled';
 import Nav from './components/Nav/Nav';
 import StyledComponentsRegistry from './lib/registry'
 import { Inter } from 'next/font/google';
@@ -12,9 +12,10 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <body className={inter.className}>
-        {pathname !== '/' ? <Nav /> : null}
-        <StyledComponentsRegistry>{children}</StyledComponentsRegistry></body>
+      <Global className={inter.className}>
+      {pathname !== '/' ? <Nav /> : null}
+        <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+      </Global>
     </html>
   )
 }
