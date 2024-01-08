@@ -1,11 +1,6 @@
 import { StyledBottomNav } from "./Nav.styled";
 import Link from "next/link";
 import Image from "next/image";
-import home from "../../../../public/home.png";
-import camera from "../../../../public/camera.png";
-import location from "../../../../public/location.png";
-import bell from "../../../../public/bell.png";
-import user from "../../../../public/user.png";
 
 const Nav = () => {
     return (
@@ -15,7 +10,7 @@ const Nav = () => {
                     <Link href="/">
                         <Image
                             alt="home-option"
-                            src={home}
+                            src="/home.png"
                             width={25}
                             height={25}
                         />
@@ -25,7 +20,7 @@ const Nav = () => {
                     <Link href="/local-photographers">
                         <Image
                             alt="location-option"
-                            src={location}
+                            src="/location.png"
                             width={25}
                             height={25}
                         />
@@ -35,7 +30,7 @@ const Nav = () => {
                     <Link href="/camera">
                         <Image
                             alt="camera-option"
-                            src={camera}
+                            src="/camera.png"
                             width={25}
                             height={25}
                         />
@@ -45,7 +40,7 @@ const Nav = () => {
                     <Link href="/feed">
                         <Image
                             alt="bell-option"
-                            src={bell}
+                            src="/bell.png"
                             width={25}
                             height={25}
                         />
@@ -56,7 +51,7 @@ const Nav = () => {
                     <Link href="/profile/1">
                         <Image
                             alt="user-option"
-                            src={user}
+                            src="/user.png"
                             width={25}
                             height={25}
                         />

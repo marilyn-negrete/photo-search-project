@@ -1,9 +1,6 @@
 import { useState } from "react";
 import { StyledTopNav } from "./Nav.styled";
 import Image from "next/image";
-import logo from "../../../../public/photo-search-logo.png";
-import hamburguer from "../../../../public/hamburguer-menu.png";
-import cross from "../../../../public/cross.png";
 import Link from "next/link";
 
 const TopNav = () => {
@@ -14,14 +11,14 @@ const TopNav = () => {
     return(
         <StyledTopNav>
             <Link href="/">
-                <Image width={30} height={30} src={logo} alt="photo-search-logo"/>
+                <Image width={30} height={30} src="/photo-search-logo.png" alt="photo-search-logo"/>
             </Link>
             <h4>PhotoSearch</h4>
             <Image 
                 onClick={handleToggleMenu} 
                 width={20} 
                 height={20} 
-                src={isMenuOpen ? cross : hamburguer} 
+                src={isMenuOpen ? '/cross.png' : '/hamburguer-menu.png'} 
                 alt={isMenuOpen ? 'close-menu' : 'open-menu'}
             />
         </StyledTopNav>

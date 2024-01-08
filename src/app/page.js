@@ -2,7 +2,6 @@
 import React from "react";
 import { Jua, Kalam } from 'next/font/google';
 import Image from "next/image";
-import thumbnail from "../../public/photography-thumbnail.jpeg";
 import { StyledLink } from "./components/Links/StyledLink.styled";
 import { StyledHome, StyledBanner } from "./StyledHome.styled";
 
@@ -14,7 +13,7 @@ export default function Home() {
   return (
     <StyledHome>
       <Image
-        src={thumbnail}
+        src="/photography-thumbnail.jpeg"
         alt="Thumbnail"
         layout="fill"
         objectFit="cover"
