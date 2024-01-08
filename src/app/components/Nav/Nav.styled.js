@@ -1,6 +1,15 @@
 import styled from "styled-components";
 
-export const StyledNav = styled.nav`
+export const StyledTopNav = styled.nav`
+    width: 100%;        
+    height: 3rem;
+    padding: 1rem;
+    background: white;
+    display: flex;
+    justify-content: space-between;
+`;
+
+export const StyledBottomNav = styled.nav`
     width: 100%;
     position: absolute;
     bottom: 0;

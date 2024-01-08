@@ -1,6 +1,7 @@
 'use client';
 import { Global } from './Global.styled';
-import Nav from './components/Nav/Nav';
+import BottomNav from './components/Nav/BottomNav';
+import TopNav from './components/Nav/TopNav';
 import StyledComponentsRegistry from './lib/registry'
 import { usePathname } from 'next/navigation'
 
@@ -8,11 +9,12 @@ export default function RootLayout({ children }) {
   const pathname = usePathname();
 
   return (
-    <html lang="en">
-      <Global>
-      {pathname !== '/' ? <Nav /> : null}
-        <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+      <Global lang="en">
+        <body>
+          {pathname !== '/' ? <BottomNav /> : null}
+          {pathname !== '/' ? <TopNav /> : null}
+          <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+        </body>
       </Global>
-    </html>
   )
 }

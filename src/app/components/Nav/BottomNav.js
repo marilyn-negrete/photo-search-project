@@ -1,4 +1,4 @@
-import { StyledNav } from "./Nav.styled";
+import { StyledBottomNav } from "./Nav.styled";
 import Link from "next/link";
 import Image from "next/image";
 import home from "../../../../public/home.png";
@@ -9,7 +9,7 @@ import user from "../../../../public/user.png";
 
 const Nav = () => {
     return (
-        <StyledNav>
+        <StyledBottomNav>
             <ul>
                 <li>
                     <Link href="/">
@@ -63,7 +63,7 @@ const Nav = () => {
                     </Link>
                 </li>
             </ul>
-        </StyledNav>
+        </StyledBottomNav>
     )
 }
 
