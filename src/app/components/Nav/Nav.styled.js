@@ -7,6 +7,7 @@ export const StyledTopNav = styled.nav`
     background: white;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 `;
 
 export const StyledBottomNav = styled.nav`
