@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
 export const StyledNav = styled.nav`
+    width: 100%;
+    position: absolute;
+    bottom: 0;
     background-color: #F4DFCA;
 
     ul {
