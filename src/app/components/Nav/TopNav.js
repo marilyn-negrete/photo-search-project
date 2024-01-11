@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { StyledTopNav } from "./Nav.styled";
+import { NavWrapper } from "./Nav.styled";
 import SideBar from "../SideBar/SideBar";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,7 +11,7 @@ const TopNav = () => {
 
     return(
         <>
-            <StyledTopNav>
+            <NavWrapper position='top' bgColor='light'>
                 <Link href="/">
                     <Image width={30} height={30} src="/photo-search-logo.png" alt="photo-search-logo"/>
                 </Link>
@@ -23,7 +23,7 @@ const TopNav = () => {
                     src={isMenuOpen ? '/cross.png' : '/hamburguer-menu.png'} 
                     alt={isMenuOpen ? 'close-menu' : 'open-menu'}
                 />
-            </StyledTopNav>
+            </NavWrapper>
             {isMenuOpen ?  <SideBar isMenuOpen/> : null}
         </>
         
