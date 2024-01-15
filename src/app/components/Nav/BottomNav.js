@@ -6,7 +6,7 @@ const Nav = () => {
     return (
         <NavWrapper position='bottom' bgColor='peach'>
             <div>
-                <Link href="/">
+                <Link href="/feed">
                     <Image
                         alt="home-option"
                         src="/home.png"

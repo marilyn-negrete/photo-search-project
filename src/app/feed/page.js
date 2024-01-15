@@ -1,3 +1,8 @@
+'use client'
+import InfiniteScrollCarousel from "../components/Carousel/InfniteScrollCarousel";
+
 export default function Page() {
-    return <h1>Posts Page</h1>
+    return (
+        <InfiniteScrollCarousel />
+    )
 }
