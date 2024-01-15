@@ -15,8 +15,7 @@ export const Item = styled.li`
     transition: all .2s;
     cursor: pointer;
 
-
     &:hover {
-        background: rgb(196 196 196 / 30%);
+        background: ${({theme}) => theme.colors.primary.rgb}
     }
 `;
