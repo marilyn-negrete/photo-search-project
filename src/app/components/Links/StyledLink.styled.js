@@ -13,7 +13,7 @@ export const StyledLink = styled(Link)`
   border: none;
   transition: all .2s;
 
-  @media(max-width: 425px){
+  @media(max-width: ${({theme}) => theme.breakpoints.lgMobile}){
     padding: .5rem 2.25rem;
     font-size: 1.5rem;
   }

@@ -13,6 +13,12 @@ const theme = {
         main: '#3A3636',
         rgba: 'rgba(55, 51, 52, 0.70)',
       }
+    },
+    breakpoints: {
+      smMobile: '320px',
+      mdMobile: '375px',
+      lgMobile: '425px',
+      tablet: '768px',
     }
   };
   
