@@ -4,6 +4,7 @@ export const SideBarWrapper = styled.div`
     width: 100%;
     position: absolute;
     background: white;
+    height: calc(100% - 18%);
 `;
 
 export const Items = styled.ul`
