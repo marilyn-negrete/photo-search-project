@@ -4,6 +4,7 @@ import { Jua, Kalam } from 'next/font/google';
 import Image from "next/image";
 import { StyledLink } from "./components/Links/StyledLink.styled";
 import { StyledHome, StyledBanner } from "./StyledHome.styled";
+import Typography from "./components/Typography/Typography";
 
 // fonts
 const jua = Jua({ subsets: ['latin'], weight: '400'});
@@ -19,7 +20,7 @@ export default function Home() {
         objectFit="cover"
       />
       <StyledBanner>
-        <h1 className={jua.className}>PhotoSearch</h1>
+        <Typography variant="h1" label="PhotoSearch"/>
         <p className={kalam.className}>Find the best photographers in your city</p>
         <StyledLink isRadius={true} className={jua.className} href="/local-photographers">Search</StyledLink>
       </StyledBanner>

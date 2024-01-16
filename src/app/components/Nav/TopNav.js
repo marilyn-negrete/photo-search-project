@@ -3,6 +3,7 @@ import { NavWrapper } from "./Nav.styled";
 import SideBar from "../SideBar/SideBar";
 import Image from "next/image";
 import Link from "next/link";
+import Typography from "../Typography/Typography";
 
 const TopNav = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -15,7 +16,7 @@ const TopNav = () => {
                 <Link href="/">
                     <Image width={30} height={30} src="/photo-search-logo.png" alt="photo-search-logo"/>
                 </Link>
-                <h4>PhotoSearch</h4>
+                <Typography variant="h4" label="PhotoSearch"/>
                 <Image 
                     onClick={handleToggleMenu} 
                     width={20} 
