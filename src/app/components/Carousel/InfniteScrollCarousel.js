@@ -1,28 +1,20 @@
-
 import { CarouselWrapper, CarouselItem, CarouselTitle, StyledImage, CarouselItems } from "./InfiniteScrollCarousel.styled";
-import Image from "next/image";
 
-const InfiniteScrollCarousel = () => {
+const InfiniteScrollCarousel = (props) => {
+    const { theCollections } = props;
+
     return(
         <CarouselWrapper>
             <h4>Some text here</h4>
             <CarouselItems>
-                <CarouselItem>
-                    <StyledImage width={100} height={100} alt="colection name" src="/flowers.avif"/>
-                    <CarouselTitle>Lorem</CarouselTitle>
-                </CarouselItem>
-                <CarouselItem>
-                    <StyledImage width={100} height={100} alt="colection name" src='/flowers.avif'/>
-                    <CarouselTitle>Ipsum</CarouselTitle>
-                </CarouselItem>
-                <CarouselItem>
-                    <StyledImage width={100} height={100} alt="colection name" src='/flowers.avif'/>
-                    <CarouselTitle>Sit a</CarouselTitle>
-                </CarouselItem>
-                <CarouselItem>
-                    <StyledImage width={100} height={100} alt="colection name" src='/flowers.avif'/>
-                    <CarouselTitle>Met</CarouselTitle>
-                </CarouselItem>
+                {theCollections ? 
+                    theCollections.map(album => (
+                        <CarouselItem key={album.id}>
+                            <StyledImage width={100} height={100} alt={album.title} src="/flowers.avif" />
+                            <CarouselTitle>{album.title}</CarouselTitle>
+                        </CarouselItem>
+                    ))
+                : []}
             </CarouselItems>
         </CarouselWrapper>
     )
