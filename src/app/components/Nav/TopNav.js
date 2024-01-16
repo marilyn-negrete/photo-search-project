@@ -4,6 +4,11 @@ import SideBar from "../SideBar/SideBar";
 import Image from "next/image";
 import Link from "next/link";
 import Typography from "../Typography/Typography";
+import { Jua, Kalam } from 'next/font/google';
+
+// fonts
+const jua = Jua({ subsets: ['latin'], weight: '400'});
+const kalam = Kalam({ subsets: ['latin'], weight: '300'});
 
 const TopNav = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -16,7 +21,7 @@ const TopNav = () => {
                 <Link href="/">
                     <Image width={30} height={30} src="/photo-search-logo.png" alt="photo-search-logo"/>
                 </Link>
-                <Typography variant="h4" label="PhotoSearch"/>
+                <Typography variant="h3" label="PhotoSearch" className={jua.className}/>
                 <Image 
                     onClick={handleToggleMenu} 
                     width={20} 

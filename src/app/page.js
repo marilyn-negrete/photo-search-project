@@ -20,7 +20,7 @@ export default function Home() {
         objectFit="cover"
       />
       <StyledBanner>
-        <Typography variant="h1" label="PhotoSearch"/>
+        <Typography className={jua.className} variant="h1" label="PhotoSearch"/>
         <p className={kalam.className}>Find the best photographers in your city</p>
         <StyledLink isRadius={true} className={jua.className} href="/local-photographers">Search</StyledLink>
       </StyledBanner>
