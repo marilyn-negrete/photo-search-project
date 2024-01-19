@@ -4,8 +4,6 @@ import Image from "next/image";
 export const CarouselWrapper = styled.section`
     display: flex;
     flex-direction: column;
-    background-color: ${({theme}) => theme.colors.secondary.main};
-    padding: 1rem;
 `;
 
 export const CarouselItems = styled.div`

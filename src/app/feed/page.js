@@ -1,9 +1,11 @@
 'use client'
 import { collections } from "../lib/collections";
-import InfiniteScrollCarousel from "../components/Carousel/InfniteScrollCarousel";
+import MyCollections from "./MyCollections";
 
-export default function Page() {
+const Page = () => {
     return (
-        <InfiniteScrollCarousel theCollections={collections}/>
+        <MyCollections theCollections={collections} theSectionTitle="My Collections"/>
     )
 }
+
+export default Page;

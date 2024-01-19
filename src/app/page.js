@@ -21,7 +21,7 @@ export default function Home() {
       />
       <StyledBanner>
         <Typography className={jua.className} variant="h1" label="PhotoSearch"/>
-        <p className={kalam.className}>Find the best photographers in your city</p>
+        <Typography className={kalam.className} label="Find the best photographers in your city"/>
         <StyledLink isRadius={true} className={jua.className} href="/local-photographers">Search</StyledLink>
       </StyledBanner>
     </StyledHome>
