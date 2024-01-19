@@ -17,4 +17,8 @@ export const SubHeading = styled.h4`
     flex: 1;
     font-size: 1rem;
     margin: 0;
+
+    ${({bottomSpacing}) => 'bottomSpacing' && css`
+        margin-bottom: ${bottomSpacing + 'rem'};
+    `}
 `;

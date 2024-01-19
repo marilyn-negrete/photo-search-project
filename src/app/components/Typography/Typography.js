@@ -14,7 +14,7 @@ const Typography = (props) => {
         case 'h3': 
           return <SecondaryHeading className={className}>{label}</SecondaryHeading>
         case 'h4':
-          return <SubHeading className={className}>{label}</SubHeading>;
+          return <SubHeading className={className} bottomSpacing={1}>{label}</SubHeading>;
         default:
           return <p className={className}>{label}</p>; // Default to a paragraph if variant is not recognized
       }
