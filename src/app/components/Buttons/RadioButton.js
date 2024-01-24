@@ -2,8 +2,7 @@ import Image from "next/image";
 import { StyledRadioButton } from "./Button.styled";
 
 const RadioButton = (props) => {
-    
-    const handleOnClick = () => console.log('create a collection');
+    const {handleOnClick} = props;
 
     return(
     <StyledRadioButton onClick={handleOnClick}>
