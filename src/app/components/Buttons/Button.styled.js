@@ -10,4 +10,5 @@ export const StyledRadioButton = styled.button`
     bottom: 5rem;
     right: 1rem;
     box-shadow: ${({theme}) => theme.shadows.main};
+    cursor: pointer;
 `;
