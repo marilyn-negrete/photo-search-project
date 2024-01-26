@@ -5,7 +5,7 @@ const TextField = (props) => {
 
     return(
         <TextFieldWrapper>
-            <label for={id}>{label}</label>
+            <label htmlFor={id}>{label}</label>
             <input type="text" value={value} id={id} onChange={handleOnChange}/>
         </TextFieldWrapper>
     )
