@@ -40,7 +40,7 @@ export const useAppContext = () => {
     const context = useContext(AppContext);
 
     if(!context) {
-        throw new Error('Something went wrong, useMyContext must be used within a MyContextProvider');
+        throw new Error('Something went wrong, useAppContext must be used within ContextProvider');
     } else {
         return context;
     }
