@@ -1,6 +1,7 @@
 import RadioButton from "@/app/components/Buttons/RadioButton";
 import Dialog from "@/app/components/Dialog/Dialog";
 import TextField from "@/app/components/Inputs/TextField";
+import InputButton from "../Buttons/InputButton";
 import { useState } from "react";
 import { useAppContext } from "@/app/context/AppContext";
 
@@ -48,9 +49,8 @@ const CreateCollectionForm = () => {
                         handleOnChange={handleOnChange} 
                         id="description" 
                     />
-                    <div>
-                        <input value="submit" type="submit" />   
-                        <input value="close" type="button" onClick={closeDialog}/>
+                    <div style={{ display: 'flex', justifyContent: 'flex-end'}}>
+                        <InputButton value="submit" elementType="submit" />   
                     </div>
                 </form>
             </Dialog>

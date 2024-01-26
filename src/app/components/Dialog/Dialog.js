@@ -1,7 +1,9 @@
-import { DialogWrapper, DialogContent, DialogBody, DialogHead, DialogActions, DialogBackdrop } from "./Dialog.styled";
+import { DialogWrapper, DialogContent, DialogBody, DialogHead, DialogBackdrop, DialogActions } from "./Dialog.styled";
 import Typography from "../Typography/Typography";
+import { useAppContext } from "@/app/context/AppContext";
 
 const Dialog = (props) => {
+const { closeDialog } = useAppContext();
 const { children, dialog } = props;
 
     return(
@@ -15,6 +17,9 @@ const { children, dialog } = props;
                         { children}
                     </DialogBody>
                 </DialogContent>
+                <DialogActions>
+                    <button value="close" onClick={closeDialog}>close</button>
+                </DialogActions>
             </DialogWrapper>
             {dialog.isOpen ? <DialogBackdrop></DialogBackdrop> : null}
             
