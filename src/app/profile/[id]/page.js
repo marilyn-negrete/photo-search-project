@@ -3,15 +3,13 @@ import RadioButton from "@/app/components/Buttons/RadioButton";
 import Dialog from "@/app/components/Dialog/Dialog";
 import TextField from "@/app/components/Inputs/TextField";
 import { useState } from "react";
+import { useAppContext } from "@/app/context/AppContext";
 
 export default function Page({params}) {
+    const { openDialog, closeDialog, dialog, setDialog } = useAppContext();
     const [theCollection, setTheCollection] = useState({
         title: '',
         description: ''
-    });
-    const [dialog, setDialog] = useState({
-        isOpen: false,
-        title: ""
     });
 
     const createCollection = (e) => {
@@ -31,20 +29,6 @@ export default function Page({params}) {
         setTheCollection({
             title: '',
             description: ''
-        });
-    }
-
-    const openDialog = () => {
-        setDialog({
-            isOpen: true,
-            title: "Create Collection"
-        });
-    }
-
-    const closeDialog = () => {
-        setDialog({
-            isOpen: false,
-            title: ""
         });
     }
 
