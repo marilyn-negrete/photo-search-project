@@ -34,7 +34,7 @@ const CreateCollectionForm = () => {
 
     return (
         <>
-            <RadioButton handleOnClick={openDialog}/>
+            <RadioButton handleOnClick={openDialog} srcIcon="/plus.svg" size="lg" shadow={true} />
             <Dialog dialog={dialog}>
                 <form onSubmit={addCollection}>
                     <TextField 

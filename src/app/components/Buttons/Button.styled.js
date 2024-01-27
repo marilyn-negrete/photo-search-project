@@ -1,14 +1,21 @@
 import styled from "styled-components";
+import css from "styled-jsx/css";
 
 export const StyledRadioButton = styled.button`
-    height: 4rem;
-    width: 4rem;
+    height: 2rem;
+    width: 2rem;
     border-radius: 50%;
     background-color: white;
     border: 1px solid transparent;
-    position: absolute;
-    bottom: 5rem;
-    right: 1rem;
-    box-shadow: ${({theme}) => theme.shadows.main};
+    
+    box-shadow: ${({theme, shadow}) => shadow ? theme.shadows.main : 'unset'};
     cursor: pointer;
+
+    ${({size}) => size ==='lg' && css`
+        height: 4rem;
+        width: 4rem;
+        position: absolute;
+        bottom: 5rem;
+        right: 1rem;
+    `}
 `;

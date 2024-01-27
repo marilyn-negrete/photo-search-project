@@ -2,11 +2,11 @@ import Image from "next/image";
 import { StyledRadioButton } from "./Button.styled";
 
 const RadioButton = (props) => {
-    const {handleOnClick} = props;
+    const {handleOnClick, srcIcon, size, shadow} = props;
 
     return(
-    <StyledRadioButton onClick={handleOnClick}>
-        <Image width={25} height={25} alt="Create" src="/plus.svg"/>
+    <StyledRadioButton onClick={handleOnClick} size={size} shadow={shadow}>
+        <Image width={size === 'sm' ? 10 : 25} height={size === 'sm' ? 10 : 25} alt="Create" src={srcIcon}/>
     </StyledRadioButton>
     )
 }
