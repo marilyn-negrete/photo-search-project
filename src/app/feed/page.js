@@ -1,12 +1,17 @@
 'use client'
 import { collections } from "../lib/collections";
-import MyCollections from "./MyCollections";
 import CreateCollectionForm from "../components/Forms/CreateCollectionForm";
+import Typography from "../components/Typography/Typography";
+import InfiniteScrollCarousel from "../components/Carousel/InfniteScrollCarousel";
+import { StyledWrapper } from "./feed.styled";
 
 const Page = () => {
     return (
         <>
-            <MyCollections theCollections={collections} theSectionTitle="My Collections"/>
+            <StyledWrapper>
+                <Typography label="My Collections" variant="h4"/> 
+                <InfiniteScrollCarousel items={collections} />
+            </StyledWrapper> 
             <CreateCollectionForm />
         </>
     )
