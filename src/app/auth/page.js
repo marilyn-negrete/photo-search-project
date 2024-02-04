@@ -42,7 +42,7 @@ export default function Page() {
             const data = await response.json();
             if (data.access_token) {
                 window.localStorage.setItem('token', data.access_token);
-                window.localStorage.setItem('userData', json.stringify({ username: data.username, userId: data.user_id }))
+                window.localStorage.setItem('userData', JSON.stringify({ username: data.username, userId: data.user_id }))
                 router.push('/feed');
             }
 
