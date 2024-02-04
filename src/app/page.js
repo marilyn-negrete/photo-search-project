@@ -22,7 +22,13 @@ export default function Home() {
       <StyledBanner>
         <Typography className={jua.className} variant="h1" label="PhotoSearch"/>
         <Typography className={kalam.className} label="Find the best photographers in your city"/>
-        <StyledLink isRadius={true} className={jua.className} href="/local-photographers">Search</StyledLink>
+        <StyledLink 
+          isRadius={true} 
+          className={jua.className} 
+          href={`${process.env.UNSPLASH_AUTH_URL}?client_id=${process.env.UNSPLASH_CLIENT_ID}&redirect_uri=${process.env.REDIRECT_URL}&response_type=code&scope=public+read_user+write_collections`}
+          >
+            Get Started
+        </StyledLink>
       </StyledBanner>
     </StyledHome>
   )
