@@ -6,7 +6,7 @@ const InfiniteScrollCarousel = (props) => {
     return(
         <CarouselWrapper>
             <CarouselItems>
-                {items ? 
+                {items.length ? 
                     items.map(album => (
                         <CarouselItem key={album.id}>
                             <StyledImage width={100} height={100} alt={album.title} src="/flowers.avif" />
