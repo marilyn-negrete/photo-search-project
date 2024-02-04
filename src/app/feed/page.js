@@ -3,7 +3,7 @@ import { collections } from "../lib/collections";
 import CreateCollectionForm from "../components/Forms/CreateCollectionForm";
 import Typography from "../components/Typography/Typography";
 import InfiniteScrollCarousel from "../components/Carousel/InfniteScrollCarousel";
-import { StyledWrapper } from "./feed.styled";
+import { StyledWrapper } from "./Feed.styled";
 
 const Page = () => {
     return (
