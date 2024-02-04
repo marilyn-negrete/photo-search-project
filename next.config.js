@@ -8,6 +8,7 @@ const nextConfig = {
   env: {
     API_URL: process.env.API_URL,
     UNSPLASH_AUTH_URL: process.env.UNSPLASH_AUTH_URL,
+    PERMISSION_SCOPES: process.env.PERMISSION_SCOPES,
     UNSPLASH_CLIENT_ID: process.env.UNSPLASH_CLIENT_ID,
     UNSPLASH_CLIENT_SECRET: process.env.UNSPLASH_CLIENT_SECRET,
     REDIRECT_URL: process.env.REDIRECT_URL

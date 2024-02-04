@@ -25,7 +25,7 @@ export default function Home() {
         <StyledLink 
           isRadius={true} 
           className={jua.className} 
-          href={`${process.env.UNSPLASH_AUTH_URL}?client_id=${process.env.UNSPLASH_CLIENT_ID}&redirect_uri=${process.env.REDIRECT_URL}&response_type=code&scope=public+read_user+write_collections`}
+          href={`${process.env.UNSPLASH_AUTH_URL}?client_id=${process.env.UNSPLASH_CLIENT_ID}&redirect_uri=${process.env.REDIRECT_URL}&response_type=code&scope=${process.env.PERMISSION_SCOPES}`}
           >
             Get Started
         </StyledLink>
