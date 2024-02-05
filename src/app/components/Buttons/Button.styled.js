@@ -19,3 +19,12 @@ export const StyledRadioButton = styled.button`
         right: 1rem;
     `}
 `;
+
+export const StyledSquareButton = styled.input`
+    background-color: black;
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 5px;
+    border: 1px solid;
+    cursor: pointer;
+`;

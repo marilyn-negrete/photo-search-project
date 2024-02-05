@@ -1,10 +1,15 @@
 'use client'
 import CreateCollectionForm from "../components/Forms/CreateCollectionForm";
 import Typography from "../components/Typography/Typography";
+import { Jua, Kalam } from 'next/font/google';
 import InfiniteScrollCarousel from "../components/Carousel/InfniteScrollCarousel";
 import { StyledWrapper } from "./Feed.styled";
 import { useEffect, useState } from "react";
 import { useFetch } from "../hooks/useFetch";
+
+// fonts
+const jua = Jua({ subsets: ['latin'], weight: '400'});
+const kalam = Kalam({ subsets: ['latin'], weight: '700'});
 
 const Page = () => {
     const [collections, setCollections] = useState([]);
@@ -19,7 +24,7 @@ const Page = () => {
     return (
         <>
             <StyledWrapper>
-                <Typography label="My Collections" variant="h4"/> 
+                <Typography label="My Collections" variant="h4" className={kalam.className}/> 
                 <InfiniteScrollCarousel items={collections} />
             </StyledWrapper> 
             <CreateCollectionForm />
