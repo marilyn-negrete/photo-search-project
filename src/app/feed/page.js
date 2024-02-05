@@ -4,14 +4,17 @@ import Typography from "../components/Typography/Typography";
 import InfiniteScrollCarousel from "../components/Carousel/InfniteScrollCarousel";
 import { StyledWrapper } from "./Feed.styled";
 import { useEffect, useState } from "react";
-import { getUsersCollections } from "../lib/collections";
+import { useFetch } from "../hooks/useFetch";
 
 const Page = () => {
     const [collections, setCollections] = useState([]);
+    const {data, error, loading } = useFetch(`${process.env.API_URL}/users/mna96/collections?client_id=${process.env.UNSPLASH_CLIENT_ID}`);
 
     useEffect(() => {
-        setCollections(getUsersCollections());
-    },[]);
+        if(data) { 
+            setCollections(data)
+        }
+    },[data]);
 
     return (
         <>
