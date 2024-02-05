@@ -12,7 +12,18 @@ const nextConfig = {
     UNSPLASH_CLIENT_ID: process.env.UNSPLASH_CLIENT_ID,
     UNSPLASH_CLIENT_SECRET: process.env.UNSPLASH_CLIENT_SECRET,
     REDIRECT_URL: process.env.REDIRECT_URL
-  }
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 's3.us-west-2.amazonaws.com',
+        port: '',
+        pathname: '/images.unsplash.com/**',
+
+      },
+    ],
+  },
 }
 
 module.exports = nextConfig
