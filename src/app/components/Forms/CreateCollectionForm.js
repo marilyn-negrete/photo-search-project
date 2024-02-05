@@ -4,6 +4,7 @@ import TextField from "@/app/components/Inputs/TextField";
 import InputButton from "../Buttons/InputButton";
 import { useState } from "react";
 import { useAppContext } from "@/app/context/AppContext";
+import { postNewCollection } from "@/app/lib/collections";
 
 const CreateCollectionForm = () => {
     const { openDialog, closeDialog, dialog } = useAppContext();
@@ -14,8 +15,9 @@ const CreateCollectionForm = () => {
 
     const addCollection = (e) => {
         e.preventDefault();
-        console.log(theCollection, 'doing a post request here shortly');
+        postNewCollection(theCollection);
         clearForm();
+        closeDialog();
     }
 
     const handleOnChange = (e) => {
