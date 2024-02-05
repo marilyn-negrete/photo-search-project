@@ -4,8 +4,7 @@ import { useAppContext } from "@/app/context/AppContext";
 import RadioButton from "../Buttons/RadioButton";
 
 const Dialog = (props) => {
-const { closeDialog } = useAppContext();
-const { children, dialog } = props;
+const { children, dialog, closeDialog } = props;
 
     return(
         <>

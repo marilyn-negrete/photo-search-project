@@ -4,11 +4,10 @@ import SideBar from "../SideBar/SideBar";
 import Image from "next/image";
 import Link from "next/link";
 import Typography from "../Typography/Typography";
-import { Jua, Kalam } from 'next/font/google';
+import { Jua } from 'next/font/google';
 
 // fonts
 const jua = Jua({ subsets: ['latin'], weight: '400'});
-const kalam = Kalam({ subsets: ['latin'], weight: '300'});
 
 const TopNav = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);

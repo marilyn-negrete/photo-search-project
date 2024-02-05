@@ -3,15 +3,31 @@ import Dialog from "@/app/components/Dialog/Dialog";
 import TextField from "@/app/components/Inputs/TextField";
 import InputButton from "../Buttons/InputButton";
 import { useState } from "react";
-import { useAppContext } from "@/app/context/AppContext";
 import { postNewCollection } from "@/app/lib/collections";
 
 const CreateCollectionForm = () => {
-    const { openDialog, closeDialog, dialog } = useAppContext();
     const [theCollection, setTheCollection] = useState({
         title: '',
         description: ''
     });
+    const [dialog, setDialog] = useState({
+        isOpen: false,
+        title: ""
+    });
+
+    const openDialog = () => {
+        setDialog({
+            isOpen: true,
+            title: "Create Collection"
+        });
+    }
+
+    const closeDialog = () => {
+        setDialog({
+            isOpen: false,
+            title: ""
+        });
+    }
 
     const addCollection = (e) => {
         e.preventDefault();
@@ -37,7 +53,7 @@ const CreateCollectionForm = () => {
     return (
         <>
             <RadioButton handleOnClick={openDialog} srcIcon="/plus.svg" size="lg" shadow={true} />
-            <Dialog dialog={dialog}>
+            <Dialog dialog={dialog} closeDialog={closeDialog}>
                 <form onSubmit={addCollection}>
                     <TextField 
                         label="Title" 
@@ -52,7 +68,7 @@ const CreateCollectionForm = () => {
                         id="description" 
                     />
                     <div style={{ display: 'flex', justifyContent: 'flex-end'}}>
-                        <InputButton value="submit" elementType="submit" />   
+                        <InputButton value="save" elementType="submit" />   
                     </div>
                 </form>
             </Dialog>
