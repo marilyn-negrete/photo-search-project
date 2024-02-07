@@ -10,7 +10,9 @@ import Typography from "./components/Typography/Typography";
 const jua = Jua({ subsets: ['latin'], weight: '400'});
 const kalam = Kalam({ subsets: ['latin'], weight: '300'});
 
-export default function Home() {
+const authorizationUrl =`${process.env.UNSPLASH_AUTH_URL}/authorize?client_id=${process.env.UNSPLASH_CLIENT_ID}&redirect_uri=${process.env.REDIRECT_URL}&response_type=code&scope=${process.env.PERMISSION_SCOPES}`; 
+
+const Home = () => {
   return (
     <StyledHome>
       <Image
@@ -25,7 +27,7 @@ export default function Home() {
         <StyledLink 
           isRadius={true} 
           className={jua.className} 
-          href={`${process.env.UNSPLASH_AUTH_URL}/authorize?client_id=${process.env.UNSPLASH_CLIENT_ID}&redirect_uri=${process.env.REDIRECT_URL}&response_type=code&scope=${process.env.PERMISSION_SCOPES}`}
+          href={authorizationUrl}
           >
             Get Started
         </StyledLink>
@@ -33,3 +35,5 @@ export default function Home() {
     </StyledHome>
   )
 }
+
+export default Home;

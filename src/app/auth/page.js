@@ -1,17 +1,16 @@
 'use client'
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useEffect } from 'react';
-import { Jua, Kalam } from 'next/font/google';
+import { Jua } from 'next/font/google';
 import Typography from '../components/Typography/Typography';
 import { StyledWrapper } from "./Auth.styled";
 
 // fonts
 const jua = Jua({ subsets: ['latin'], weight: '400'});
-const kalam = Kalam({ subsets: ['latin'], weight: '300'});
 
-export default function Page() {
-    const searchParams = useSearchParams();
+const Page = () => {
     const router = useRouter();
+    const searchParams = useSearchParams();
     const code = searchParams.get('code');
 
     useEffect(() => {
@@ -57,3 +56,5 @@ export default function Page() {
         </StyledWrapper>
     );
 }
+
+export default Page;
