@@ -11,25 +11,26 @@ const jua = Jua({ subsets: ['latin'], weight: '400'});
 
 const Page = () => {
     const router = useRouter();
+    // #2 retrieve value from parameter code of /auth?code=123dkdkd url
     const searchParams = useSearchParams();
-    const code = searchParams.get('code');
+    const code = searchParams.get('code'); 
 
-    // ensure the effect is only trigger whenever the value of code changes
+    // this useEffect code block will be executed whenever the the value of code changes.
     useEffect(() => {
-        // the if statement here ensures the getToken function is only called when the code value exists and is truthy
+        // small validation to ensure the getToken function is only called when the code value exists and is truthy
         if (code) {
             getToken();
         }
     }, [code]);
 
-    /*
-        The getToken function makes a post request to the unsplash auth enpoint, the required parameters to get an authentication code are sent within the body. 
+    /*  
+        #3 The getToken function makes a post request to the unsplash auth enpoint, the required parameters to get an authentication code are sent within the body. 
         If successful, the unsplash api will respond with an authentication token that we can use in future requests. This token never expires and is stored in the localStorage.
     */
 
     const getToken = async () => {
         try {
-            const response = await fetch(
+            const request = await fetch(
                 `${process.env.UNSPLASH_AUTH_URL}/token`,
                 {
                     method: 'POST',
@@ -46,11 +47,11 @@ const Page = () => {
                 }
             );
 
-            const data = await response.json();
-            if (data.access_token) {
-                // setLocalStorage is a helper function that stores the token and userData in the localStorage
-                setLocalStorage('token', data.access_token);
-                setLocalStorage('userData', { username: data.username, userId: data.user_id });
+            const response = await request.json();
+            // if the requests resolves and the response includes a token we store the data in the localStorage
+            if (request.ok && response.access_token) {
+                setLocalStorage('token', response.access_token);
+                setLocalStorage('userData', { username: response.username, userId: response.user_id });
                 // allowing user access to phorot search feed after authorization flow is completed
                 router.push('/feed');
             }
