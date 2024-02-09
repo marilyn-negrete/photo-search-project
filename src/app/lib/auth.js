@@ -1,1 +1,1 @@
-export const getToken = () => `Bearer ` + window.localStorage.getItem('token');
+export const getToken = () => `Bearer ` + JSON.parse(window.localStorage.getItem('token'));
