@@ -19,7 +19,7 @@ const Page = () => {
     useEffect(() => {
         // small validation to ensure the getToken function is only called when the code value exists and is truthy
         if (code) {
-            getToken();
+            getToken(code);
         }
     }, [code]);
 
@@ -28,7 +28,7 @@ const Page = () => {
         If successful, the unsplash api will respond with an authentication token that we can use in future requests. This token never expires and is stored in the localStorage.
     */
 
-    const getToken = async () => {
+    const getToken = async (codeParam) => {
         try {
             const request = await fetch(
                 `${process.env.UNSPLASH_AUTH_URL}/token`,
@@ -41,7 +41,7 @@ const Page = () => {
                         client_id: process.env.UNSPLASH_CLIENT_ID,
                         client_secret: process.env.UNSPLASH_CLIENT_SECRET,
                         redirect_uri: process.env.REDIRECT_URL,
-                        code: code, // the code param value we retrieve from the url i.g. /auth?code=123
+                        code: codeParam, // the code param value we retrieve from the url i.g. /auth?code=123
                         grant_type: 'authorization_code',
                     }),
                 }
