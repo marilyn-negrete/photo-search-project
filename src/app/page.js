@@ -3,7 +3,7 @@ import React from "react";
 import { Jua, Kalam } from 'next/font/google';
 import Image from "next/image";
 import { StyledLink } from "./components/Links/StyledLink.styled";
-import { StyledHome, StyledBanner } from "./StyledHome.styled";
+import { StyledHome, StyledBanner } from "./Home.styled";
 import Typography from "./components/Typography/Typography";
 
 // fonts

@@ -2,7 +2,7 @@ import { NavWrapper } from "./Nav.styled";
 import Link from "next/link";
 import Image from "next/image";
 
-const Nav = () => {
+const BottomNav = () => {
     return (
         <NavWrapper position='bottom' bgColor='peach'>
             <div>
@@ -60,4 +60,4 @@ const Nav = () => {
     )
 }
 
-export default Nav;
+export default BottomNav;

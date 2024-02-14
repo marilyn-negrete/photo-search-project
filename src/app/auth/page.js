@@ -9,7 +9,7 @@ import { setLocalStorage } from '../lib/helpers';
 // fonts
 const jua = Jua({ subsets: ['latin'], weight: '400'});
 
-const Page = () => {
+const Auth = () => {
     const router = useRouter();
     // #2 retrieve value from parameter code of /auth?code=123dkdkd url
     const searchParams = useSearchParams();
@@ -69,4 +69,4 @@ const Page = () => {
     );
 }
 
-export default Page;
+export default Auth;

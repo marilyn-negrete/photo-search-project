@@ -10,7 +10,7 @@ import { useFetch } from "../hooks/useFetch";
 // fonts
 const kalam = Kalam({ subsets: ['latin'], weight: '700'});
 
-const Page = () => {
+const Feed = () => {
     const [collections, setCollections] = useState([]);
     // useFetch is a reusable function (hook) that receives an url endpoint as a parameter; data, error and loading are destructured for easier use.
     const {data, error, loading } = useFetch(`${process.env.API_URL}/users/mna96/collections?client_id=${process.env.UNSPLASH_CLIENT_ID}`);
@@ -34,4 +34,4 @@ const Page = () => {
     )
 }
 
-export default Page;
+export default Feed;
