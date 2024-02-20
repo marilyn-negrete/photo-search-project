@@ -26,13 +26,15 @@ const Auth = () => {
         );
 
     useEffect(() => {
-        if(responseData.access_token){
+        if(responseData.access_token) {
             setLocalStorage('token', responseData.access_token);
             setLocalStorage('userData', { username: responseData.username, userId: responseData.user_id });
             // allowing user access to phorot search feed after authorization flow is completed
             router.push('/feed');
+        }  else if (error) {
+            throw new Error('An error occurred during authentication')
         }
-    }, [responseData.access_token]);
+    }, [responseData.access_token, responseData.username, responseData.user_id, error, router]);
 
     return (
         <StyledWrapper>
