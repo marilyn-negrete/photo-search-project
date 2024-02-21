@@ -21,8 +21,9 @@ export const StyledRadioButton = styled.button`
 `;
 
 export const StyledSquareButton = styled.input`
-    background-color: black;
-    color: white;
+    background-color: ${({backgroundColor}) => backgroundColor};
+    color: ${({backgroundColor}) => backgroundColor === 'black' ? 'white' : 'black'};
+    text-align: center;
     padding: 1rem 1.5rem;
     border-radius: 5px;
     border: 1px solid;

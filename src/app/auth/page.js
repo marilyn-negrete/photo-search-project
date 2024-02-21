@@ -20,7 +20,7 @@ const Auth = () => {
             client_id: process.env.UNSPLASH_CLIENT_ID,
             client_secret: process.env.UNSPLASH_CLIENT_SECRET,
             redirect_uri: process.env.REDIRECT_URL,
-            code: code, // the code param value we retrieve from the url i.g. /auth?code=123
+            code: code,
             grant_type: 'authorization_code',
         }
         );
@@ -28,7 +28,6 @@ const Auth = () => {
     useEffect(() => {
         if(responseData.access_token) {
             setLocalStorage('token', responseData.access_token);
-            // allowing user access to phorot search feed after authorization flow is completed
             router.push('/feed');
         }  else if (error) {
             throw new Error('An error occurred during authentication')
@@ -37,7 +36,6 @@ const Auth = () => {
 
     return (
         <StyledWrapper>
-            {/* Rendering Loader in UI while authorization flow is running in the background */}
             { loading ? <Typography label="Loading..." variant="h3" className={jua.className}/> : null}
         </StyledWrapper>
     );
