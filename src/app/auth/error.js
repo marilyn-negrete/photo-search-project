@@ -7,7 +7,7 @@ const ErrorBoundary = ({error, reset}) => {
     return(
         <StyledError>
             <div>
-                <Image alt="icon-error" src="/error.svg" width={10} height={10} placeholder="blur"/>
+                <Image alt="icon-error" src="/error.svg" width={10} height={10} />
                 <p>{error.message}</p>
             </div>
             <InputButton
