@@ -1,5 +1,5 @@
 'use client';
-import { Global } from './Global.styled';
+import GlobalStyles from './Global.styled';
 import BottomNav from './components/Nav/BottomNav';
 import TopNav from './components/Nav/TopNav';
 import StyledComponentsRegistry from './lib/registry'
@@ -14,15 +14,16 @@ export default function RootLayout({ children }) {
   return (
     <ContextProvider>
       <ThemeProvider theme={theme}>
-        <Global lang="en">
+        <html lang="en">
           <body>
             <StyledComponentsRegistry>
+              <GlobalStyles />
               {pathname !== '/' && pathname !== '/auth'? <BottomNav /> : null}
               {pathname !== '/' && pathname !== '/auth' ? <TopNav /> : null}
               {children}
             </StyledComponentsRegistry>
           </body>
-        </Global>
+        </html>
       </ThemeProvider>
     </ContextProvider>
   )
