@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const BottomNav = () => {
     return (
-        <NavWrapper position='bottom' bgColor='peach'>
+        <NavWrapper position='bottom'>
             <div>
                 <Link href="/feed">
                     <Image

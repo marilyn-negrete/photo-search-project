@@ -16,7 +16,7 @@ const TopNav = () => {
 
     return(
         <>
-            <NavWrapper position='top' bgColor='light'>
+            <NavWrapper position='top'>
                 <Link href="/">
                     <Image width={30} height={30} src="/photo-search-logo.png" alt="photo-search-logo"/>
                 </Link>
