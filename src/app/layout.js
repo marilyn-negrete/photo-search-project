@@ -16,9 +16,11 @@ export default function RootLayout({ children }) {
       <ThemeProvider theme={theme}>
         <Global lang="en">
           <body>
-            {pathname !== '/' && pathname !== '/auth'? <BottomNav /> : null}
-            {pathname !== '/' && pathname !== '/auth' ? <TopNav /> : null}
-            <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+            <StyledComponentsRegistry>
+              {pathname !== '/' && pathname !== '/auth'? <BottomNav /> : null}
+              {pathname !== '/' && pathname !== '/auth' ? <TopNav /> : null}
+              {children}
+            </StyledComponentsRegistry>
           </body>
         </Global>
       </ThemeProvider>
