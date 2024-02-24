@@ -4,12 +4,13 @@ import Image from "next/image";
 export const CarouselWrapper = styled.section`
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    overflow-x: auto;
 `;
 
 export const CarouselItems = styled.div`
     display: flex;
-    justify-content: flex-start;
-    overflow-x: auto;
+    align-items: center;
 `;
 
 export const CarouselItem = styled.div`

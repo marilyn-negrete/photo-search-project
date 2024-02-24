@@ -12,12 +12,9 @@ const kalam = Kalam({ subsets: ['latin'], weight: '700'});
 
 const Feed = () => {
     const [collections, setCollections] = useState([]);
-    // useFetch is a reusable function (hook) that receives an url endpoint as a parameter; data, error and loading are destructured for easier use.
     const {data, error, loading } = useFetch(`${process.env.API_URL}/users/mna96/collections?client_id=${process.env.UNSPLASH_CLIENT_ID}`);
 
-    // to ensure the effect gets triggered whenever the value of data changes
     useEffect(() => {
-        // this is to ensure the setCollections function only runs if data exists is truthy
         if(data) { 
             setCollections(data)
         }
@@ -27,7 +24,15 @@ const Feed = () => {
         <>
             <StyledWrapper>
                 <Typography label="My Collections" variant="h4" className={kalam.className}/> 
-                <InfiniteScrollCarousel items={collections} />
+                <div className="content">
+                    {loading ? (
+                        <p>Loading...</p>
+                    ) : collections.length >= 1 ? (
+                        <InfiniteScrollCarousel items={collections} />
+                    ) : (
+                        <p>Make something awesome</p>
+                    )}
+                </div>
             </StyledWrapper> 
             <CreateCollectionForm />
         </>
