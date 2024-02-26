@@ -2,7 +2,6 @@
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { Jua } from 'next/font/google';
-import Typography from '../components/Typography/Typography';
 import { StyledWrapper } from "./Auth.styled";
 import { setLocalStorage } from '../lib/helpers';
 import { useAuth } from '../hooks/useAuth';
@@ -36,7 +35,7 @@ const Auth = () => {
 
     return (
         <StyledWrapper>
-            { loading ? <Typography label="Loading..." variant="h3" className={jua.className}/> : null}
+            { loading ? <h4 className={jua.className}>Loading...</h4> : null}
         </StyledWrapper>
     );
 }

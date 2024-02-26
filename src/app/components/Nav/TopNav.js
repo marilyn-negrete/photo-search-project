@@ -3,7 +3,6 @@ import { NavWrapper } from "./Nav.styled";
 import SideBar from "../SideBar/SideBar";
 import Image from "next/image";
 import Link from "next/link";
-import Typography from "../Typography/Typography";
 import { Jua } from 'next/font/google';
 
 // fonts
@@ -20,7 +19,7 @@ const TopNav = () => {
                 <Link href="/">
                     <Image width={30} height={30} src="/photo-search-logo.png" alt="photo-search-logo"/>
                 </Link>
-                <Typography variant="h3" label="PhotoSearch" className={jua.className}/>
+                <h3 className={jua.className}>PhotoSearch</h3>
                 <Image 
                     onClick={handleToggleMenu} 
                     width={20} 

@@ -1,5 +1,4 @@
 import { DialogWrapper, DialogContent, DialogBody, DialogHead, DialogBackdrop } from "./Dialog.styled";
-import Typography from "../Typography/Typography";
 import RadioButton from "../Buttons/RadioButton";
 import { Kalam } from 'next/font/google';
 
@@ -14,7 +13,7 @@ const { children, dialog, closeDialog } = props;
             <DialogWrapper isOpen={dialog.isOpen}>
                 <DialogContent>
                     <DialogHead>
-                        <Typography variant="h4" label={dialog.title} className={kalam.className}/>
+                        <h4 className={kalam.className}>{dialog.title}</h4>
                         <RadioButton 
                             handleOnClick={closeDialog} 
                             srcIcon="/cross.png" size="sm" 

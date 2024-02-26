@@ -1,6 +1,5 @@
 'use client'
 import CreateCollectionForm from "../components/Forms/CreateCollectionForm";
-import Typography from "../components/Typography/Typography";
 import { Kalam } from 'next/font/google';
 import InfiniteScrollCarousel from "../components/Carousel/InfniteScrollCarousel";
 import { StyledWrapper } from "./Feed.styled";
@@ -23,7 +22,7 @@ const Feed = () => {
     return (
         <>
             <StyledWrapper>
-                <Typography label="My Collections" variant="h4" className={kalam.className}/> 
+                <h4 className={kalam.className}>My Collections</h4>
                 <div className="content">
                     {loading ? (
                         <p>Loading...</p>
