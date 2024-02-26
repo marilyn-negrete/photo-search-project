@@ -5,8 +5,8 @@ const InputButton = (props) => {
 
     return (
         elementType === 'submit' 
-        ? <StyledSquareButton value={value} type={elementType}/> 
-        : <StyledSquareButton value={value} type={elementType} onClick={handleOnClick} backgroundColor={backgroundColor ? backgroundColor : 'black'}/>
+        ? <StyledSquareButton value={value} type={elementType} backgroundColor={backgroundColor}/> 
+        : <StyledSquareButton value={value} type={elementType} onClick={handleOnClick} backgroundColor={backgroundColor}/>
         )
 }
 

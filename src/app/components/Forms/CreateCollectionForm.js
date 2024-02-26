@@ -68,7 +68,7 @@ const CreateCollectionForm = () => {
                         id="description" 
                     />
                     <div style={{ display: 'flex', justifyContent: 'flex-end'}}>
-                        <InputButton value="save" elementType="submit" />   
+                        <InputButton value="save" elementType="submit" backgroundColor="black"/>   
                     </div>
                 </form>
             </Dialog>
