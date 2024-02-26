@@ -13,4 +13,8 @@ export const NavWrapper = styled.nav`
         bottom: 0;
         background: ${({theme}) => theme.colors.secondary.main};
     `}
+
+    h3 {
+        margin: 0;
+    }
 `;

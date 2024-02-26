@@ -14,7 +14,9 @@ const InfiniteScrollCarousel = (props) => {
                     items.map(album => (
                         <CarouselItem key={album.id}>
                             <StyledImage width={100} height={100} alt={album.title} src={album.cover_photo ? album.cover_photo?.urls?.small_s3 : '/no-thumb.png'} />
-                            <CarouselTitle className={kalam.className}>{album.title}</CarouselTitle>
+                            <CarouselTitle className={kalam.className}>
+                                <b>{album.title}</b>
+                            </CarouselTitle>
                         </CarouselItem>
                     ))
                 : []}

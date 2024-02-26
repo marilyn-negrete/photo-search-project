@@ -7,7 +7,8 @@ import { useEffect, useState } from "react";
 import { useFetch } from "../hooks/useFetch";
 
 // fonts
-const kalam = Kalam({ subsets: ['latin'], weight: '700'});
+const kalam700 = Kalam({ subsets: ['latin'], weight: '700'});
+const kalam400 = Kalam({ subsets: ['latin'], weight: '400'});
 
 const Feed = () => {
     const [collections, setCollections] = useState([]);
@@ -22,14 +23,14 @@ const Feed = () => {
     return (
         <>
             <StyledWrapper>
-                <h4 className={kalam.className}>My Collections</h4>
+                <h4 className={kalam700.className}>My Collections</h4>
                 <div className="content">
                     {loading ? (
-                        <p>Loading...</p>
+                        <p className={kalam400.className}>Loading...</p>
                     ) : collections.length >= 1 ? (
                         <InfiniteScrollCarousel items={collections} />
                     ) : (
-                        <p>Make something awesome</p>
+                        <p className={kalam400.className}>Make something awesome</p>
                     )}
                 </div>
             </StyledWrapper> 

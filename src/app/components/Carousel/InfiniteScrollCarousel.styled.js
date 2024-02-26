@@ -25,5 +25,9 @@ export const StyledImage = styled(Image)`
 
 export const CarouselTitle = styled.span`
     margin: 1rem 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 6.25rem;
+    white-space: nowrap;
 `;
 
