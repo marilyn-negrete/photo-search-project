@@ -2,18 +2,23 @@ import RadioButton from "@/app/components/Buttons/RadioButton";
 import Dialog from "@/app/components/Dialog/Dialog";
 import TextField from "@/app/components/Inputs/TextField";
 import InputButton from "../Buttons/InputButton";
+import Checkbox from "../Inputs/Checkbox";
 import { useState } from "react";
 import { postNewCollection } from "@/app/lib/collections";
+import { StyledForm } from "./CreateCollection.styled";
 
 const CreateCollectionForm = () => {
     const [theCollection, setTheCollection] = useState({
         title: '',
-        description: ''
+        description: '',
+        private: false
     });
     const [dialog, setDialog] = useState({
         isOpen: false,
         title: ""
     });
+
+    console.log(theCollection);
 
     const openDialog = () => {
         setDialog({
@@ -25,7 +30,7 @@ const CreateCollectionForm = () => {
     const closeDialog = () => {
         setDialog({
             isOpen: false,
-            title: ""
+            title: "",
         });
     }
 
@@ -43,10 +48,18 @@ const CreateCollectionForm = () => {
         });
     }
 
+    const handleCheckbox = (e) => {
+        setTheCollection({
+            ...theCollection,
+            private: e.target.checked
+        });
+    }
+
     const clearForm = () => {
         setTheCollection({
             title: '',
-            description: ''
+            description: '',
+            private: false
         });
     }
 
@@ -54,12 +67,13 @@ const CreateCollectionForm = () => {
         <>
             <RadioButton handleOnClick={openDialog} srcIcon="/plus.svg" size="lg" shadow={true} />
             <Dialog dialog={dialog} closeDialog={closeDialog}>
-                <form onSubmit={addCollection}>
+                <StyledForm onSubmit={addCollection}>
                     <TextField 
                         label="Title" 
                         value={theCollection.title} 
                         handleOnChange={handleOnChange} 
                         id="title"
+                        required="true"
                     />
                     <TextField 
                         label="Description" 
@@ -67,10 +81,11 @@ const CreateCollectionForm = () => {
                         handleOnChange={handleOnChange} 
                         id="description" 
                     />
-                    <div style={{ display: 'flex', justifyContent: 'flex-end'}}>
+                    <Checkbox label="Make collection private" id="private" handleCheckbox={handleCheckbox} />
+                    <div className="form-actions">
                         <InputButton value="save" elementType="submit" backgroundColor="black"/>   
                     </div>
-                </form>
+                </StyledForm>
             </Dialog>
         </>
     )
