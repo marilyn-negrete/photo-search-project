@@ -1,20 +1,17 @@
 'use client'
-import { useSearchParams, useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { Jua } from 'next/font/google';
 import { StyledWrapper } from "./Auth.styled";
-import { setLocalStorage } from '../lib/helpers';
 import { useAuth } from '../hooks/useAuth';
 
 // fonts
 const jua = Jua({ subsets: ['latin'], weight: '400'});
 
 const Auth = () => {
-    const router = useRouter();
     const searchParams = useSearchParams();
     const code = searchParams.get('code'); 
     const {responseData, loading, error} = useAuth(
-        `${process.env.UNSPLASH_AUTH_URL}/token`,
+        `${process.env.UNSPLASH_AUTH_URL}/tokens`,
         {
             client_id: process.env.UNSPLASH_CLIENT_ID,
             client_secret: process.env.UNSPLASH_CLIENT_SECRET,
@@ -24,18 +21,11 @@ const Auth = () => {
         }
         );
 
-    useEffect(() => {
-        if(responseData.access_token) {
-            setLocalStorage('token', responseData.access_token);
-            router.push('/feed');
-        }  else if (error) {
-            throw new Error('An error occurred during authentication')
-        }
-    }, [responseData.access_token, responseData.username, responseData.user_id, error, router]);
+    if(error) throw new Error(error)
 
     return (
         <StyledWrapper>
-            { loading ? <h4 className={jua.className}>Loading...</h4> : null}
+            { loading ? <h3 className={jua.className}>Loading...</h3> : null}
         </StyledWrapper>
     );
 }

@@ -1,10 +1,15 @@
 import { useState, useEffect } from "react"
+import { useRouter } from 'next/navigation';
+import { setLocalStorage } from "../lib/helpers";
 
 export const useAuth = (apiEndpoint, theData) => {
+    const router = useRouter();
+
     const [responseData, setResponseData] = useState({});
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
 
+    console.log(theData.code);
     useEffect(() => {
         if(theData.code) {
             const getToken = async () => {
@@ -19,16 +24,18 @@ export const useAuth = (apiEndpoint, theData) => {
                     });
                     const response = await request.json();
                     setResponseData(response);
+                    setLocalStorage('token', response.access_token);
                     setLoading(false);
+                    router.push('/feed');
                 } catch (error) {
-                    setError('Error fetching data: ' + error.message);
+                    setError('An error occurred during authentication');
                     setLoading(false);
                 }
             }
 
             getToken();
         }
-    },[theData.code, apiEndpoint, theData]);
+    },[theData.code]);
 
     return {responseData, loading, error}
 
