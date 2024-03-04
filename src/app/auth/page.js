@@ -11,7 +11,7 @@ const Auth = () => {
     const searchParams = useSearchParams();
     const code = searchParams.get('code'); 
     const {responseData, loading, error} = useAuth(
-        `${process.env.UNSPLASH_AUTH_URL}/tokens`,
+        `${process.env.UNSPLASH_AUTH_URL}/token`,
         {
             client_id: process.env.UNSPLASH_CLIENT_ID,
             client_secret: process.env.UNSPLASH_CLIENT_SECRET,
