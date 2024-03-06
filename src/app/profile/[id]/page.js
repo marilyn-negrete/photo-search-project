@@ -19,7 +19,7 @@ export default function Profile({params}) {
                 {data ? (
                     <div className="profile">
                     <div className="profile-picture">
-                        <Image src={data.profile_image.large} alt="user-profile-picture" width={100} height={100}/>
+                        <Image src={data.profile_image.large} alt="user-profile-picture" width={80} height={80}/>
                     </div>
                     <div className="profile-details">
                         <div className="profile-name">
@@ -30,7 +30,7 @@ export default function Profile({params}) {
                             <StyledItem>
                                 <span className={kalam300.className}>Location</span>
                                 <div className={kalam400.className}>
-                                    <Image src="/map-pin.png" alt="location_icon" width={30} height={30}/>
+                                    <Image src="/map-pin.png" alt="location_icon" width={20} height={20}/>
                                     <span>
                                         {data.location}
                                     </span>
@@ -39,7 +39,7 @@ export default function Profile({params}) {
                             <StyledItem>
                                 <span className={kalam300.className}>Collections</span>
                                 <div className={kalam400.className}>
-                                    <Image src="/camera_filled.png" alt="collections_icon" width={30} height={30}/>
+                                    <Image src="/camera_filled.png" alt="collections_icon" width={20} height={20}/>
                                     <span>
                                         {data.total_collections}
                                     </span>
@@ -48,7 +48,7 @@ export default function Profile({params}) {
                             <StyledItem>
                                 <span className={kalam300.className}>Followers</span>
                                 <div className={kalam400.className}>
-                                    <Image src="/followers_filled.png" alt="followers_icon" width={30} height={30}/>
+                                    <Image src="/followers_filled.png" alt="followers_icon" width={20} height={20}/>
                                     <span>
                                         {data.followers_count}
                                     </span>

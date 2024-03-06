@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ProfileWrapper = styled.div`
-    height: 9.3rem;
+    min-height: 9.3rem;
     padding: 1rem;
     background-color: ${({theme}) => theme.colors.secondary.main};
     justify-content: space-between;
@@ -48,12 +48,20 @@ export const ProfileContent = styled.div`
 `;
 
 export const StyledItem = styled.div`
+    width: 33%;
+    margin-right: .25rem;
     div {
         display: flex;
         align-items: center;
+
         img {
             margin-right: .25rem;
             object-fit: contain;
+        }
+        span {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
         }
     }
 
