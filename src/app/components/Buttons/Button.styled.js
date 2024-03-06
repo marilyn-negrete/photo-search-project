@@ -29,3 +29,44 @@ export const StyledSquareButton = styled.input`
     border: 1px solid;
     cursor: pointer;
 `;
+
+export const StyledDropButton = styled.div`
+    position: absolute;
+    bottom: 5rem;
+    right: 1rem;
+
+    &:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropbtn {
+        height: 4rem;
+        width: 4rem;
+        border-radius: 50%;
+        background-color: white;
+        border: 1px solid transparent;
+        box-shadow: ${({theme, shadow}) => theme.shadows.main};
+        cursor: pointer;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        bottom: 4rem;
+        right: 0;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-content a:hover {
+        background-color: rgb(196 196 196 / 30%);
+    }
+`;
