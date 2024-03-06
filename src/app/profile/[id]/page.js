@@ -1,6 +1,6 @@
 'use client'
 import { useFetch } from "@/app/hooks/useFetch";
-import { ProfileWrapper, ProfileContent } from "./Profile.styled";
+import { ProfileWrapper, ProfileContent, StyledItem } from "./Profile.styled";
 import { Kalam, Jua } from 'next/font/google';
 import Image from "next/image";
 
@@ -12,13 +12,14 @@ const jua = Jua({ subsets: ['latin'], weight: '400'});
 export default function Profile({params}) {
     const {data, error, loading} = useFetch(`https://api.unsplash.com/users/mna96`);
 
+    console.log(data);
     return (
         <>
             <ProfileWrapper>
                 {data ? (
                     <div className="profile">
                     <div className="profile-picture">
-                        <Image src="/user.png" alt="user-profile-picture" width={100} height={100}/>
+                        <Image src={data.profile_image.large} alt="user-profile-picture" width={100} height={100}/>
                     </div>
                     <div className="profile-details">
                         <div className="profile-name">
@@ -26,24 +27,33 @@ export default function Profile({params}) {
                             <span className={kalam300.className}>@{data.username}</span>
                         </div>
                         <div className="profile-stats">
-                            <div>
+                            <StyledItem>
                                 <span className={kalam300.className}>Location</span>
-                                <span className={kalam400.className}>
-                                    *** {data.location}
-                                </span>
-                            </div>
-                            <div>
+                                <div className={kalam400.className}>
+                                    <Image src="/map-pin.png" alt="location_icon" width={30} height={30}/>
+                                    <span>
+                                        {data.location}
+                                    </span>
+                                </div>
+                            </StyledItem>
+                            <StyledItem>
                                 <span className={kalam300.className}>Collections</span>
-                                <span className={kalam400.className}>
-                                    *** {data.total_collections}
-                                </span>
-                            </div>
-                            <div>
+                                <div className={kalam400.className}>
+                                    <Image src="/camera_filled.png" alt="collections_icon" width={30} height={30}/>
+                                    <span>
+                                        {data.total_collections}
+                                    </span>
+                                </div>
+                            </StyledItem>
+                            <StyledItem>
                                 <span className={kalam300.className}>Followers</span>
-                                <span className={kalam400.className}>
-                                    *** {data.followers_count}
-                                </span>
-                            </div>
+                                <div className={kalam400.className}>
+                                    <Image src="/followers_filled.png" alt="followers_icon" width={30} height={30}/>
+                                    <span>
+                                        {data.followers_count}
+                                    </span>
+                                </div>
+                            </StyledItem>
                         </div>
                     </div>
                 </div>

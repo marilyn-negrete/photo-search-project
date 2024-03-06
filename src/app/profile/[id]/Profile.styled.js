@@ -12,6 +12,9 @@ export const ProfileWrapper = styled.div`
         .profile-picture {
             display: flex;
             flex: 1;
+            img {
+                border-radius: 50px;
+            }
         }
 
         .profile-details {
@@ -42,4 +45,16 @@ export const ProfileContent = styled.div`
     h3 {
         margin: 0;
     }
+`;
+
+export const StyledItem = styled.div`
+    div {
+        display: flex;
+        align-items: center;
+        img {
+            margin-right: .25rem;
+            object-fit: contain;
+        }
+    }
+
 `;
