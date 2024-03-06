@@ -1,13 +1,15 @@
 import RadioButton from "@/app/components/Buttons/RadioButton";
 import Dialog from "@/app/components/Dialog/Dialog";
-import TextField from "@/app/components/Inputs/TextField";
 import InputButton from "../Buttons/InputButton";
-import Checkbox from "../Inputs/Checkbox";
 import { useState } from "react";
 import { postNewCollection } from "@/app/lib/collections";
 import { StyledForm } from "./CreateCollection.styled";
+import { useForm } from "react-hook-form";
+import { DevTool } from "@hookform/devtools";
 
 const CreateCollectionForm = () => {
+    const form = useForm();
+    const { register, control, handleSubmit, formState: { errors } } = form;
     const [theCollection, setTheCollection] = useState({
         title: '',
         description: '',
@@ -17,8 +19,12 @@ const CreateCollectionForm = () => {
         isOpen: false,
         title: ""
     });
-
-    console.log(theCollection);
+    
+    const onSubmit = (data) => {
+        setTheCollection({...data});
+        postNewCollection(data);
+        clearForm();
+    }
 
     const openDialog = () => {
         setDialog({
@@ -34,27 +40,6 @@ const CreateCollectionForm = () => {
         });
     }
 
-    const addCollection = (e) => {
-        e.preventDefault();
-        postNewCollection(theCollection);
-        clearForm();
-        closeDialog();
-    }
-
-    const handleOnChange = (e) => {
-        setTheCollection({
-            ...theCollection,
-            [e.target.id]: `${e.target.value}`
-        });
-    }
-
-    const handleCheckbox = (e) => {
-        setTheCollection({
-            ...theCollection,
-            private: e.target.checked
-        });
-    }
-
     const clearForm = () => {
         setTheCollection({
             title: '',
@@ -67,26 +52,42 @@ const CreateCollectionForm = () => {
         <>
             <RadioButton handleOnClick={openDialog} srcIcon="/plus.svg" size="lg" shadow={true} />
             <Dialog dialog={dialog} closeDialog={closeDialog}>
-                <StyledForm onSubmit={addCollection}>
-                    <TextField 
-                        label="Title" 
-                        value={theCollection.title} 
-                        handleOnChange={handleOnChange} 
-                        id="title"
-                        required="true"
-                    />
-                    <TextField 
-                        label="Description" 
-                        value={theCollection.description} 
-                        handleOnChange={handleOnChange} 
-                        id="description" 
-                    />
-                    <Checkbox label="Make collection private" id="private" handleCheckbox={handleCheckbox} />
+                <StyledForm onSubmit={handleSubmit(onSubmit)} noValidate>
+                    <div className="field">
+                        <label>Title</label>
+                        <input 
+                            type="text" 
+                            id="title" 
+                            placeholder="Beautiful photos"
+                            maxLength={60}
+                            {...register('title', {
+                                required: 'Title is required',
+                                minLength: { 
+                                    value: 2, 
+                                    message: 'Title is too short'
+                                },
+                            }
+                            )}
+                        />
+                        <span className="is-required">{errors.title?.message}</span>
+                    </div>
+                    <div className="field">
+                        <label>
+                            Description
+                            <span className="is-optional">(optional)</span>
+                        </label>
+                        <input type="text" id="description" {...register('description')}/>
+                    </div>
+                    <div className="field private">
+                        <input type="checkbox" id="private" {...register('private')}/>
+                        <label>Make collection private</label>
+                    </div>
                     <div className="form-actions">
                         <InputButton value="save" elementType="submit" backgroundColor="black"/>   
                     </div>
                 </StyledForm>
             </Dialog>
+            {/* <DevTool control={control}/> */}
         </>
     )
 }

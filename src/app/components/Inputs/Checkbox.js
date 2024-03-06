@@ -5,7 +5,7 @@ const Checkbox = (props) => {
 
   return (
     <CheckboxWrapper>
-        <input type="checkbox" id={id} name={id} label={label} onChange={handleCheckbox}/>
+        <input type="checkbox" {...props} />
         <label htmlFor={label}>{label}</label>
     </CheckboxWrapper>
   )
