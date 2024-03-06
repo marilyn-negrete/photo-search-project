@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { getJWToken } from "../lib/helpers";
 
 export const useFetch = (url) => {
   const [data, setData] = useState(null);
@@ -8,7 +9,12 @@ export const useFetch = (url) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(url);
+        const response = await fetch(url, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': getJWToken()
+        },
+        });
         const result = await response.json();
         setData(result);
       } catch (error) {

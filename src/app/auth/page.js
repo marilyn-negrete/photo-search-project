@@ -16,7 +16,7 @@ const Auth = () => {
             client_id: process.env.UNSPLASH_CLIENT_ID,
             client_secret: process.env.UNSPLASH_CLIENT_SECRET,
             redirect_uri: process.env.REDIRECT_URL,
-            code: code,
+            code,
             grant_type: 'authorization_code',
         }
         );

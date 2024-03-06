@@ -23,10 +23,14 @@ export const useAuth = (apiEndpoint, theData) => {
                         body: JSON.stringify(theData)
                     });
                     const response = await request.json();
-                    setResponseData(response);
-                    setLocalStorage('token', response.access_token);
-                    setLoading(false);
-                    router.push('/feed');
+                    
+                    if(request.ok) {
+                        setLocalStorage('token', response.access_token);
+                        setResponseData(response);
+                        setLoading(false);
+                        router.push('/feed');
+                    }
+                    
                 } catch (error) {
                     setError('An error occurred during authentication');
                     setLoading(false);
@@ -35,7 +39,7 @@ export const useAuth = (apiEndpoint, theData) => {
 
             getToken();
         }
-    },[theData.code]);
+    },[]);
 
     return {responseData, loading, error}
 

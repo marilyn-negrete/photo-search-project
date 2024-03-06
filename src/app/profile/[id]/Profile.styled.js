@@ -1,8 +1,10 @@
 import styled from "styled-components";
 
 export const ProfileWrapper = styled.div`
+    height: 9.3rem;
     padding: 1rem;
     background-color: ${({theme}) => theme.colors.secondary.main};
+    justify-content: space-between;
 
     .profile {
         display: flex;
@@ -10,7 +12,6 @@ export const ProfileWrapper = styled.div`
         .profile-picture {
             display: flex;
             flex: 1;
-            justify-content: center;
         }
 
         .profile-details {
