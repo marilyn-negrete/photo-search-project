@@ -9,7 +9,7 @@ import { DevTool } from "@hookform/devtools";
 
 const CreateCollectionForm = () => {
     const form = useForm();
-    const { register, control, handleSubmit, formState: { errors } } = form;
+    const { register, control, handleSubmit, formState: { errors }, reset } = form;
     const [theCollection, setTheCollection] = useState({
         title: '',
         description: '',
@@ -23,7 +23,7 @@ const CreateCollectionForm = () => {
     const onSubmit = (data) => {
         setTheCollection({...data});
         postNewCollection(data);
-        clearForm();
+        closeDialog();
     }
 
     const openDialog = () => {
@@ -38,14 +38,7 @@ const CreateCollectionForm = () => {
             isOpen: false,
             title: "",
         });
-    }
-
-    const clearForm = () => {
-        setTheCollection({
-            title: '',
-            description: '',
-            private: false
-        });
+        reset();
     }
 
     return (
