@@ -3,8 +3,10 @@ import Image from 'next/image'
 import { StyledCreatePostForm } from './Feed.styled'
 import { useForm } from "react-hook-form";
 import InputButton from '../components/Buttons/InputButton';
+import { useAppContext } from '../context/AppContext';
 
 export default function CreatePostForm() {
+    const { user } = useAppContext();
     const form = useForm();
     const {
         register,
@@ -19,7 +21,7 @@ export default function CreatePostForm() {
     return (
         <StyledCreatePostForm onSubmit={handleSubmit(onSubmit)} noValidate>
             <div className="post-area">
-                <Image src="/user.png" width={30} height={30} alt="user"/>
+                <Image src={user.profile_image?.large} width={40} height={40} alt="user"/>
                 <textarea placeholder="What's on your mind?" {...register("bodyMessage")}/>
             </div>
             <div className="form-actions">

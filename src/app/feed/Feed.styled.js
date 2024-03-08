@@ -70,6 +70,7 @@ export const StyledCreatePostForm = styled.form`
 
         img {
             margin-right: .5rem;
+            border-radius: 50%;
         }
 
         textarea {
