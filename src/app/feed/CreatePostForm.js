@@ -21,11 +21,18 @@ export default function CreatePostForm() {
     return (
         <StyledCreatePostForm onSubmit={handleSubmit(onSubmit)} noValidate>
             <div className="post-area">
-                <Image src={user.profile_image?.large} width={40} height={40} alt="user"/>
-                <textarea placeholder="What's on your mind?" {...register("bodyMessage")}/>
+                <div className="field message">
+                    <Image src={user.profile_image?.large} width={40} height={40} alt="user"/>
+                    <textarea placeholder="What's on your mind?" {...register("bodyMessage")}/>
+                </div>
+                <div className="field search">
+                    <label hidden={true} htmlFor="search">Search</label>
+                    <input id="search" name="search" {...register("search")} placeholder="search a photo"/>
+                </div>
             </div>
             <div className="form-actions">
                 <InputButton
+                    disabled={true}
                     value="Post"
                     elementType="submit"
                     backgroundColor="black"

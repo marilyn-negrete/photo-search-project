@@ -28,6 +28,11 @@ export const StyledSquareButton = styled.input`
     border-radius: 5px;
     border: 1px solid;
     cursor: pointer;
+
+    &:disabled {
+        background-color: rgb(0 0 0 / 30%);
+        cursor: not-allowed;
+    }
 `;
 
 export const StyledDropButton = styled.div`

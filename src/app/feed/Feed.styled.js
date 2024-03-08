@@ -65,18 +65,37 @@ export const StyledCreateCollectionForm = styled.form`
 
 export const StyledCreatePostForm = styled.form`
     .post-area {
-        display: flex;
         margin-bottom: 1rem;
 
-        img {
-            margin-right: .5rem;
-            border-radius: 50%;
-        }
+        .field {
+            margin-bottom: 1rem;
 
-        textarea {
-            width: 100%;
-            border: none;
-            padding: .5rem;
+            &.message {
+                display: flex;
+
+                img {
+                    margin-right: .5rem;
+                    border-radius: 50%;
+                }
+
+                textarea {
+                    width: 100%;
+                    border: none;
+                    padding: .5rem;
+                }
+            }
+
+            &.search {
+                display: flex;
+                flex-direction: column;
+
+                input {
+                    padding: .75rem;
+                    border: 1px solid transparent;
+                    border-radius: 2rem;
+                    background: #eeeeee;
+                }
+            }
         }
     }
 
