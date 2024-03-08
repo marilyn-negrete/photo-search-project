@@ -28,12 +28,13 @@ export default function CreateCollectionForm(props) {
     };
 
   return (
-    <StyledCreateCollectionForm onSubmit={handleSubmit(onSubmit)} noValidate>
+    <StyledCreateCollectionForm onSubmit={handleSubmit(onSubmit)} noValidate method="post">
         <div className="field">
-            <label>Title</label>
+            <label htmlFor="title">Title</label>
             <input
                 type="text"
                 id="title"
+                name="title"
                 placeholder="Beautiful photos"
                 maxLength={60}
                 {...register("title", {
@@ -47,22 +48,31 @@ export default function CreateCollectionForm(props) {
             <span className="is-required">{errors.title?.message}</span>
         </div>
         <div className="field">
-            <label>
+            <label htmlFor="description">
                 Description
                 <span className="is-optional">(optional)</span>
             </label>
-            <input
-                type="text"
+            <textarea
                 id="description"
+                name="description"
+                placeholder="Get inspired..."
+                rows={5}
                 {...register("description")}
-            />
+            ></textarea>
         </div>
         <div className="field private">
-            <input type="checkbox" id="private" {...register("private")} />
-            <label>Make collection private</label>
+            <input 
+                type="checkbox" 
+                id="private"
+                name="private"
+                {...register("private")} 
+            />
+            <label htmlFor="private">Make collection private</label>
         </div>
         <div className="form-actions">
             <InputButton
+                id="save"
+                name="save"
                 value="save"
                 elementType="submit"
                 backgroundColor="black"

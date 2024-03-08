@@ -36,7 +36,8 @@ export const StyledCreateCollectionForm = styled.form`
             }
         }
 
-        input {
+        input, textarea {
+            font-family: Arial, sans-serif;
             width: 100%;
             padding: 0.75rem;
             border-radius: 4px;
