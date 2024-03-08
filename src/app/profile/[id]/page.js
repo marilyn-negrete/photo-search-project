@@ -1,30 +1,29 @@
 'use client'
-import { useFetch } from "@/app/hooks/useFetch";
-import { ProfileWrapper, ProfileContent, StyledItem } from "./Profile.styled";
+import { useAppContext } from "@/app/context/AppContext";
 import { Kalam, Jua } from 'next/font/google';
 import Image from "next/image";
+import { ProfileWrapper, ProfileContent, StyledItem } from "./Profile.styled";
 
 const kalam300 = Kalam({ subsets: ['latin'], weight: '300'});
 const kalam400 = Kalam({ subsets: ['latin'], weight: '400'});
 const kalam700 = Kalam({ subsets: ['latin'], weight: '700'});
 const jua = Jua({ subsets: ['latin'], weight: '400'});
 
-export default function Profile({params}) {
-    const {data, error, loading} = useFetch(`https://api.unsplash.com/users/mna96`);
+export default function Profile() {
+    const { user } = useAppContext();
 
-    console.log(data);
     return (
         <>
             <ProfileWrapper>
-                {data ? (
+                {user ? (
                     <div className="profile">
                     <div className="profile-picture">
-                        <Image src={data.profile_image.large} alt="user-profile-picture" width={80} height={80}/>
+                        <Image src={user.profile_image?.large} alt="user-profile-picture" width={80} height={80}/>
                     </div>
                     <div className="profile-details">
                         <div className="profile-name">
-                            <span className={kalam700.className}>{data.name}</span>
-                            <span className={kalam300.className}>@{data.username}</span>
+                            <span className={kalam700.className}>{user.name}</span>
+                            <span className={kalam300.className}>@{user.username}</span>
                         </div>
                         <div className="profile-stats">
                             <StyledItem>
@@ -32,7 +31,7 @@ export default function Profile({params}) {
                                 <div className={kalam400.className}>
                                     <Image src="/map-pin.png" alt="location_icon" width={20} height={20}/>
                                     <span>
-                                        {data.location}
+                                        {user.location}
                                     </span>
                                 </div>
                             </StyledItem>
@@ -41,7 +40,7 @@ export default function Profile({params}) {
                                 <div className={kalam400.className}>
                                     <Image src="/camera_filled.png" alt="collections_icon" width={20} height={20}/>
                                     <span>
-                                        {data.total_collections}
+                                        {user.total_collections}
                                     </span>
                                 </div>
                             </StyledItem>
@@ -50,7 +49,7 @@ export default function Profile({params}) {
                                 <div className={kalam400.className}>
                                     <Image src="/followers_filled.png" alt="followers_icon" width={20} height={20}/>
                                     <span>
-                                        {data.followers_count}
+                                        {user.followers_count}
                                     </span>
                                 </div>
                             </StyledItem>

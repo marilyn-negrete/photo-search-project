@@ -23,9 +23,9 @@ export const useAuth = (apiEndpoint, theData) => {
                         body: JSON.stringify(theData)
                     });
                     const response = await request.json();
-                    
                     if(request.ok) {
                         setLocalStorage('token', response.access_token);
+                        setLocalStorage('user', { username: response.username, userId: response.user_id });
                         setResponseData(response);
                         setLoading(false);
                         router.push('/feed');
