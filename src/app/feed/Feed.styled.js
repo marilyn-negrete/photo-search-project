@@ -97,6 +97,13 @@ export const StyledCreatePostForm = styled.form`
                 }
             }
         }
+
+        .thumbnail {
+            height: 12.5rem;
+            background: white;
+            border-style: dashed;
+            border-color: #9393f0;
+        }
     }
 
     .form-actions {

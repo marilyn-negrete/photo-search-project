@@ -29,6 +29,7 @@ export default function CreatePostForm() {
                     <label hidden={true} htmlFor="search">Search</label>
                     <input id="search" name="search" {...register("search")} placeholder="search a photo"/>
                 </div>
+                <div className="thumbnail"></div>
             </div>
             <div className="form-actions">
                 <InputButton
