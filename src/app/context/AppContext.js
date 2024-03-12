@@ -6,7 +6,7 @@ const AppContext = createContext();
 export const ContextProvider = ({children}) => {
     const [catalog, setCatalog] = useState([]);
     const [user, setUser] = useState({});
-    const { data, error, loading } = useFetch(`https://api.unsplash.com/users/mna96`);
+    const [data, error, loading] = useFetch(`https://api.unsplash.com/users/mna96`);
 
     useEffect(() => {
         if(data) setUser(data);

@@ -9,7 +9,7 @@ export const NavWrapper = styled.nav`
     align-items: center;
 
     ${({position}) => position === 'bottom' && css`
-        position: absolute;
+        position: fixed;
         bottom: 0;
         background: ${({theme}) => theme.colors.secondary.main};
     `}

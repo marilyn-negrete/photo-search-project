@@ -36,7 +36,7 @@ export const StyledSquareButton = styled.input`
 `;
 
 export const StyledDropButton = styled.div`
-    position: absolute;
+    position: fixed;
     bottom: 5rem;
     right: 1rem;
 
@@ -55,6 +55,7 @@ export const StyledDropButton = styled.div`
     }
 
     .dropdown-content {
+        background-color: white;
         display: none;
         position: absolute;
         min-width: 160px;

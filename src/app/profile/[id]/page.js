@@ -18,7 +18,7 @@ export default function Profile() {
                 {user ? (
                     <div className="profile">
                     <div className="profile-picture">
-                        <Image src={user.profile_image?.large} alt="user-profile-picture" width={80} height={80}/>
+                        <Image src={user.profile_image?.large || ""} alt="user-profile-picture" width={80} height={80}/>
                     </div>
                     <div className="profile-details">
                         <div className="profile-name">
