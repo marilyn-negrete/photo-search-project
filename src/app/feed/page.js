@@ -9,6 +9,7 @@ import Dialog from "../components/Dialog/Dialog";
 import CreateCollectionForm from './CreateCollectionForm';
 import CreatePostForm from './CreatePostForm';
 import { useAppContext } from '../context/AppContext';
+import moment from 'moment';
 
 // fonts
 const kalam700 = Kalam({ subsets: ['latin'], weight: '700'});
@@ -57,7 +58,7 @@ const Feed = () => {
                         />
                         <div>
                             <p className={kalam700.className}>{post.user?.first_name} {post.user?.last_name || ""}</p>
-                            <p className={kalam300.className}>{post.created_at}, {post.user?.location}</p>
+                            <p className={kalam300.className}>{moment(post.created_at).startOf('day').fromNow()} in {post.user?.location}</p>
                         </div>
                     </div>
                     <div className="post-body">
