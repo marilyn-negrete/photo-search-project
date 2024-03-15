@@ -111,39 +111,49 @@ export const StyledCreatePostForm = styled.form`
     }
 `;
 
-export const StyledPost = styled.div`
-    width: 100%;
+export const StyledPostsWrapper = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 
-    .post-header {
-        display: flex;
-        padding: 1rem;
-        align-items: center;
-
-        img {
-            border-radius: 50%;
-            margin-right: 1rem;
-        }
-
-        p {
-            margin-top: 0;
-            margin-bottom: .25rem;
-        }
-
-    }
-
-    .post-body {
-        p {
-            margin: 0;
-            padding: 0 1rem;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            overflow: hidden;
-        }
-
-        img {
-            object-fit: cover;
+    .post {
+        width: calc(100% / 3);
+        @media only screen and (max-width: 600px) {
             width: 100%;
-            height: 15rem;
+        }
+
+        .post-header {
+            display: flex;
+            padding: 1rem;
+            align-items: center;
+
+            img {
+                border-radius: 50%;
+                margin-right: 1rem;
+            }
+
+            p {
+                margin-top: 0;
+                margin-bottom: .25rem;
+            }
+
+        }
+
+        .post-body {
+            p {
+                margin: 0;
+                padding: 0 1rem;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+            }
+
+            img {
+                object-fit: cover;
+                width: 100%;
+                height: 15rem;
+            }
         }
     }
+
 `;
