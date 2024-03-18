@@ -9,14 +9,14 @@ import Dialog from "../components/Dialog/Dialog";
 import CreateCollectionForm from './CreateCollectionForm';
 import CreatePostForm from './CreatePostForm';
 import { useAppContext } from '../context/AppContext';
-import moment from 'moment';
+import PostItem from './PostItem';
 
 // fonts
 const kalam700 = Kalam({ subsets: ['latin'], weight: '700'});
 const kalam300 = Kalam({ subsets: ['latin'], weight: '300'});
 
 const Feed = () => {
-    const { photos, isPhotosDataLoading, collections, isCollectionDataLoading } = useAppContext();
+    const { photos, collections, isCollectionDataLoading } = useAppContext();
     const [dialog, setDialog] = useState({
         isOpen: false,
         title: "",
@@ -24,8 +24,8 @@ const Feed = () => {
 
     const closeDialog = () => {
         setDialog({
-        isOpen: false,
-        title: "",
+            isOpen: false,
+            title: "",
         });
     };
 
@@ -39,45 +39,16 @@ const Feed = () => {
                     ) : collections.length >= 1 ? (
                         <InfiniteScrollCarousel items={collections} />
                     ) : (
-                        <p className={kalam300.className}>Make something awesome</p>
+                        <p className={kalam300.className}>Make something awesome...</p>
                     )}
                 </div>
                 <h4 className={kalam700.className}>Activity Feed</h4>
             </StyledWrapper>
             <StyledPostsWrapper>
-            {photos.length > 1 ? photos.map((post) => (
-                <div className="post" key={post.id}>
-                    <div className="post-header">
-                        <Image 
-                            src={post.user?.profile_image.large || '/plain-background.png'} 
-                            width={50} 
-                            height={50} 
-                            alt="user-photo"
-                            placeholder='blur'
-                            blurDataURL='/plain-background.png'
-                        />
-                        <div>
-                            <p className={kalam700.className}>{post.user?.first_name} {post.user?.last_name || ""}</p>
-                            <p className={kalam300.className}>{moment(post.created_at).startOf('day').fromNow()} in {post.user?.location}</p>
-                        </div>
-                    </div>
-                    <div className="post-body">
-                        <p className={kalam300.className}>
-                            {post.description || "Lorem ipsum dolor sit amet consectetur adipiscing elit eros at, leo varius imperdiet mi ultric"}
-                        </p>
-                        <Image 
-                            src={post.urls?.full || "/plain-background.png"} 
-                            width={50} 
-                            height={50} 
-                            alt={post.alt_description || "placeholder image"}
-                            placeholder='blur'
-                            blurDataURL='/plain-background.png'
-                        />
-                    </div>
-                </div>
-            )): 'Working on it...'}
+                {photos.length > 1 ? photos.map((post) => (
+                    <PostItem post={post} key={post.id}/>
+                )): <p className={kalam300.className}>Working on it...</p>}
             </StyledPostsWrapper>
-
             <StyledDropButton>
                 <button className="dropbtn">
                     <Image width={25} height={25} alt="Create" src="/plus.svg" />
@@ -89,8 +60,7 @@ const Feed = () => {
                         setDialog({
                             isOpen: true,
                             title: "Create Collection",
-                        })
-                        }
+                        })}
                     >
                         Create Collection
                     </a>
@@ -100,8 +70,7 @@ const Feed = () => {
                         setDialog({
                             isOpen: true,
                             title: "Create Post",
-                        })
-                        }
+                        })}
                     >
                         Create Post
                     </a>
