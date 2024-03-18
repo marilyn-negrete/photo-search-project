@@ -5,21 +5,19 @@ import { Kalam } from 'next/font/google';
 const kalam = Kalam({ subsets: ['latin'], weight: '300'});
 
 const InfiniteScrollCarousel = (props) => {
-    const { items } = props;
+    const { items, onSelectCollection } = props;
 
     return(
         <CarouselWrapper>
             <CarouselItems>
-                {items.length ? 
-                    items.map(album => (
-                        <CarouselItem key={album.id}>
-                            <StyledImage width={100} height={100} alt={album.title} src={album.cover_photo ? album.cover_photo?.urls?.small_s3 : '/no-thumb.png'} />
-                            <CarouselTitle className={kalam.className}>
-                                <b>{album.title}</b>
-                            </CarouselTitle>
-                        </CarouselItem>
-                    ))
-                : []}
+                {items.map(item => (
+                    <CarouselItem key={item.id} onClick={() => onSelectCollection(item.title)}>
+                        <StyledImage width={100} height={100} alt={item.title} src={item.cover_photo ? item.cover_photo?.urls?.small_s3 : '/no-thumb.png'} />
+                        <CarouselTitle className={kalam.className}>
+                            <b>{item.title}</b>
+                        </CarouselTitle>
+                    </CarouselItem>
+                ))}
             </CarouselItems>
         </CarouselWrapper>
     )
