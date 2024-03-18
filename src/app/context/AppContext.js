@@ -4,10 +4,13 @@ import { useFetch } from '../hooks/useFetch';
 const AppContext = createContext();
 
 export const ContextProvider = ({children}) => {
-    const [topicsData, topicsDataError, isTopicsDataLoading] = useFetch(`${process.env.API_URL}/topics`);
-    const [photosData, photosError, isPhotosDataLoading] = useFetch(`${process.env.API_URL}/photos`);
-    const [userData, userError, isUserDataloading] = useFetch(`https://api.unsplash.com/users/mna96`);
-    const [collectionData, collectionsError, isCollectionDataLoading] = useFetch(`${process.env.API_URL}/users/mna96/collections?client_id=${process.env.UNSPLASH_CLIENT_ID}`);
+    const [topicsData, topicsDataError, isTopicsDataLoading] = useFetch(`${process.env.API_URL}/topics`, "topics");
+    const [photosData, photosError, isPhotosDataLoading] = useFetch(`${process.env.API_URL}/photos`, "photos");
+    const [userData, userError, isUserDataloading] = useFetch(`https://api.unsplash.com/users/mna96`, "userData");
+    const [collectionData, collectionsError, isCollectionDataLoading] = useFetch(
+        `${process.env.API_URL}/users/mna96/collections?client_id=${process.env.UNSPLASH_CLIENT_ID}`,
+        "collections"
+    );
     const [collections, setCollections] = useState([]);
     const [user, setUser] = useState({});
     const [photos, setPhotos] = useState([]);
