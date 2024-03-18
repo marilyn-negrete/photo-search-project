@@ -1,16 +1,16 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useAppContext } from "../context/AppContext";
+import { getJWToken } from "../lib/helpers";
 import { Kalam } from "next/font/google";
 import { StyledWrapper, StyledPostsWrapper } from "./Feed.styled";
+import { StyledDropButton } from "../components/Buttons/Button.styled";
 import Image from "next/image";
 import InfiniteScrollCarousel from "../components/Carousel/InfniteScrollCarousel";
-import { StyledDropButton } from "../components/Buttons/Button.styled";
 import Dialog from "../components/Dialog/Dialog";
 import CreateCollectionForm from "./CreateCollectionForm";
 import CreatePostForm from "./CreatePostForm";
-import { useAppContext } from "../context/AppContext";
 import PostItem from "./PostItem";
-import { useFetch } from "../hooks/useFetch";
 
 // fonts
 const kalam700 = Kalam({ subsets: ["latin"], weight: "700" });
@@ -18,6 +18,7 @@ const kalam300 = Kalam({ subsets: ["latin"], weight: "300" });
 
 const Feed = () => {
   const { photos, collections, isCollectionDataLoading } = useAppContext();
+  const [relatedPosts, setRelatedPosts] = useState([...photos]);
   const [dialog, setDialog] = useState({
     isOpen: false,
     title: "",
@@ -30,8 +31,27 @@ const Feed = () => {
     });
   };
 
-  const handleSelectCollection = (collectionName) => {
-    console.log(collectionName);
+  const handleSelectCollection = async (id) => {
+    let string = id.toLowerCase().replace(/&/g, "and");
+    
+    try {
+      const response = await fetch(`${process.env.API_URL}/search/photos?query=${string}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': getJWToken()
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch data');
+      }
+  
+      const data = await response.json();
+      setRelatedPosts(data.results);
+      
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
   };
 
   return (
@@ -53,8 +73,8 @@ const Feed = () => {
         <h4 className={kalam700.className}>Activity Feed</h4>
       </StyledWrapper>
       <StyledPostsWrapper>
-        {photos.length > 1 ? (
-          photos.map((post) => <PostItem post={post} key={post.id} />)
+        {relatedPosts.length > 1 ? (
+          relatedPosts.map((post) => <PostItem post={post} key={post.id} />)
         ) : (
           <p className={kalam300.className}>Working on it...</p>
         )}

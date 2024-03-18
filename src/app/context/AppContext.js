@@ -6,7 +6,7 @@ const AppContext = createContext();
 export const ContextProvider = ({children}) => {
     const [topicsData, topicsDataError, isTopicsDataLoading] = useFetch(`${process.env.API_URL}/topics`, "topics");
     const [photosData, photosError, isPhotosDataLoading] = useFetch(`${process.env.API_URL}/photos`, "photos");
-    const [userData, userError, isUserDataloading] = useFetch(`https://api.unsplash.com/users/mna96`, "userData");
+    const [userData, userError, isUserDataloading] = useFetch(`${process.env.API_URL}/users/mna96`, "userData");
     const [collectionData, collectionsError, isCollectionDataLoading] = useFetch(
         `${process.env.API_URL}/users/mna96/collections?client_id=${process.env.UNSPLASH_CLIENT_ID}`,
         "collections"
