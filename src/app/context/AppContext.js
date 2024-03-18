@@ -4,12 +4,14 @@ import { useFetch } from '../hooks/useFetch';
 const AppContext = createContext();
 
 export const ContextProvider = ({children}) => {
+    const [topicsData, topicsDataError, isTopicsDataLoading] = useFetch(`${process.env.API_URL}/topics`);
     const [photosData, photosError, isPhotosDataLoading] = useFetch(`${process.env.API_URL}/photos`);
     const [userData, userError, isUserDataloading] = useFetch(`https://api.unsplash.com/users/mna96`);
     const [collectionData, collectionsError, isCollectionDataLoading] = useFetch(`${process.env.API_URL}/users/mna96/collections?client_id=${process.env.UNSPLASH_CLIENT_ID}`);
     const [collections, setCollections] = useState([]);
     const [user, setUser] = useState({});
     const [photos, setPhotos] = useState([]);
+    const [topicsList, setTopicsList] = useState([]);
     
     useEffect(() => {
         if(userData) setUser(userData);
@@ -23,6 +25,10 @@ export const ContextProvider = ({children}) => {
         if(collectionData) setCollections(collectionData);
     },[collectionData]);
 
+    useEffect(() => {
+        if(topicsData) setTopicsList(topicsData);
+    },[topicsData]);
+
     const value = {
         user,
         isUserDataloading,
@@ -32,7 +38,9 @@ export const ContextProvider = ({children}) => {
         setPhotos,
         collections, 
         isCollectionDataLoading,
-        setCollections
+        setCollections,
+        topicsList, 
+        setTopicsList
     };
 
     return <AppContext.Provider value={value}>{children}</AppContext.Provider>
