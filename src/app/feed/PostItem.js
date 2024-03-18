@@ -37,6 +37,7 @@ const PostItem = (props) => {
                 alt={post.alt_description || "placeholder image"}
                 placeholder='blur'
                 blurDataURL='/plain-background.png'
+                // unoptimized
             />
         </div>
     </StyledPostItem>

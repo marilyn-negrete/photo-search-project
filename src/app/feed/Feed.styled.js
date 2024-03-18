@@ -119,8 +119,11 @@ export const StyledPostsWrapper = styled.div`
 `;
 
 export const StyledPostItem = styled.div`
-    width: calc(100% / 3);
-    @media only screen and (max-width: 600px) {
+    width: calc(97% / 3);
+    @media only screen and (max-width: 767px) {
+        width: calc(97% / 2);
+    }
+    @media only screen and (max-width: 480px) {
         width: 100%;
     }
 
@@ -154,6 +157,10 @@ export const StyledPostItem = styled.div`
             object-fit: cover;
             width: 100%;
             height: 15rem;
+            @media only screen and (max-width: 480px) {
+                height: 100%;
+            }
+
         }
     }
 `;
