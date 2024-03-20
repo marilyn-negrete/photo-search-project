@@ -35,7 +35,7 @@ export const StyledSquareButton = styled.input`
     }
 `;
 
-export const StyledDropButton = styled.div`
+export const StyledDropDrownButton = styled.div`
     position: fixed;
     bottom: 5rem;
     right: 1rem;
@@ -55,6 +55,7 @@ export const StyledDropButton = styled.div`
     }
 
     .dropdown-content {
+        font-family: Arial, sans-serif;
         background-color: white;
         display: none;
         position: absolute;
@@ -70,6 +71,7 @@ export const StyledDropButton = styled.div`
         padding: 12px 16px;
         text-decoration: none;
         display: block;
+        cursor: pointer;
     }
 
     .dropdown-content a:hover {

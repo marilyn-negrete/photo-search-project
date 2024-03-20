@@ -10,7 +10,7 @@ export const DialogWrapper = styled.div`
     border-radius: .5rem;
     display: none;
     /* position the div in center */
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -39,7 +39,7 @@ export const DialogActions = styled.div`
 export const DialogBackdrop = styled.div`
     height: 100%;
     width: 100%;
-    position: absolute;
+    position: fixed;
     top: 0;
     background-color: rgb(0 0 0 / 50%);
 `;
