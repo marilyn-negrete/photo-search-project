@@ -12,6 +12,9 @@ export const NavWrapper = styled.nav`
         position: fixed;
         bottom: 0;
         background: ${({theme}) => theme.colors.secondary.main};
+        @media only screen and (min-width: 767px) {
+            display: none;
+        }
     `}
 
     h3 {

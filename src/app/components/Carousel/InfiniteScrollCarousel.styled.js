@@ -21,6 +21,7 @@ export const CarouselItem = styled.div`
 
 export const StyledImage = styled(Image)`
     border-radius: 20px;
+    object-fit: cover;
 `;
 
 export const CarouselTitle = styled.span`
