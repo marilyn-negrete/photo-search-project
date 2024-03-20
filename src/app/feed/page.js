@@ -17,7 +17,7 @@ const kalam300 = Kalam({ subsets: ["latin"], weight: "300" });
 
 const Feed = () => {
   const { photos, collections, isCollectionDataLoading } = useAppContext();
-  const [relatedPosts, setRelatedPosts] = useState();
+  const [filteredResults, setFilteredResults] = useState([]);
   const [dialog, setDialog] = useState({
     isOpen: false,
     title: "",
@@ -38,13 +38,13 @@ const Feed = () => {
   };
 
   useEffect(() => {
-      setRelatedPosts([...photos]);
+    setFilteredResults([...photos]);
   },[photos])
 
-  const handleSelectCollection = async (collectionLabel) => {
+  const performSearch = async (query) => {
     try {
       const response = await fetch(
-        `${process.env.API_URL}/search/photos?query=${collectionLabel}`,
+        `${process.env.API_URL}/search/photos?query=${query}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -58,9 +58,9 @@ const Feed = () => {
       }
 
       const data = await response.json();
-      setRelatedPosts(data.results);
+      setFilteredResults(data.results);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      throw new Error("Error fetching data:", error);
     }
   };
 
@@ -74,7 +74,7 @@ const Feed = () => {
           ) : collections.length >= 1 ? (
             <InfiniteScrollCarousel
               items={collections}
-              onSelectCollection={handleSelectCollection}
+              onItemClick={performSearch}
             />
           ) : (
             <p className={kalam300.className}>Create something awesome!</p>
@@ -83,8 +83,8 @@ const Feed = () => {
         <h4 className={kalam700.className}>Activity Feed</h4>
       </StyledWrapper>
       <StyledPostsWrapper>
-        {relatedPosts && relatedPosts.length > 1 ? (
-          relatedPosts.map((post) => <PostItem post={post} key={post.id} />)
+        {filteredResults && filteredResults.length > 1 ? (
+          filteredResults.map((post) => <PostItem post={post} key={post.id} />)
         ) : (
           <p className={kalam300.className}>Working on it...</p>
         )}
