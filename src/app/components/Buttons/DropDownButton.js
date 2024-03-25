@@ -1,12 +1,13 @@
 import React from "react";
 import { StyledDropDrownButton } from "./Button.styled";
 import Image from "next/image";
+import clsx from "clsx";
 
 const DropDownButton = (props) => {
   const { options } = props;
 
   return (
-    <StyledDropDrownButton>
+    <StyledDropDrownButton className={`bottom`} >
       <button className="dropbtn">
         <Image width={25} height={25} alt="Create" src="/plus.svg" />
       </button>

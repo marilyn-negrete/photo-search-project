@@ -2,7 +2,13 @@ import styled from "styled-components";
 
 export const StyledWrapper = styled.section`
   background-color: ${({ theme }) => theme.colors.secondary.main};
-  padding: 1rem;
+  padding: 1rem 10rem;
+  @media only screen and (max-width: 1024px) {
+    padding: 1rem 5rem;
+  }
+  @media only screen and (max-width: 768px) {
+    padding: 1rem;
+  }
 
   h4 {
     margin: 0;
@@ -113,18 +119,13 @@ export const StyledCreatePostForm = styled.form`
 
 export const StyledPostsWrapper = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const StyledPostItem = styled.div`
-  width: calc(97% / 3);
-  @media only screen and (max-width: 767px) {
-    width: calc(97% / 2);
-  }
-  @media only screen and (max-width: 480px) {
-    width: 100%;
-  }
+  max-width: 32rem;
+  width: 100%;
 
   .post-header {
     display: flex;
@@ -163,7 +164,7 @@ export const StyledPostItem = styled.div`
     img {
       object-fit: cover;
       width: 100%;
-      height: 15rem;
+      height: 100%;
       @media only screen and (max-width: 480px) {
         height: 100%;
       }

@@ -23,7 +23,7 @@ export default function CreatePostForm() {
             <div className="post-area">
                 <div className="field message">
                     {/* <Image src={user.profile_image?.large || ""} width={40} height={40} alt="user"/> */}
-                    <textarea placeholder="What's on your mind?" {...register("bodyMessage")}/>
+                    {/* <textarea placeholder="What's on your mind?" {...register("bodyMessage")}/> */}
                 </div>
                 <div className="field search">
                     <label hidden={true} htmlFor="search">Search</label>

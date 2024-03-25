@@ -92,7 +92,7 @@ const Feed = () => {
       <DropDownButton
         options={[
           { id: 1, label: "Create Collection", action: openDialog },
-          { id: 2, label: "Create Post", action: openDialog },
+          { id: 2, label: "Add to Collection", action: openDialog },
         ]}
       />
       <Dialog dialog={dialog} closeDialog={closeDialog}>

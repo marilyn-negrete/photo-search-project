@@ -2,7 +2,7 @@ import styled from "styled-components";
 import css from "styled-jsx/css";
 
 export const StyledRadioButton = styled.button`
-    height: 2rem;
+    /* height: 2rem;
     width: 2rem;
     border-radius: 50%;
     background-color: white;
@@ -17,7 +17,7 @@ export const StyledRadioButton = styled.button`
         position: absolute;
         bottom: 5rem;
         right: 1rem;
-    `}
+    `} */
 `;
 
 export const StyledSquareButton = styled.input`
@@ -36,9 +36,15 @@ export const StyledSquareButton = styled.input`
 `;
 
 export const StyledDropDrownButton = styled.div`
-    position: fixed;
-    bottom: 5rem;
-    right: 1rem;
+    &.bottom {
+        position: fixed;
+        bottom: 5rem;
+        right: 1rem;
+        @media only screen and (min-width: 768px) {
+            bottom: 1rem;
+        }
+    }
+    
 
     &:hover .dropdown-content {
         display: block;
