@@ -13,13 +13,6 @@ export const StyledWrapper = styled.section`
   h4 {
     margin: 0;
   }
-
-  .content {
-    height: 11.9rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
 `;
 
 export const StyledCreateCollectionForm = styled.form`

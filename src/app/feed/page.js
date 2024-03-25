@@ -68,7 +68,6 @@ const Feed = () => {
     <>
       <StyledWrapper>
         <h4 className={kalam700.className}>My Collections</h4>
-        <div className="content">
           {isCollectionDataLoading ? (
             <p className={kalam300.className}>Loading...</p>
           ) : collections.length >= 1 ? (
@@ -79,7 +78,6 @@ const Feed = () => {
           ) : (
             <p className={kalam300.className}>Create something awesome!</p>
           )}
-        </div>
         <h4 className={kalam700.className}>Activity Feed</h4>
       </StyledWrapper>
       <StyledPostsWrapper>
