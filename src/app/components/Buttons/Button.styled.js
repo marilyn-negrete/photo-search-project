@@ -19,8 +19,8 @@ export const StyledIconButton = styled.button`
 `;
 
 export const StyledSquareButton = styled.input`
-    background-color: ${({backgroundColor}) => backgroundColor};
-    color: ${({backgroundColor}) => backgroundColor === 'black' ? 'white' : 'black'};
+    background-color: unset;
+    color: unset;
     text-align: center;
     padding: 1rem 1.5rem;
     border-radius: 5px;
@@ -30,6 +30,16 @@ export const StyledSquareButton = styled.input`
     &:disabled {
         background-color: rgb(0 0 0 / 30%);
         cursor: not-allowed;
+    }
+
+    &.btn-white {
+        background-color: white;
+        color: black;
+    }
+
+    &.btn-black {
+        background-color: black;
+        color: white;
     }
 `;
 

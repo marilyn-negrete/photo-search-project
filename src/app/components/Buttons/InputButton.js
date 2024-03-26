@@ -8,7 +8,7 @@ const InputButton = (props) => {
         ? <StyledSquareButton 
             value={value} 
             type={elementType} 
-            backgroundColor={backgroundColor} 
+            className={`btn-${backgroundColor}`} 
             id={id} name={name} 
             disabled={disabled} 
             /> 
@@ -16,7 +16,7 @@ const InputButton = (props) => {
             value={value} 
             type={elementType} 
             onClick={handleOnClick} 
-            backgroundColor={backgroundColor} 
+            className={`btn-${backgroundColor}`}  
             id={id} name={name} 
             disabled={disabled} 
             />
