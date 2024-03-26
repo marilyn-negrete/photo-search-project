@@ -10,7 +10,7 @@ const { children, dialog, closeDialog } = props;
 
     return(
         <>
-            <DialogWrapper isOpen={dialog.isOpen}>
+            <DialogWrapper className={`${dialog.isOpen ? "open" : ""}`}>
                 <DialogContent>
                     <DialogHead>
                         <h4 className={kalam.className}>{dialog.title}</h4>

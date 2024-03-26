@@ -15,10 +15,10 @@ export const DialogWrapper = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
 
-    ${({isOpen}) => isOpen && css`
+    &.open {
         display: block;
         z-index: 3;
-    ` }
+    }
 `;
 
 export const DialogContent = styled.div`
