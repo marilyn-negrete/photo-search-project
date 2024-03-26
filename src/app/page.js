@@ -24,8 +24,7 @@ const Home = () => {
         <h1 className={jua.className}>PhotoSearch</h1>
         <p className={kalam.className}>Find the best photographers in your city</p>
         <StyledLink 
-          isRadius={true} 
-          className={jua.className} 
+          className={`${jua.className} radius`} 
           href={authorizationUrl}
           >
             Get Started

@@ -4,7 +4,6 @@ import Link from "next/link";
 export const StyledLink = styled(Link)`
   text-decoration: none;
   background-color: ${({theme}) => theme.colors.primary.main || 'unset' };
-  border-radius: ${({isRadius}) => isRadius ? '2rem' : 'unset'};
   padding: 1rem 5rem;
   color: white;
   font-size: 1.75rem;
@@ -20,5 +19,9 @@ export const StyledLink = styled(Link)`
 
   &:hover {
     background-color: ${({theme}) => theme.colors.primary.dark};
+  }
+
+  &.radius {
+    border-radius: 2rem;
   }
 `;
