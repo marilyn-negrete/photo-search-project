@@ -7,8 +7,6 @@ export const StyledIconButton = styled.button`
     border-radius: 50%;
     background-color: white;
     border: 1px solid transparent;
-    
-    box-shadow: ${({theme, shadow}) => shadow ? theme.shadows.main : 'unset'};
     cursor: pointer;
 
     ${({size}) => size ==='lg' && css`
@@ -56,7 +54,7 @@ export const StyledDropDrownButton = styled.div`
         border-radius: 50%;
         background-color: white;
         border: 1px solid transparent;
-        box-shadow: ${({theme, shadow}) => theme.shadows.main};
+        box-shadow: ${({theme}) => theme.shadows.main};
         cursor: pointer;
     }
 
