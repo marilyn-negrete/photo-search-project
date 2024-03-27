@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useAppContext } from "../context/AppContext";
 import { getJWToken } from "../lib/helpers";
-import { Kalam } from "next/font/google";
+import { kalam300, kalam700 } from "@/app/lib/fonts";
 import { StyledWrapper, StyledPostsWrapper } from "./Feed.styled";
 import InfiniteScrollCarousel from "../components/Carousel/InfniteScrollCarousel";
 import Dialog from "../components/Dialog/Dialog";
@@ -11,9 +11,6 @@ import CreatePostForm from "./CreatePostForm";
 import PostItem from "./PostItem";
 import DropDownButton from "../components/Buttons/DropDownButton";
 
-// fonts
-const kalam700 = Kalam({ subsets: ["latin"], weight: "700" });
-const kalam300 = Kalam({ subsets: ["latin"], weight: "300" });
 
 const Feed = () => {
   const { photos, collections, isCollectionDataLoading } = useAppContext();

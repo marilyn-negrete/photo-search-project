@@ -1,11 +1,7 @@
 import { StyledPostItem } from './Feed.styled';
 import Image from 'next/image';
 import moment from 'moment';
-import { Kalam } from 'next/font/google';
-
-// fonts
-const kalam700 = Kalam({ subsets: ['latin'], weight: '700'});
-const kalam300 = Kalam({ subsets: ['latin'], weight: '300'});
+import { kalam700, kalam300 } from "@/app/lib/fonts";
 
 const PostItem = (props) => {
     const { post } = props;

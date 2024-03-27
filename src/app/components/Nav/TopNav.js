@@ -3,10 +3,7 @@ import { NavWrapper } from "./Nav.styled";
 import SideBar from "../SideBar/SideBar";
 import Image from "next/image";
 import Link from "next/link";
-import { Jua } from "next/font/google";
-
-// fonts
-const jua = Jua({ subsets: ["latin"], weight: "400" });
+import { jua400 } from "@/app/lib/fonts";
 
 const TopNav = (props) => {
   const { position } = props;
@@ -25,7 +22,7 @@ const TopNav = (props) => {
             alt="photo-search-logo"
           />
         </Link>
-        <h3 className={jua.className}>PhotoSearch</h3>
+        <h3 className={jua400.className}>PhotoSearch</h3>
         <Image
           onClick={handleToggleMenu}
           width={20}

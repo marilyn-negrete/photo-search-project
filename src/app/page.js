@@ -5,10 +5,6 @@ import Image from "next/image";
 import { StyledLink } from "./components/Links/StyledLink.styled";
 import { StyledHome, StyledBanner } from "./Home.styled";
 
-// fonts
-const jua = Jua({ subsets: ['latin'], weight: '400'});
-const kalam = Kalam({ subsets: ['latin'], weight: '300'});
-
 const authorizationUrl = `${process.env.UNSPLASH_AUTH_URL}/authorize?client_id=${process.env.UNSPLASH_CLIENT_ID}&redirect_uri=${process.env.REDIRECT_URL}&response_type=code&scope=${process.env.PERMISSION_SCOPES}`; 
 
 const Home = () => {

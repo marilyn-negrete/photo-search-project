@@ -1,11 +1,8 @@
 'use client'
 import { useSearchParams } from 'next/navigation';
-import { Jua } from 'next/font/google';
+import { jua400 } from '../lib/fonts';
 import { StyledWrapper } from "./Auth.styled";
 import { useAuth } from '../hooks/useAuth';
-
-// fonts
-const jua = Jua({ subsets: ['latin'], weight: '400'});
 
 const Auth = () => {
     const searchParams = useSearchParams();
@@ -25,7 +22,7 @@ const Auth = () => {
 
     return (
         <StyledWrapper>
-            { loading ? <h3 className={jua.className}>Loading...</h3> : null}
+            { loading ? <h3 className={jua400.className}>Loading...</h3> : null}
         </StyledWrapper>
     );
 }

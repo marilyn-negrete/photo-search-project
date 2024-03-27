@@ -1,13 +1,9 @@
 'use client'
 import { useAppContext } from "@/app/context/AppContext";
-import { Kalam, Jua } from 'next/font/google';
+import { jua400 } from "@/app/lib/fonts";
+import { kalam300, kalam400, kalam700 } from "@/app/lib/fonts";
 import Image from "next/image";
 import { ProfileWrapper, ProfileContent, StyledItem } from "./Profile.styled";
-
-const kalam300 = Kalam({ subsets: ['latin'], weight: '300'});
-const kalam400 = Kalam({ subsets: ['latin'], weight: '400'});
-const kalam700 = Kalam({ subsets: ['latin'], weight: '700'});
-const jua = Jua({ subsets: ['latin'], weight: '400'});
 
 export default function Profile() {
     const { user } = useAppContext();
@@ -59,7 +55,7 @@ export default function Profile() {
                 ) : <p className={kalam400.className}>Loading...</p>}
             </ProfileWrapper>
             <ProfileContent>
-                <h3 className={jua.className}>My photos</h3>
+                <h3 className={jua400.className}>My photos</h3>
             </ProfileContent>
         </>
         
