@@ -2,9 +2,11 @@ import { NavWrapper } from "./Nav.styled";
 import Link from "next/link";
 import Image from "next/image";
 
-const BottomNav = () => {
+const BottomNav = (props) => {
+    const {position} = props;
+
     return (
-        <NavWrapper position='bottom'>
+        <NavWrapper className={position}>
             <div>
                 <Link href="/feed">
                     <Image

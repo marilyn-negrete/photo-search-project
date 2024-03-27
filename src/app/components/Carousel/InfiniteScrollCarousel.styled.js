@@ -11,6 +11,7 @@ export const CarouselItem = styled.div`
     display: flex;
     flex-direction: column;
     margin: .25rem;
+    cursor: pointer;
 `;
 
 export const StyledImage = styled(Image)`
