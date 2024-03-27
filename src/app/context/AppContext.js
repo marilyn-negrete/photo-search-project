@@ -4,7 +4,6 @@ import { useFetch } from '../hooks/useFetch';
 const AppContext = createContext();
 
 export const ContextProvider = ({children}) => {
-    const [topicsData, topicsDataError, isTopicsDataLoading] = useFetch(`${process.env.API_URL}/topics`, "topics");
     const [photosData, photosError, isPhotosDataLoading] = useFetch(`${process.env.API_URL}/photos`, "photos");
     const [userData, userError, isUserDataloading] = useFetch(`${process.env.API_URL}/users/mna96`, "userData");
     const [collectionData, collectionsError, isCollectionDataLoading] = useFetch(
@@ -14,7 +13,6 @@ export const ContextProvider = ({children}) => {
     const [collections, setCollections] = useState([]);
     const [user, setUser] = useState({});
     const [photos, setPhotos] = useState([]);
-    const [topicsList, setTopicsList] = useState([]);
     
     useEffect(() => {
         if(userData) setUser(userData);
@@ -28,10 +26,6 @@ export const ContextProvider = ({children}) => {
         if(collectionData) setCollections(collectionData);
     },[collectionData]);
 
-    useEffect(() => {
-        if(topicsData) setTopicsList(topicsData);
-    },[topicsData]);
-
     const value = {
         user,
         isUserDataloading,
@@ -42,8 +36,6 @@ export const ContextProvider = ({children}) => {
         collections, 
         isCollectionDataLoading,
         setCollections,
-        topicsList, 
-        setTopicsList
     };
 
     return <AppContext.Provider value={value}>{children}</AppContext.Provider>
