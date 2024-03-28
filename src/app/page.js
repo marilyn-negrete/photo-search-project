@@ -1,6 +1,6 @@
 'use client';
 import React from "react";
-import { Jua, Kalam } from 'next/font/google';
+import { jua400, kalam300 } from "./lib/fonts";
 import Image from "next/image";
 import { StyledLink } from "./components/Links/StyledLink.styled";
 import { StyledHome, StyledBanner } from "./Home.styled";
@@ -17,10 +17,10 @@ const Home = () => {
         objectFit="cover"
       />
       <StyledBanner>
-        <h1 className={jua.className}>PhotoSearch</h1>
-        <p className={kalam.className}>Find the best photographers in your city</p>
+        <h1 className={jua400.className}>PhotoSearch</h1>
+        <p className={kalam300.className}>Find the best photographers in your city</p>
         <StyledLink 
-          className={`${jua.className} radius`} 
+          className={`${jua400.className} radius`} 
           href={authorizationUrl}
           >
             Get Started

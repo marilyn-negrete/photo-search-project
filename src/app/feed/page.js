@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useAppContext } from "../context/AppContext";
-import { getJWToken } from "../lib/helpers";
 import { kalam300, kalam700 } from "@/app/lib/fonts";
 import { StyledWrapper, StyledPostsWrapper } from "./Feed.styled";
 import InfiniteScrollCarousel from "../components/Carousel/InfniteScrollCarousel";
@@ -10,11 +9,12 @@ import CreateCollectionForm from "./CreateCollectionForm";
 import CreatePostForm from "./CreatePostForm";
 import PostItem from "./PostItem";
 import DropDownButton from "../components/Buttons/DropDownButton";
-
+import { useSearch } from "../hooks/useSearch";
 
 const Feed = () => {
   const { photos, collections, isCollectionDataLoading } = useAppContext();
-  const [filteredResults, setFilteredResults] = useState([]);
+  const [theQuery, setTheQuery] = useState("");
+  const [results, loading, error] = useSearch(theQuery);
   const [dialog, setDialog] = useState({
     isOpen: false,
     title: "",
@@ -34,55 +34,30 @@ const Feed = () => {
     });
   };
 
-  useEffect(() => {
-    setFilteredResults([...photos]);
-  },[photos])
-
-  const performSearch = async (query) => {
-    try {
-      const response = await fetch(
-        `${process.env.API_URL}/search/photos?query=${query}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: getJWToken(),
-          },
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error("Failed to fetch data");
-      }
-
-      const data = await response.json();
-      setFilteredResults(data.results);
-    } catch (error) {
-      throw new Error("Error fetching data:", error);
-    }
-  };
+  console.log(results, theQuery);
+  const triggerSearch = (queryString) => setTheQuery(queryString);
 
   return (
     <>
       <StyledWrapper>
         <h4 className={kalam700.className}>My Collections</h4>
-          {isCollectionDataLoading ? (
-            <p className={kalam300.className}>Loading...</p>
-          ) : collections.length >= 1 ? (
-            <InfiniteScrollCarousel
-              items={collections}
-              onItemClick={performSearch}
-            />
-          ) : (
-            <p className={kalam300.className}>Create something awesome!</p>
-          )}
+        {isCollectionDataLoading ? (
+          <p className={kalam300.className}>Loading...</p>
+        ) : collections.length >= 1 ? (
+          <InfiniteScrollCarousel
+            items={collections}
+            setTheQuery={setTheQuery}
+            onItemClick={triggerSearch}
+          />
+        ) : (
+          <p className={kalam300.className}>Create something awesome!</p>
+        )}
         <h4 className={kalam700.className}>Activity Feed</h4>
       </StyledWrapper>
       <StyledPostsWrapper>
-        {filteredResults && filteredResults.length > 1 ? (
-          filteredResults.map((post) => <PostItem post={post} key={post.id} />)
-        ) : (
-          <p className={kalam300.className}>Working on it...</p>
-        )}
+        {results && results.length > 1
+          ? results.map((post) => <PostItem post={post} key={post.id} />)
+          : photos.map((item) => <PostItem post={item} key={item.id} />)}
       </StyledPostsWrapper>
       <DropDownButton
         options={[
