@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledWrapper = styled.section`
+export const StyledCollectionsWrapper = styled.section`
   background-color: ${({ theme }) => theme.colors.secondary.main};
   padding: 1rem 10rem;
   @media only screen and (max-width: 1024px) {

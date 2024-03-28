@@ -1,8 +1,8 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useAppContext } from "../context/AppContext";
 import { kalam300, kalam700 } from "@/app/lib/fonts";
-import { StyledWrapper, StyledPostsWrapper } from "./Feed.styled";
+import { StyledCollectionsWrapper, StyledPostsWrapper } from "./Feed.styled";
 import InfiniteScrollCarousel from "../components/Carousel/InfniteScrollCarousel";
 import Dialog from "../components/Dialog/Dialog";
 import CreateCollectionForm from "./CreateCollectionForm";
@@ -34,26 +34,24 @@ const Feed = () => {
     });
   };
 
-  console.log(results, theQuery);
   const triggerSearch = (queryString) => setTheQuery(queryString);
 
   return (
     <>
-      <StyledWrapper>
+      <StyledCollectionsWrapper>
         <h4 className={kalam700.className}>My Collections</h4>
         {isCollectionDataLoading ? (
           <p className={kalam300.className}>Loading...</p>
         ) : collections.length >= 1 ? (
           <InfiniteScrollCarousel
             items={collections}
-            setTheQuery={setTheQuery}
             onItemClick={triggerSearch}
           />
         ) : (
           <p className={kalam300.className}>Create something awesome!</p>
         )}
         <h4 className={kalam700.className}>Activity Feed</h4>
-      </StyledWrapper>
+      </StyledCollectionsWrapper>
       <StyledPostsWrapper>
         {results && results.length > 1
           ? results.map((post) => <PostItem post={post} key={post.id} />)
