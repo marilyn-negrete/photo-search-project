@@ -53,9 +53,8 @@ const Feed = () => {
         <h4 className={kalam700.className}>Activity Feed</h4>
       </StyledCollectionsWrapper>
       <StyledPostsWrapper>
-        {results && results.length > 1
-          ? results.map((post) => <PostItem post={post} key={post.id} />)
-          : photos.map((item) => <PostItem post={item} key={item.id} />)}
+          {results.length > 1 ? results.map(item => <PostItem post={item} key={item.id} />) : ""}
+          {photos.length > 1 ? photos.map(photo => <PostItem post={photo} key={photo.id} />) : "Loading..."}
       </StyledPostsWrapper>
       <DropDownButton
         options={[
