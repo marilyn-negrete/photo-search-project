@@ -15,7 +15,7 @@ const DropDownButton = (props) => {
         {options.map((option) => (
           <a
             key={option.id}
-            onClick={() => option.action(option.label)}
+            onClick={() => option.action()}
           >
             {option.label}
           </a>

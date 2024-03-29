@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import InputButton from '../components/Buttons/InputButton';
 import { useAppContext } from '../context/AppContext';
 
-export default function CreatePostForm() {
+export default function AddPhotoForm() {
     const { user } = useAppContext();
     const form = useForm();
     const {

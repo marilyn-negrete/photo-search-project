@@ -1,18 +1,20 @@
 "use client";
 import { useState } from "react";
+import dynamic from "next/dynamic";
 import { useAppContext } from "../context/AppContext";
-import { kalam300, kalam700 } from "@/app/lib/fonts";
-import { StyledCollectionsWrapper, StyledPostsWrapper } from "./Feed.styled";
-import InfiniteScrollCarousel from "../components/Carousel/InfniteScrollCarousel";
+import { useSearch } from "../hooks/useSearch";
+import { StyledPostsWrapper } from "./Feed.styled";
 import Dialog from "../components/Dialog/Dialog";
-import CreateCollectionForm from "./CreateCollectionForm";
-import CreatePostForm from "./CreatePostForm";
 import PostItem from "./PostItem";
 import DropDownButton from "../components/Buttons/DropDownButton";
-import { useSearch } from "../hooks/useSearch";
+import CollectionsList from "./CollectionsList";
+import { kalam300 } from "../lib/fonts";
+
+const TheCreateCollectionForm = dynamic(() => import("./CreateCollectionForm"));
+const TheAddPhotoForm = dynamic(() => import("./AddPhotoForm"));
 
 const Feed = () => {
-  const { photos, collections, isCollectionDataLoading } = useAppContext();
+  const { photos, collections } = useAppContext();
   const [theQuery, setTheQuery] = useState("");
   const [results, loading, error] = useSearch(theQuery);
   const [dialog, setDialog] = useState({
@@ -20,56 +22,32 @@ const Feed = () => {
     title: "",
   });
 
-  const closeDialog = () => {
-    setDialog({
-      isOpen: false,
-      title: "",
-    });
-  };
-
-  const openDialog = (title) => {
-    setDialog({
-      title,
-      isOpen: true,
-    });
-  };
-
+  const closeDialog = () => setDialog(prevState => ({ ...prevState, isOpen: false }));
+  const openDialog = (title) => setDialog({ title, isOpen: true });
   const triggerSearch = (queryString) => setTheQuery(queryString);
 
   return (
     <>
-      <StyledCollectionsWrapper>
-        <h4 className={kalam700.className}>My Collections</h4>
-        {isCollectionDataLoading ? (
-          <p className={kalam300.className}>Loading...</p>
-        ) : collections.length >= 1 ? (
-          <InfiniteScrollCarousel
-            items={collections}
-            onItemClick={triggerSearch}
-          />
-        ) : (
-          <p className={kalam300.className}>Create something awesome!</p>
-        )}
-        <h4 className={kalam700.className}>Activity Feed</h4>
-      </StyledCollectionsWrapper>
+      <CollectionsList
+        collections={collections}
+        triggerSearch={triggerSearch}
+      />
       <StyledPostsWrapper>
-          {results.length > 1 ? results.map(item => <PostItem post={item} key={item.id} />) : ""}
-          {photos.length > 1 ? photos.map(photo => <PostItem post={photo} key={photo.id} />) : "Loading..."}
+        {results.length > 0 && results.map((item) => <PostItem post={item} key={item.id} />)}
+        {photos.length > 0
+          ? photos.map((photo) => <PostItem post={photo} key={photo.id} />)
+          : <p className={kalam300.className}>Loading...</p>}
       </StyledPostsWrapper>
       <DropDownButton
         options={[
-          { id: 1, label: "Create Collection", action: openDialog },
-          { id: 2, label: "Add to Collection", action: openDialog },
+          { id: 1, label: "Create Collection", action: () => openDialog("Create Collection") },
+          { id: 2, label: "Add to Collection", action: () => openDialog("Add to Collection") },
         ]}
       />
       <Dialog dialog={dialog} closeDialog={closeDialog}>
-        {dialog.title === "Create Collection" ? (
-          <CreateCollectionForm closeDialog={closeDialog} />
-        ) : (
-          <CreatePostForm />
-        )}
+        {dialog.title === "Create Collection" && <TheCreateCollectionForm closeDialog={closeDialog}/>}
+        {dialog.title === "Add to Collection" && <TheAddPhotoForm />}
       </Dialog>
-      {/* <DevTool control={control}/> */}
     </>
   );
 };
