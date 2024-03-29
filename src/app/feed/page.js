@@ -35,7 +35,7 @@ const Feed = () => {
       <StyledPostsWrapper>
         {results.length > 0 && results.map((item) => <PostItem post={item} key={item.id} />)}
         {photos.length > 0
-          ? photos.map((photo) => <PostItem post={photo} key={photo.id} />)
+          ? photos.map((photo, index) => <PostItem post={photo} key={photo.id} indexValue={index}/>)
           : <p className={kalam300.className}>Loading...</p>}
       </StyledPostsWrapper>
       <DropDownButton

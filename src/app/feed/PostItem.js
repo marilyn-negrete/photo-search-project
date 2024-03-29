@@ -4,18 +4,17 @@ import moment from 'moment';
 import { kalam700, kalam300 } from "@/app/lib/fonts";
 
 const PostItem = (props) => {
-    const { post } = props;
+  const { post, indexValue } = props;
 
   return (
      <StyledPostItem className="post" key={post.id}>
         <div className="post-header">
             <Image 
-                src={post.user?.profile_image.large || '/plain-background.png'} 
+                src={post.user?.profile_image.medium || '/plain-background.png'} 
                 width={50} 
                 height={50} 
                 alt="user-photo"
-                placeholder='blur'
-                blurDataURL='/plain-background.png'
+                priority={indexValue === 0}
             />
             <div>
                 <p className={kalam700.className}>{post.user?.first_name} {post.user?.last_name || ""}</p>
@@ -27,14 +26,15 @@ const PostItem = (props) => {
                 {post.description || "Lorem ipsum dolor sit amet consectetur adipiscing elit eros at, leo varius imperdiet mi ultric"}
             </p>
             <Image 
-                src={post.urls?.full || "/plain-background.png"} 
+                src={post.urls?.small || "/plain-background.png"} 
                 width={50} 
                 height={50} 
                 alt={post.alt_description || "placeholder image"}
                 placeholder='blur'
-                blurDataURL='/plain-background.png'
-                // unoptimized
-            />
+                blurDataURL={post.blur_hash || '/plain-background.png'}
+                sizes="(max-width: 480px) 100vw"
+                priority={indexValue === 0}
+            />      
         </div>
     </StyledPostItem>
   )

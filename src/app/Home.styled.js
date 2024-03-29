@@ -5,6 +5,7 @@ export const StyledHome = styled.section`
     
     img {
         object-position: 70%;
+        object-fit: cover;
     }
 `;
 

@@ -8,7 +8,12 @@ const InfiniteScrollCarousel = (props) => {
         <CarouselWrapper>
             {items.map(item => (
                 <CarouselItem key={item.id} onClick={() => handleClick(item.title)}>
-                    <StyledImage width={100} height={100} alt={item.title} src={item.cover_photo ? item.cover_photo?.urls?.small_s3 : '/no-thumb.png'} />
+                    <StyledImage 
+                        width={100} 
+                        height={100} 
+                        alt={item.title} 
+                        src={item.cover_photo ? item.cover_photo?.urls?.thumb : '/no-thumb.png'} 
+                    />
                     <CarouselTitle className={kalam300.className}>
                         <b>{item.title}</b>
                     </CarouselTitle>

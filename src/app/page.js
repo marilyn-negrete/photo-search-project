@@ -10,11 +10,14 @@ const authorizationUrl = `${process.env.UNSPLASH_AUTH_URL}/authorize?client_id=$
 const Home = () => {
   return (
     <StyledHome>
-      <Image
+       <Image
         src="/photography-thumbnail.jpeg"
         alt="Thumbnail"
         layout="fill"
-        objectFit="cover"
+        quality={100}
+        fill
+        sizes="100vw"
+        priority
       />
       <StyledBanner>
         <h1 className={jua400.className}>PhotoSearch</h1>
