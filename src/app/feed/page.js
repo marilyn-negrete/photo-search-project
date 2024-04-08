@@ -9,6 +9,7 @@ import PostItem from "./PostItem";
 import DropDownButton from "../components/Buttons/DropDownButton";
 import CollectionsList from "./CollectionsList";
 import { kalam300 } from "../lib/fonts";
+import InputButton from "../components/Buttons/InputButton";
 
 const TheCreateCollectionForm = dynamic(() => import("./CreateCollectionForm"));
 const TheAddPhotoForm = dynamic(() => import("./AddPhotoForm"));
@@ -29,14 +30,22 @@ const Feed = () => {
   return (
     <>
       <CollectionsList
-        collections={collections}
+        collections={collections.results}
         triggerSearch={triggerSearch}
       />
       <StyledPostsWrapper>
         {results.length > 0 && results.map((item) => <PostItem post={item} key={item.id} />)}
-        {photos.length > 0
-          ? photos.map((photo, index) => <PostItem post={photo} key={photo.id} indexValue={index}/>)
+        {photos.results.length > 0
+          ? photos.results.map((photo, index) => <PostItem post={photo} key={photo.id} indexValue={index}/>)
           : <p className={kalam300.className}>Loading...</p>}
+          <InputButton 
+            elementType="button" 
+            value="Load more posts" 
+            backgroundColor="white" 
+            id="loadMorePosts" 
+            name="loadMorePosts"
+            handleOnClick={() => console.log('load 5 more posts')}
+          />
       </StyledPostsWrapper>
       <DropDownButton
         options={[

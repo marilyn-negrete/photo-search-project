@@ -4,27 +4,34 @@ import { useFetch } from '../hooks/useFetch';
 const AppContext = createContext();
 
 export const ContextProvider = ({children}) => {
-    const [photosData, photosError, isPhotosDataLoading] = useFetch(`${process.env.API_URL}/photos?page=1&per_page=5`, "photos");
+    const [user, setUser] = useState({});
+    const [collections, setCollections] = useState({
+        page: 1,
+        results: []
+    });
+    const [photos, setPhotos] = useState({
+        page: 1,
+        results: []
+    });
+    const [photosData, photosError, isPhotosDataLoading] = useFetch(`${process.env.API_URL}/photos?page=${photos.page}&per_page=5`, "photos");
     const [userData, userError, isUserDataloading] = useFetch(`${process.env.API_URL}/users/mna96`, "userData");
     const [collectionData, collectionsError, isCollectionDataLoading] = useFetch(
-        `${process.env.API_URL}/users/mna96/collections?page=1&per_page=10&client_id=${process.env.UNSPLASH_CLIENT_ID}`,
+        `${process.env.API_URL}/users/mna96/collections?page=${collections.page}&per_page=10&client_id=${process.env.UNSPLASH_CLIENT_ID}`,
         "collections"
     );
-    const [collections, setCollections] = useState([]);
-    const [user, setUser] = useState({});
-    const [photos, setPhotos] = useState([]);
-    
-    console.log(photos);
+
+
+    console.log({collections, photos});
     useEffect(() => {
         if(userData) setUser(userData);
     },[userData]);
 
     useEffect(() => {
-        if(photosData) setPhotos(photosData);
+        if(photosData) setPhotos({...photos, results: photosData});
     },[photosData]);
 
     useEffect(() => {
-        if(collectionData) setCollections(collectionData);
+        if(collectionData) setCollections({...collections, results: collectionData});
     },[collectionData]);
 
     const value = {

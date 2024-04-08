@@ -2,16 +2,11 @@ import styled from "styled-components";
 
 export const StyledCollectionsWrapper = styled.section`
   background-color: ${({ theme }) => theme.colors.secondary.main};
-  padding: 1rem 10rem;
-  @media only screen and (max-width: 1024px) {
-    padding: 1rem 5rem;
-  }
-  @media only screen and (max-width: 768px) {
-    padding: 1rem;
-  }
+  padding: 1rem;
 
   h4 {
-    margin: 0;
+    margin: 0 auto;
+    max-width: 71em;
   }
 `;
 

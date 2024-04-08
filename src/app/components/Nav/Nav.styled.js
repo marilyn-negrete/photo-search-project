@@ -2,16 +2,11 @@ import styled, { css } from "styled-components";
 
 export const NavWrapper = styled.nav`
     width: 100%;
-    padding: 1rem 10rem;
+    padding: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    @media only screen and (max-width: 1024px) {
-        padding: 1rem 5rem;
-    }
-    @media only screen and (max-width: 768px) {
-        padding: 1rem;
-    }
+   
 
     &.top {
         background: white;
