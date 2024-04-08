@@ -34,18 +34,27 @@ const Feed = () => {
         triggerSearch={triggerSearch}
       />
       <StyledPostsWrapper>
-        {results.length > 0 && results.map((item) => <PostItem post={item} key={item.id} />)}
-        {photos.results.length > 0
-          ? photos.results.map((photo, index) => <PostItem post={photo} key={photo.id} indexValue={index}/>)
-          : <p className={kalam300.className}>Loading...</p>}
-          <InputButton 
-            elementType="button" 
-            value="Load more posts" 
-            backgroundColor="white" 
-            id="loadMorePosts" 
+        {results.length > 0 &&
+          results.map((item) => <PostItem post={item} key={item.id} />)}
+
+        {photos.results.length > 0 ? (
+          photos.results.map((photo, index) => (
+            <PostItem post={photo} key={photo.id} indexValue={index} />
+          ))
+        ) : (
+          <p className={kalam300.className}>Loading...</p>
+        )}
+
+        {photos.results.length > 0 ? (
+          <InputButton
+            elementType="button"
+            value="Load more posts"
+            backgroundColor="white"
+            id="loadMorePosts"
             name="loadMorePosts"
-            handleOnClick={() => console.log('load 5 more posts')}
+            handleOnClick={() => console.log("load 5 more posts")}
           />
+        ) : null}
       </StyledPostsWrapper>
       <DropDownButton
         options={[
