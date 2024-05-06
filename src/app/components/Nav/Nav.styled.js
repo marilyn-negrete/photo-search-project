@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const NavWrapper = styled.nav`
     width: 100%;
@@ -7,7 +7,6 @@ export const NavWrapper = styled.nav`
     justify-content: space-between;
     align-items: center;
    
-
     &.top {
         background: white;
     }

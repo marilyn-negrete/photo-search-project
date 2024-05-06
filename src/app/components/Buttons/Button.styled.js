@@ -69,7 +69,6 @@ export const StyledDropDrownButton = styled.div`
     }
 
     .dropdown-content {
-        font-family: Arial, sans-serif;
         background-color: white;
         display: none;
         position: absolute;

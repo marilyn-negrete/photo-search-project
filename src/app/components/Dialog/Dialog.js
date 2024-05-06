@@ -1,4 +1,4 @@
-import { DialogWrapper, DialogContent, DialogBody, DialogHead, DialogBackdrop } from "./Dialog.styled";
+import { DialogWrapper, DialogHead, DialogBackdrop } from "./Dialog.styled";
 import IconButton from "../Buttons/IconButton";
 import { kalam700 } from "@/app/lib/fonts";
 
@@ -8,7 +8,7 @@ const { children, dialog, closeDialog } = props;
     return(
         <>
             <DialogWrapper className={`${dialog.isOpen ? "open" : ""}`}>
-                <DialogContent>
+                <div>
                     <DialogHead>
                         <h4 className={kalam700.className}>{dialog.title}</h4>
                         <IconButton 
@@ -16,10 +16,10 @@ const { children, dialog, closeDialog } = props;
                             srcIcon="/cross.png" size="sm" 
                         />
                     </DialogHead>
-                    <DialogBody>
+                    <div>
                         { children}
-                    </DialogBody>
-                </DialogContent>
+                    </div>
+                </div>
             </DialogWrapper>
             {dialog.isOpen ? <DialogBackdrop></DialogBackdrop> : null}
             

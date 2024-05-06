@@ -8,8 +8,7 @@ export const useAuth = (apiEndpoint, theData) => {
     const [responseData, setResponseData] = useState({});
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
-
-    console.log(theData.code);
+    
     useEffect(() => {
         if(theData.code) {
             const getToken = async () => {

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import css from "styled-jsx/css";
 
 export const DialogWrapper = styled.div`
     background-color: white;    
@@ -9,7 +8,6 @@ export const DialogWrapper = styled.div`
     border: 1px solid #cccc;
     border-radius: .5rem;
     display: none;
-    /* position the div in center */
     position: fixed;
     top: 50%;
     left: 50%;
@@ -21,19 +19,10 @@ export const DialogWrapper = styled.div`
     }
 `;
 
-export const DialogContent = styled.div`
-`;
-
-export const DialogBody = styled.div`
-`;
-
 export const DialogHead = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-`;
-
-export const DialogActions = styled.div`
 `;
 
 export const DialogBackdrop = styled.div`

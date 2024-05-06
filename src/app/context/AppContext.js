@@ -16,12 +16,10 @@ export const ContextProvider = ({children}) => {
     const [photosData, photosError, isPhotosDataLoading] = useFetch(`${process.env.API_URL}/photos?page=${photos.page}&per_page=5`, "photos");
     const [userData, userError, isUserDataloading] = useFetch(`${process.env.API_URL}/users/mna96`, "userData");
     const [collectionData, collectionsError, isCollectionDataLoading] = useFetch(
-        `${process.env.API_URL}/users/mna96/collections?page=${collections.page}&per_page=10&client_id=${process.env.UNSPLASH_CLIENT_ID}`,
+        `${process.env.API_URL}/users/mna96/collections?page=${collections.page}&per_page=5&client_id=${process.env.UNSPLASH_CLIENT_ID}`,
         "collections"
     );
 
-
-    console.log({collections, photos});
     useEffect(() => {
         if(userData) setUser(userData);
     },[userData]);

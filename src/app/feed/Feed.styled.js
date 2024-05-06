@@ -11,8 +11,6 @@ export const StyledCollectionsWrapper = styled.section`
 `;
 
 export const StyledCreateCollectionForm = styled.form`
-  font-family: Arial, sans-serif;
-
   .form-actions {
     display: flex;
     justify-content: flex-end;
@@ -32,7 +30,6 @@ export const StyledCreateCollectionForm = styled.form`
 
     input,
     textarea {
-      font-family: Arial, sans-serif;
       width: 100%;
       padding: 0.75rem;
       border-radius: 4px;

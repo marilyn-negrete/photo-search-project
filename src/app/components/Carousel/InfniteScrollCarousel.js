@@ -1,6 +1,5 @@
 import { CarouselWrapper, CarouselItem, CarouselTitle, StyledImage } from "./InfiniteScrollCarousel.styled";
-import { kalam300 } from "@/app/lib/fonts";
-import IconButton from "../Buttons/IconButton";
+import { kalam400 } from "../../lib/fonts"
 
 const InfiniteScrollCarousel = (props) => {
     const { items, handleClick } = props;
@@ -15,8 +14,8 @@ const InfiniteScrollCarousel = (props) => {
                         alt={item.title} 
                         src={item.cover_photo ? item.cover_photo?.urls?.thumb : '/no-thumb.png'} 
                     />
-                    <CarouselTitle className={kalam300.className}>
-                        <b>{item.title}</b>
+                    <CarouselTitle className={kalam400.className}>
+                        {item.title}
                     </CarouselTitle>
                 </CarouselItem>
             ))}

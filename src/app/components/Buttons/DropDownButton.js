@@ -1,7 +1,6 @@
 import React from "react";
 import { StyledDropDrownButton } from "./Button.styled";
 import Image from "next/image";
-import clsx from "clsx";
 
 const DropDownButton = (props) => {
   const { options } = props;

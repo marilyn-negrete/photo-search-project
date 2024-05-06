@@ -7,8 +7,6 @@ export const TextFieldWrapper = styled.div`
 
     div {
         display: flex;
-        font-family: Arial, sans-serif;
-
         label {
             margin-right: .25rem;
         }
@@ -29,9 +27,5 @@ export const TextFieldWrapper = styled.div`
 export const CheckboxWrapper = styled.div`
     input[type="checkbox"] {
         margin-right: .5rem;
-    }
-
-    label {
-        font-family: Arial, sans-serif;
     }
 `;
