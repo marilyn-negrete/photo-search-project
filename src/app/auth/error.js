@@ -1,7 +1,7 @@
 "use client";
 import { StyledError } from "./Auth.styled";
 import Image from "next/image";
-import InputButton from "../components/Buttons/InputButton";
+import InputButton from "@/components/Buttons/InputButton";
 
 const ErrorBoundary = ({ error, reset }) => {
   return (

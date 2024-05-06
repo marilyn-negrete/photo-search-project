@@ -1,5 +1,5 @@
 import { CarouselWrapper, CarouselItem, CarouselTitle, StyledImage } from "./InfiniteScrollCarousel.styled";
-import { kalam400 } from "../../lib/fonts"
+import { kalam400 } from "@/lib/fonts"
 
 const InfiniteScrollCarousel = (props) => {
     const { items, handleClick } = props;

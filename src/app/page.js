@@ -1,8 +1,8 @@
 'use client';
 import React from "react";
-import { jua400, kalam300 } from "./lib/fonts";
+import { jua400, kalam300 } from "@/lib/fonts";
 import Image from "next/image";
-import { StyledLink } from "./components/Links/StyledLink.styled";
+import { StyledLink } from "@/components/Links/StyledLink.styled";
 import { StyledHome, StyledBanner } from "./Home.styled";
 
 const authorizationUrl = `${process.env.UNSPLASH_AUTH_URL}/authorize?client_id=${process.env.UNSPLASH_CLIENT_ID}&redirect_uri=${process.env.REDIRECT_URL}&response_type=code&scope=${process.env.PERMISSION_SCOPES}`; 

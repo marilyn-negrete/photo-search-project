@@ -2,14 +2,14 @@
 import { useState } from "react";
 import dynamic from "next/dynamic";
 import { useAppContext } from "../context/AppContext";
-import { useSearch } from "../hooks/useSearch";
+import { useSearch } from "@/hooks/useSearch";
 import { StyledPostsWrapper } from "./Feed.styled";
-import Dialog from "../components/Dialog/Dialog";
+import Dialog from "@/components/Dialog/Dialog"
 import PostItem from "./PostItem";
-import DropDownButton from "../components/Buttons/DropDownButton";
+import DropDownButton from "@/components/Buttons/DropDownButton";
 import CollectionsList from "./CollectionsList";
-import { kalam300 } from "../lib/fonts";
-import InputButton from "../components/Buttons/InputButton";
+import { kalam300 } from "@/lib/fonts";
+import InputButton from "@/components/Buttons/InputButton";
 
 const TheCreateCollectionForm = dynamic(() => import("./CreateCollectionForm"));
 const TheAddPhotoForm = dynamic(() => import("./AddPhotoForm"));

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getJWToken } from "../lib/helpers";
+import { getJWToken } from "@/lib/helpers";
 
 export const useSearch = (query) => {
   const [results, setResults] = useState([]);

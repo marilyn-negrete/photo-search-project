@@ -3,7 +3,7 @@ import { NavWrapper } from "./Nav.styled";
 import SideBar from "../SideBar/SideBar";
 import Image from "next/image";
 import Link from "next/link";
-import { jua400 } from "@/app/lib/fonts";
+import { jua400 } from "@/lib/fonts";
 
 const TopNav = (props) => {
   const { position } = props;

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { useRouter } from 'next/navigation';
-import { setLocalStorage } from "../lib/helpers";
+import { setLocalStorage } from "@/lib/helpers";
 
 export const useAuth = (apiEndpoint, theData) => {
     const router = useRouter();

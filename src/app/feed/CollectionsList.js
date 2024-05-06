@@ -1,7 +1,7 @@
 import React from "react";
 import { StyledCollectionsWrapper } from "./Feed.styled";
-import InfiniteScrollCarousel from "../components/Carousel/InfniteScrollCarousel";
-import { kalam700, kalam300 } from "../lib/fonts";
+import InfiniteScrollCarousel from "@/components/Carousel/InfniteScrollCarousel";
+import { kalam700, kalam300 } from "@/lib/fonts";
 
 const CollectionsList = (props) => {
   const { collections, triggerSearch } = props;

@@ -1,12 +1,12 @@
 'use client';
 import GlobalStyles from './Global.styled';
-import BottomNav from './components/Nav/BottomNav';
-import TopNav from './components/Nav/TopNav';
+import BottomNav from '@/components/Nav/BottomNav';
+import TopNav from '@/components/Nav/TopNav';
 import StyledComponentsRegistry from './lib/registry'
 import { usePathname } from 'next/navigation'
 import { ThemeProvider } from 'styled-components';
 import { ContextProvider } from './context/AppContext';
-import theme from './lib/theme';
+import theme from '@/lib/theme';
 
 export default function RootLayout({ children }) {
   const pathname = usePathname();

@@ -1,6 +1,6 @@
 import { DialogWrapper, DialogHead, DialogBackdrop } from "./Dialog.styled";
 import IconButton from "../Buttons/IconButton";
-import { kalam700 } from "@/app/lib/fonts";
+import { kalam700 } from "@/lib/fonts";
 
 const Dialog = (props) => {
 const { children, dialog, closeDialog } = props;
@@ -17,7 +17,7 @@ const { children, dialog, closeDialog } = props;
                         />
                     </DialogHead>
                     <div>
-                        { children}
+                        {children}
                     </div>
                 </div>
             </DialogWrapper>

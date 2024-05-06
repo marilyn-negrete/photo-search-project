@@ -1,8 +1,8 @@
 'use client'
 import { useSearchParams } from 'next/navigation';
-import { jua400 } from '../lib/fonts';
+import { jua400 } from '@/lib/fonts';
 import { StyledWrapper } from "./Auth.styled";
-import { useAuth } from '../hooks/useAuth';
+import { useAuth } from '@/hooks/useAuth';
 
 const Auth = () => {
     const searchParams = useSearchParams();

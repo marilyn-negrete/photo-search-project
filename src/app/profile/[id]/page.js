@@ -1,7 +1,6 @@
 'use client'
 import { useAppContext } from "@/app/context/AppContext";
-import { jua400 } from "@/app/lib/fonts";
-import { kalam300, kalam400, kalam700 } from "@/app/lib/fonts";
+import { jua400, kalam300, kalam400, kalam700 } from "@/lib/fonts";
 import Image from "next/image";
 import { ProfileWrapper, ProfileContent, StyledItem } from "./Profile.styled";
 

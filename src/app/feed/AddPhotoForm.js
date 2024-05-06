@@ -2,7 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import { StyledCreatePostForm } from './Feed.styled'
 import { useForm } from "react-hook-form";
-import InputButton from '../components/Buttons/InputButton';
+import InputButton from '@/components/Buttons/InputButton';
 import { useAppContext } from '../context/AppContext';
 
 export default function AddPhotoForm() {

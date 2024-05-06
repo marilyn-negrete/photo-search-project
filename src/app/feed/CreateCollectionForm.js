@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { StyledCreateCollectionForm } from './Feed.styled'
-import InputButton from '../components/Buttons/InputButton'
+import InputButton from '@/components/Buttons/InputButton'
 import { useForm } from "react-hook-form";
-import { postNewCollection } from '../lib/collections';
+import { postNewCollection } from '@/lib/collections';
 
 export default function CreateCollectionForm(props) {
     const { closeDialog } = props;
