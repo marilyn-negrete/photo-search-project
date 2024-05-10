@@ -26,13 +26,12 @@ const PostItem = (props) => {
                 {post.description || "Lorem ipsum dolor sit amet consectetur adipiscing elit eros at, leo varius imperdiet mi ultric"}
             </p>
             <Image 
-                src={post.urls?.small || "/plain-background.png"} 
-                width={50} 
-                height={50} 
+                src={`${post.urls?.raw + "&auto=compress"}` || "/plain-background.png"} 
+                width={480} 
+                height={480} 
                 alt={post.alt_description || "placeholder image"}
                 placeholder='blur'
                 blurDataURL={post.blur_hash || '/plain-background.png'}
-                sizes="(max-width: 480px) 100vw"
                 priority={indexValue === 0}
             />      
         </div>

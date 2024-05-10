@@ -12,7 +12,7 @@ const InfiniteScrollCarousel = (props) => {
                         width={100} 
                         height={100} 
                         alt={item.title} 
-                        src={item.cover_photo ? item.cover_photo?.urls?.thumb : '/no-thumb.png'} 
+                        src={item.cover_photo ? `${item.cover_photo?.urls?.raw + "&auto=compress"}` : '/no-thumb.png'} 
                     />
                     <CarouselTitle className={kalam400.className}>
                         {item.title}
