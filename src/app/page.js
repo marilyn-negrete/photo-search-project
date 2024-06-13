@@ -1,6 +1,6 @@
 'use client';
 import React from "react";
-import { jua400, kalam300 } from "@/lib/fonts";
+import { chewy400, kalam300 } from "@/lib/fonts";
 import Image from "next/image";
 import { StyledLink } from "@/components/Links/StyledLink.styled";
 import { StyledHome, StyledBanner } from "./Home.styled";
@@ -20,10 +20,10 @@ const Home = () => {
         priority
       />
       <StyledBanner>
-        <h1 className={jua400.className}>PhotoSearch</h1>
+        <h1 className={chewy400.className}>PhotoSearch</h1>
         <p className={kalam300.className}>Find the best photographers in your city</p>
         <StyledLink 
-          className={`${jua400.className} radius`} 
+          className={`${chewy400.className} radius`} 
           href={authorizationUrl}
           >
             Get Started

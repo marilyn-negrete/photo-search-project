@@ -8,11 +8,13 @@ import Dialog from "@/components/Dialog/Dialog"
 import PostItem from "./PostItem";
 import DropDownButton from "@/components/Buttons/DropDownButton";
 import CollectionsList from "./CollectionsList";
-import { kalam300 } from "@/lib/fonts";
 import InputButton from "@/components/Buttons/InputButton";
 
 const TheCreateCollectionForm = dynamic(() => import("./CreateCollectionForm"));
 const TheAddPhotoForm = dynamic(() => import("./AddPhotoForm"));
+const Loader = dynamic(() => import('@/components/Loaders/CustomLoading'),{
+  loading: () => <p>Loading...</p>
+});
 
 const Feed = () => {
   const { photos, collections } = useAppContext();
@@ -42,7 +44,7 @@ const Feed = () => {
             <PostItem post={photo} key={photo.id} indexValue={index} />
           ))
         ) : (
-          <p className={kalam300.className}>Loading...</p>
+          <Loader />
         )}
 
         {photos.results.length > 0 ? (

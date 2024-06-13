@@ -18,8 +18,13 @@ export default function RootLayout({ children }) {
           <body>
             <StyledComponentsRegistry>
               <GlobalStyles />
-              {pathname !== '/' && pathname !== '/auth'? <BottomNav position="bottom" /> : null}
-              {pathname !== '/' && pathname !== '/auth' ? <TopNav position="top" /> : null}
+              {
+                pathname !== '/' && pathname !== '/auth' ?
+                <>
+                  <BottomNav position="bottom" />
+                  <TopNav position="top" />
+                </> : null
+              }
               {children}
             </StyledComponentsRegistry>
           </body>

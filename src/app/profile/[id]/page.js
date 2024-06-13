@@ -1,8 +1,13 @@
 'use client'
 import { useAppContext } from "../../context/AppContext";
-import { jua400, kalam300, kalam400, kalam700 } from "@/lib/fonts";
+import { chewy400, kalam300, kalam400, kalam700 } from "@/lib/fonts";
 import Image from "next/image";
 import { ProfileWrapper, ProfileContent, StyledItem } from "./Profile.styled";
+import dynamic from "next/dynamic";
+
+const Loader = dynamic(() => import('@/components/Loaders/CustomLoading'), {
+    loading: () => <p>Loading this in the mean time...</p>
+});
 
 export default function Profile() {
     const { user } = useAppContext();
@@ -13,7 +18,7 @@ export default function Profile() {
                 {user ? (
                     <div className="profile">
                     <div className="profile-picture">
-                        <Image src={user.profile_image?.large || ""} alt="user-profile-picture" width={80} height={80}/>
+                        <Image src={user.profile_image?.medium || "/plain-background.png"} alt="user-profile-picture" width={80} height={80}/>
                     </div>
                     <div className="profile-details">
                         <div className="profile-name">
@@ -51,13 +56,11 @@ export default function Profile() {
                         </div>
                     </div>
                 </div>
-                ) : <p className={kalam400.className}>Loading...</p>}
+                ) : <Loader />}
             </ProfileWrapper>
             <ProfileContent>
-                <h3 className={jua400.className}>My photos</h3>
+                <h3 className={chewy400.className}>My photos</h3>
             </ProfileContent>
         </>
-        
-        
     )
 }

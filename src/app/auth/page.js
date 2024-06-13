@@ -1,8 +1,12 @@
 'use client'
 import { useSearchParams } from 'next/navigation';
-import { jua400 } from '@/lib/fonts';
 import { StyledWrapper } from "./Auth.styled";
 import { useAuth } from '@/hooks/useAuth';
+import dynamic from 'next/dynamic';
+
+const Loader = dynamic(() => import('@/components/Loaders/CustomLoading'), {
+    loading: () => <p>Loading...</p>
+  });
 
 const Auth = () => {
     const searchParams = useSearchParams();
@@ -22,7 +26,7 @@ const Auth = () => {
 
     return (
         <StyledWrapper>
-            { loading ? <h3 className={jua400.className}>Loading...</h3> : null}
+            { loading ? <Loader /> : null}
         </StyledWrapper>
     );
 }

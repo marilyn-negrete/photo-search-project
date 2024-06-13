@@ -3,7 +3,7 @@ import { NavWrapper } from "./Nav.styled";
 import SideBar from "../SideBar/SideBar";
 import Image from "next/image";
 import Link from "next/link";
-import { jua400 } from "@/lib/fonts";
+import { chewy400 } from "@/lib/fonts";
 
 const TopNav = (props) => {
   const { position } = props;
@@ -22,7 +22,7 @@ const TopNav = (props) => {
             alt="photo-search-logo"
           />
         </Link>
-        <h3 className={jua400.className}>PhotoSearch</h3>
+        <h3 className={chewy400.className}>PhotoSearch</h3>
         <Image
           onClick={handleToggleMenu}
           width={20}

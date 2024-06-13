@@ -1,7 +1,7 @@
 import { StyledPostItem } from './Feed.styled';
 import Image from 'next/image';
 import moment from 'moment';
-import { kalam700, kalam300 } from "@/app/lib/fonts";
+import { kalam700, kalam300 } from "@/lib/fonts";
 
 const PostItem = (props) => {
   const { post, indexValue } = props;
@@ -26,7 +26,7 @@ const PostItem = (props) => {
                 {post.description || "Lorem ipsum dolor sit amet consectetur adipiscing elit eros at, leo varius imperdiet mi ultric"}
             </p>
             <Image 
-                src={`${post.urls?.raw + "&auto=compress"}` || "/plain-background.png"} 
+                src={`${post.urls?.raw + "&auto=compress&w=480"}` || "/plain-background.png"} 
                 width={480} 
                 height={480} 
                 alt={post.alt_description || "placeholder image"}

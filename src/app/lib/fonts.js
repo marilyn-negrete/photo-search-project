@@ -1,6 +1,6 @@
-import { Jua, Kalam } from "next/font/google";
+import { Chewy, Kalam } from "next/font/google";
 
-export const jua400 = Jua({
+export const chewy400 = Chewy({
   subsets: ["latin"],
   weight: "400",
 });
