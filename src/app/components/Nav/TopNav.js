@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { NavWrapper } from "./Nav.styled";
-import SideBar from "../SideBar/SideBar";
 import Image from "next/image";
 import Link from "next/link";
 import { chewy400 } from "@/lib/fonts";
+import dynamic from "next/dynamic";
+
+const TheSideBar = dynamic(() => import("@/components/SideBar/SideBar"));
 
 const TopNav = (props) => {
   const { position } = props;
@@ -13,7 +15,7 @@ const TopNav = (props) => {
 
   return (
     <>
-      <NavWrapper className={position}>
+      <NavWrapper className={position} isMenuOpen={isMenuOpen}>
         <Link href="/">
           <Image
             width={30}
@@ -31,7 +33,7 @@ const TopNav = (props) => {
           alt={isMenuOpen ? "close-menu" : "open-menu"}
         />
       </NavWrapper>
-      {isMenuOpen ? <SideBar isMenuOpen /> : null}
+      {isMenuOpen ? <TheSideBar isMenuOpen /> : null}
     </>
   );
 };

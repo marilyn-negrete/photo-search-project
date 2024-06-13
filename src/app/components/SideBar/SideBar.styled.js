@@ -2,9 +2,10 @@ import styled from "styled-components";
 
 export const SideBarWrapper = styled.div`
     width: 100%;
-    position: absolute;
+    position: fixed;
+    top: 7%;
     background: white;
-    height: calc(100% - 18%);
+    height: 100%;
 `;
 
 export const Items = styled.ul`

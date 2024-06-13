@@ -6,9 +6,11 @@ export const NavWrapper = styled.nav`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    
    
     &.top {
         background: white;
+        position: ${({isMenuOpen}) => isMenuOpen ? 'fixed' : 'unset' };
     }
 
     &.bottom {
