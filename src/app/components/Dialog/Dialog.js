@@ -14,6 +14,7 @@ const { children, dialog, closeDialog } = props;
                         <IconButton 
                             handleOnClick={closeDialog} 
                             srcIcon="/cross.png" size="sm" 
+                            altIcon="close icon"
                         />
                     </DialogHead>
                     <div>
