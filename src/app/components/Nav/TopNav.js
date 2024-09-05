@@ -15,7 +15,7 @@ const TopNav = (props) => {
 
   return (
     <>
-      <NavWrapper className={position} isMenuOpen={isMenuOpen}>
+      <NavWrapper className={position} open={isMenuOpen}>
         <Link href="/">
           <Image
             width={30}

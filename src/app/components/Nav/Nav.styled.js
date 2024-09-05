@@ -10,7 +10,7 @@ export const NavWrapper = styled.nav`
    
     &.top {
         background: white;
-        position: ${({isMenuOpen}) => isMenuOpen ? 'fixed' : 'unset' };
+        position: ${({open}) => open ? 'fixed' : 'unset' };
     }
 
     &.bottom {
