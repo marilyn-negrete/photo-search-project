@@ -1,10 +1,11 @@
 import  {  createContext, useContext, useEffect, useState } from 'react';
 import { useFetch } from '@/hooks/useFetch';
+import { getLocalStorage } from  "@/lib/helpers";
 
 const AppContext = createContext();
 
-export const ContextProvider = ({children}) => {
-    const [user, setUser] = useState({});
+export const ContextProvider = ({children, params}) => {
+    const [loggedUser, setLoggedUser] = useState(() => getLocalStorage("loggedUser"));
     const [collections, setCollections] = useState({
         page: 1,
         results: []
@@ -13,16 +14,12 @@ export const ContextProvider = ({children}) => {
         page: 1,
         results: []
     });
+
     const [photosData, photosError, isPhotosDataLoading] = useFetch(`${process.env.API_URL}/photos?page=${photos.page}&per_page=5`, "photos");
-    const [userData, userError, isUserDataloading] = useFetch(`${process.env.API_URL}/users/mna96`, "userData");
     const [collectionData, collectionsError, isCollectionDataLoading] = useFetch(
         `${process.env.API_URL}/users/mna96/collections?page=${collections.page}&per_page=5&client_id=${process.env.UNSPLASH_CLIENT_ID}`,
         "collections"
     );
-
-    useEffect(() => {
-        if(userData) setUser(userData);
-    },[userData]);
 
     useEffect(() => {
         if(photosData) setPhotos({...photos, results: photosData});
@@ -33,9 +30,8 @@ export const ContextProvider = ({children}) => {
     },[collectionData]);
 
     const value = {
-        user,
-        isUserDataloading,
-        setUser,
+        loggedUser, 
+        setLoggedUser,
         photos,
         isPhotosDataLoading,
         setPhotos,

@@ -1,8 +1,10 @@
 import { NavWrapper } from "./Nav.styled";
+import { useAppContext } from "context/AppContext";
 import Link from "next/link";
 import Image from "next/image";
 
 const BottomNav = (props) => {
+    const { loggedUser } = useAppContext();
     const {position} = props;
 
     return (
@@ -49,7 +51,7 @@ const BottomNav = (props) => {
 
             </div>
             <div>
-                <Link href="/profile/1">
+                <Link href={`/${loggedUser.username}`}>
                     <Image
                         alt="user-option"
                         src="/user.png"

@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react"
 import { useRouter } from 'next/navigation';
 import { setLocalStorage } from "@/lib/helpers";
+import { useAppContext } from "context/AppContext";
 
 export const useAuth = (apiEndpoint, theData) => {
     const router = useRouter();
-
+    const { setLoggedUser } = useAppContext();
     const [responseData, setResponseData] = useState({});
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
@@ -24,7 +25,8 @@ export const useAuth = (apiEndpoint, theData) => {
                     const response = await request.json();
                     if(request.ok) {
                         setLocalStorage('token', response.access_token);
-                        setLocalStorage('user', { username: response.username, userId: response.user_id });
+                        setLocalStorage('loggedUser', { username: response.username, userId: response.user_id });
+                        setLoggedUser({ username: response.username, userId: response.user_id });
                         setResponseData(response);
                         setLoading(false);
                         router.push('/feed');
