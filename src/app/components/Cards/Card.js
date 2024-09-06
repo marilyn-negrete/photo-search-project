@@ -5,10 +5,11 @@ import { StyledCard } from './Card.styled';
 import { kalam300 } from "@/lib/fonts";
 
 export default function Card(props) {
-    const { data } = props;
+    const { data, handleOpenDialog, setAction } = props;
 
     const handleClick = (action) => {
-        console.log('click', action);
+        handleOpenDialog();
+        setAction({ item: data, action});
     }
 
     return (

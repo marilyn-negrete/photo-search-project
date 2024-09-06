@@ -1,17 +1,39 @@
 'use client'
 import { chewy400, kalam300, kalam400, kalam700 } from "@/lib/fonts";
+import { useState } from "react";
 import { useFetch } from "@/hooks/useFetch";
 import Image from "next/image";
 import Loader from "@/components/Loaders/CustomLoading";
 import { ProfileWrapper, ProfileContent, StyledItem } from "./Profile.styled";
 import Card from "@/components/Cards/Card";
 import InputButton from "@/components/Buttons/InputButton";
+import Dialog from "@/components/Dialog/Dialog";
 
 export default function Profile({ params }) {
     const profileId = params.userProfile;
     const [data, error, loading] = useFetch(`${process.env.API_URL}/users/${profileId}`, "no-cache");
     const [userCollections, userCollectionsError, userCollectionsLoading] = useFetch(`${process.env.API_URL}/users/${profileId}/collections?per_page=4`, "no-cache");
+    const [dialog, setDialog] = useState({
+        isOpen: false,
+        title: ""
+    });
+    const [action, setAction] = useState({
+        item: '',
+        action: ''
+    });
+    const handleCloseDialog = () => setDialog({...dialog, isOpen: false});
+    const handleOpenDialog = () => setDialog({...dialog, isOpen: true, title: "Edit Collection"});
     
+    const actionHandler = () => { // trigger onSubmit
+        if (action === 'edit') {
+            console.log(action);
+        } else if(action === 'delete') {
+            console.log(action);
+        }
+    }
+
+    console.log(action, 'received from card');
+
     return (
         <>
             <ProfileWrapper>
@@ -64,7 +86,12 @@ export default function Profile({ params }) {
                     <h3 className={chewy400.className}>My photos ({data.total_collections || 0})</h3>
                     <div className="collections-list">
                         {userCollections.length ? userCollections.map(collection => {
-                            return <Card key={collection.id} data={collection} />
+                            return <Card 
+                                key={collection.id} 
+                                data={collection} 
+                                handleOpenDialog={handleOpenDialog}
+                                setAction={setAction}
+                                />
                         }) : "This user doesn't have collections created yet"}
                     </div>
 
@@ -82,7 +109,10 @@ export default function Profile({ params }) {
                 </ProfileContent>
                 : ''
             }
-            
+            <Dialog dialog={dialog} closeDialog={handleCloseDialog}>
+                <p>{action.item.title}</p>
+                <p>{action.item.private ? 'private' : null}</p>
+            </Dialog>
         </>
     )
 }
