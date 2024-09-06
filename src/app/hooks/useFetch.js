@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { getJWToken } from "@/lib/helpers";
 
 export const useFetch = (url, label) => {
-  const [data, setData] = useState(null);
-  const [error, setError] = useState(null);
+  const [data, setData] = useState([]);
+  const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

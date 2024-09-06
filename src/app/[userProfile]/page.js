@@ -1,16 +1,17 @@
 'use client'
-import { useAppContext } from "context/AppContext";
 import { chewy400, kalam300, kalam400, kalam700 } from "@/lib/fonts";
 import { useFetch } from "@/hooks/useFetch";
 import Image from "next/image";
 import Loader from "@/components/Loaders/CustomLoading";
 import { ProfileWrapper, ProfileContent, StyledItem } from "./Profile.styled";
+import Card from "@/components/Cards/Card";
 
 export default function Profile({ params }) {
     const profileId = params.userProfile;
     const [data, error, loading] = useFetch(`${process.env.API_URL}/users/${profileId}`, "no-cache");
-
-    console.log(data, '--- public user');
+    const [userCollections, userCollectionsError, userCollectionsLoading] = useFetch(`${process.env.API_URL}/users/${profileId}/collections?per_page=5`, "no-cache");
+    
+    console.log(data, '-----d');
     
     return (
         <>
@@ -58,9 +59,21 @@ export default function Profile({ params }) {
                 </div>
                 ) : <Loader />}
             </ProfileWrapper>
-            <ProfileContent>
-                <h3 className={chewy400.className}>My photos</h3>
-            </ProfileContent>
+            
+            {data ? 
+                <ProfileContent>
+                    <h3 className={chewy400.className}>My photos ({data.total_collections})</h3>
+                    <div className="collections-list">
+                        {userCollections.length ? userCollections.map(collection => {
+                            return <Card key={collection.id} data={collection} />
+                        }) : "This user doesn't have collections created yet"}
+                    </div>
+
+                    <span>Load more</span>
+                </ProfileContent>
+                : ''
+            }
+            
         </>
     )
 }

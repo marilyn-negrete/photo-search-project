@@ -13,7 +13,8 @@ const { children, dialog, closeDialog } = props;
                         <h4 className={kalam700.className}>{dialog.title}</h4>
                         <IconButton 
                             handleOnClick={closeDialog} 
-                            srcIcon="/cross.png" size="sm" 
+                            srcIcon="/cross.png" 
+                            size="sm" 
                             altIcon="close icon"
                         />
                     </DialogHead>

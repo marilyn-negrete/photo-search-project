@@ -41,9 +41,16 @@ export const ProfileWrapper = styled.div`
 export const ProfileContent = styled.div`
     padding: 1rem;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     h3 {
         margin: 0;
+    }
+
+    .collections-list {
+        margin: 1rem 0;
     }
 `;
 

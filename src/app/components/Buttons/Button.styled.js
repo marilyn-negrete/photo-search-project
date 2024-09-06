@@ -2,20 +2,24 @@ import styled from "styled-components";
 import css from "styled-jsx/css";
 
 export const StyledIconButton = styled.button`
-    height: 2rem;
-    width: 2rem;
     border-radius: 50%;
     background-color: white;
     border: 1px solid transparent;
     cursor: pointer;
+    display: flex;
+    align-items: center;
 
-    ${({size}) => size ==='lg' && css`
+    /* ${({size}) => size ==='lg' && css`
         height: 4rem;
         width: 4rem;
         position: absolute;
         bottom: 5rem;
         right: 1rem;
-    `}
+    `} */
+
+    .icon-btn-label {
+        margin-left: .5rem;
+    }
 `;
 
 export const StyledSquareButton = styled.input`
