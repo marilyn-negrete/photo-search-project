@@ -5,13 +5,12 @@ import Image from "next/image";
 import Loader from "@/components/Loaders/CustomLoading";
 import { ProfileWrapper, ProfileContent, StyledItem } from "./Profile.styled";
 import Card from "@/components/Cards/Card";
+import InputButton from "@/components/Buttons/InputButton";
 
 export default function Profile({ params }) {
     const profileId = params.userProfile;
     const [data, error, loading] = useFetch(`${process.env.API_URL}/users/${profileId}`, "no-cache");
-    const [userCollections, userCollectionsError, userCollectionsLoading] = useFetch(`${process.env.API_URL}/users/${profileId}/collections?per_page=5`, "no-cache");
-    
-    console.log(data, '-----d');
+    const [userCollections, userCollectionsError, userCollectionsLoading] = useFetch(`${process.env.API_URL}/users/${profileId}/collections?per_page=4`, "no-cache");
     
     return (
         <>
@@ -28,27 +27,27 @@ export default function Profile({ params }) {
                         </div>
                         <div className="profile-stats">
                             <StyledItem>
-                                <span className={kalam300.className}>Location</span>
-                                <div className={kalam400.className}>
-                                    <Image src="/map-pin.png" alt="location_icon" width={20} height={20}/>
-                                    <span>
-                                        {data.location}
-                                    </span>
-                                </div>
-                            </StyledItem>
-                            <StyledItem>
                                 <span className={kalam300.className}>Collections</span>
                                 <div className={kalam400.className}>
-                                    <Image src="/camera_filled.png" alt="collections_icon" width={20} height={20}/>
+                                    <Image src="/camera.svg" alt="total collections" width={20} height={20}/>
                                     <span>
                                         {data.total_collections}
                                     </span>
                                 </div>
                             </StyledItem>
                             <StyledItem>
+                                <span className={kalam300.className}>Score</span>
+                                <div className={kalam400.className}>
+                                    <Image src="/like.svg" alt="total likes" width={20} height={20}/>
+                                    <span>
+                                        {data.total_likes}
+                                    </span>
+                                </div>
+                            </StyledItem>
+                            <StyledItem>
                                 <span className={kalam300.className}>Followers</span>
                                 <div className={kalam400.className}>
-                                    <Image src="/followers_filled.png" alt="followers_icon" width={20} height={20}/>
+                                    <Image src="/followers.svg" alt="followers" width={20} height={20}/>
                                     <span>
                                         {data.followers_count}
                                     </span>
@@ -62,14 +61,24 @@ export default function Profile({ params }) {
             
             {data ? 
                 <ProfileContent>
-                    <h3 className={chewy400.className}>My photos ({data.total_collections})</h3>
+                    <h3 className={chewy400.className}>My photos ({data.total_collections || 0})</h3>
                     <div className="collections-list">
                         {userCollections.length ? userCollections.map(collection => {
                             return <Card key={collection.id} data={collection} />
                         }) : "This user doesn't have collections created yet"}
                     </div>
 
-                    <span>Load more</span>
+                    { data.total_collections > 5 ? 
+                        <InputButton 
+                            id="loadMoreCollections" 
+                            name="loadMoreCollections" 
+                            handleOnClick={() => 'load more collections'} 
+                            value="Load more" 
+                            elementType="button" 
+                            backgroundColor="white" 
+                            disabled={false} 
+                        /> 
+                    : null }
                 </ProfileContent>
                 : ''
             }

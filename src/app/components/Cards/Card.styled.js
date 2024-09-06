@@ -1,12 +1,15 @@
 import styled from "styled-components";
 
 export const StyledCard = styled.div `
-    max-width: 20rem;
+    width: 25rem;
     display: flex;
     align-items: center;
     padding: 1rem 0;
     border-top: 1px solid transparent;
     border-bottom: 1px solid transparent;
+    @media only screen and (max-width: 425px) {
+        max-width: 20rem;
+    }
 
     &:hover {
         border-top: 1px dashed rgba(171, 126, 87, 1);
@@ -34,4 +37,5 @@ export const StyledCard = styled.div `
             justify-content: space-between;
         }
     }
+
 `;

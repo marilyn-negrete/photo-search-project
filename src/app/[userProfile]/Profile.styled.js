@@ -7,7 +7,12 @@ export const ProfileWrapper = styled.div`
     justify-content: space-between;
 
     .profile {
+        width: 25rem;
         display: flex;
+        margin: 0 auto;
+        @media only screen and (max-width: 425px) {
+            max-width: 20rem;
+        }   
 
         .profile-picture {
             display: flex;
@@ -46,7 +51,7 @@ export const ProfileContent = styled.div`
     align-items: center;
 
     h3 {
-        margin: 0;
+        margin: 1rem 0;
     }
 
     .collections-list {
@@ -55,7 +60,6 @@ export const ProfileContent = styled.div`
 `;
 
 export const StyledItem = styled.div`
-    width: 33%;
     margin-right: .25rem;
     div {
         display: flex;

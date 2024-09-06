@@ -17,7 +17,7 @@ export default function Card(props) {
                 <Image src={data.cover_photo ? data.cover_photo.urls.small : '/no-thumb.png'} width={70} height={70} alt={data.title}/>
             </div>
             <div className="col-2">
-                <p className={`title ${kalam300.className}`}>Lorem Ipsum</p>
+                <p className={`title ${kalam300.className}`}>{data.title}</p>
                 <div className="actions">
                     <IconButton 
                         handleOnClick={() => handleClick('share')}
