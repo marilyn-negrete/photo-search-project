@@ -18,12 +18,12 @@ export default function Profile({ params }) {
                 {data ? (
                     <div className="profile">
                     <div className="profile-picture">
-                        <Image src={data.profile_image?.medium || "/plain-background.png"} alt="user-profile-picture" width={80} height={80}/>
+                        <Image src={data.profile_image?.medium || "/no-thumb.png"} alt="user-profile-picture" width={80} height={80}/>
                     </div>
                     <div className="profile-details">
                         <div className="profile-name">
                             <span className={kalam700.className}>{data.name}</span>
-                            <span className={kalam300.className}>@{data.username}</span>
+                            <span className={kalam300.className}>@{data.username || '---'}</span>
                         </div>
                         <div className="profile-stats">
                             <StyledItem>
@@ -31,7 +31,7 @@ export default function Profile({ params }) {
                                 <div className={kalam400.className}>
                                     <Image src="/camera.svg" alt="total collections" width={20} height={20}/>
                                     <span>
-                                        {data.total_collections}
+                                        {data.total_collections || 0}
                                     </span>
                                 </div>
                             </StyledItem>
@@ -40,7 +40,7 @@ export default function Profile({ params }) {
                                 <div className={kalam400.className}>
                                     <Image src="/like.svg" alt="total likes" width={20} height={20}/>
                                     <span>
-                                        {data.total_likes}
+                                        {data.total_likes || 0}
                                     </span>
                                 </div>
                             </StyledItem>
@@ -49,7 +49,7 @@ export default function Profile({ params }) {
                                 <div className={kalam400.className}>
                                     <Image src="/followers.svg" alt="followers" width={20} height={20}/>
                                     <span>
-                                        {data.followers_count}
+                                        {data.followers_count || 0}
                                     </span>
                                 </div>
                             </StyledItem>
