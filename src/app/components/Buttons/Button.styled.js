@@ -2,12 +2,17 @@ import styled from "styled-components";
 import css from "styled-jsx/css";
 
 export const StyledIconButton = styled.button`
+    height: 2.25rem;
+    width: 2.25rem;
+    margin: .5rem;
     border-radius: 50%;
     background-color: white;
     border: 1px solid transparent;
     cursor: pointer;
     display: flex;
     align-items: center;
+    justify-content: center;
+    align-self: center;
 
     /* ${({size}) => size ==='lg' && css`
         height: 4rem;

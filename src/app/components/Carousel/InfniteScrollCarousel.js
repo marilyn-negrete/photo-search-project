@@ -1,5 +1,6 @@
 import { CarouselWrapper, CarouselItem, CarouselTitle, StyledImage } from "./InfiniteScrollCarousel.styled";
 import { kalam400 } from "@/lib/fonts"
+import IconButton from "../Buttons/IconButton";
 
 const InfiniteScrollCarousel = (props) => {
     const { items, handleClick } = props;
@@ -19,6 +20,7 @@ const InfiniteScrollCarousel = (props) => {
                     </CarouselTitle>
                 </CarouselItem>
             ))}
+            <IconButton handleOnClick={() => console.log('load 5 more collections')} srcIcon="/right-arrow.svg" size="sm" altIcon="load more collections" />           
         </CarouselWrapper>
     )
 }
