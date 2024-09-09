@@ -1,16 +1,20 @@
 import { TextFieldWrapper } from "./Input.styled";
 
 const TextField = (props) => {
-    const { handleOnChange, id, label, required } = props;
+    const { id, label, required, value, handleChange } = props;
 
-    console.log(props);
     return (
         <TextFieldWrapper>
             <div>
                 <label htmlFor={id}>{label}</label>
                 <span>{!required ? '(optional)' : null}</span>
             </div>
-            <input defaultValue="" {...props} />
+            <input
+                id={id}
+                required={required}
+                onChange={handleChange}
+                value={value}
+            />
         </TextFieldWrapper>
     )
 }

@@ -5,11 +5,18 @@ import { StyledCard } from './Card.styled';
 import { kalam300 } from "@/lib/fonts";
 
 export default function Card(props) {
-    const { data, handleOpenDialog, setAction, visibleActions } = props;
+    const { data, handleOpenDialog, setCollection, visibleCTA } = props;
 
-    const handleClick = (action) => {
+    const handleClick = (cta) => {
         handleOpenDialog();
-        setAction({ item: data, action});
+        setCollection(
+            { 
+                cta: cta,
+                title: data.title,
+                isPrivate: data.private,
+                shareLink: data.links.html
+            }
+        );
     }
 
     return (
@@ -28,7 +35,7 @@ export default function Card(props) {
                         label="share"
                     />
                     
-                    { visibleActions ? 
+                    { visibleCTA ? 
                     <>
                         <IconButton 
                             handleOnClick={() => handleClick('edit')}
