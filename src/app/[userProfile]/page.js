@@ -1,4 +1,5 @@
 'use client'
+import { useAppContext } from "context/AppContext";
 import { chewy400, kalam300, kalam400, kalam700 } from "@/lib/fonts";
 import { useState } from "react";
 import { useFetch } from "@/hooks/useFetch";
@@ -10,6 +11,7 @@ import InputButton from "@/components/Buttons/InputButton";
 import Dialog from "@/components/Dialog/Dialog";
 
 export default function Profile({ params }) {
+    const { loggedUser } = useAppContext();
     const profileId = params.userProfile;
     const [data, error, loading] = useFetch(`${process.env.API_URL}/users/${profileId}`, "no-cache");
     const [userCollections, userCollectionsError, userCollectionsLoading] = useFetch(`${process.env.API_URL}/users/${profileId}/collections?per_page=4`, "no-cache");
@@ -91,6 +93,7 @@ export default function Profile({ params }) {
                                 data={collection} 
                                 handleOpenDialog={handleOpenDialog}
                                 setAction={setAction}
+                                visibleActions={profileId === loggedUser.username}
                                 />
                         }) : "This user doesn't have collections created yet"}
                     </div>

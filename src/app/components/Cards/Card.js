@@ -5,7 +5,7 @@ import { StyledCard } from './Card.styled';
 import { kalam300 } from "@/lib/fonts";
 
 export default function Card(props) {
-    const { data, handleOpenDialog, setAction } = props;
+    const { data, handleOpenDialog, setAction, visibleActions } = props;
 
     const handleClick = (action) => {
         handleOpenDialog();
@@ -27,20 +27,25 @@ export default function Card(props) {
                         altIcon="share collection" 
                         label="share"
                     />
-                    <IconButton 
-                        handleOnClick={() => handleClick('edit')}
-                        srcIcon="/note-pad.svg"
-                        size="sm" 
-                        altIcon="edit collection" 
-                        label="edit"
-                    />
-                    <IconButton 
-                        handleOnClick={() => handleClick('delete')}
-                        srcIcon="/delete-bucket.svg"
-                        size="sm" 
-                        altIcon="delete collection" 
-                        label="delete"
-                    />
+                    
+                    { visibleActions ? 
+                    <>
+                        <IconButton 
+                            handleOnClick={() => handleClick('edit')}
+                            srcIcon="/note-pad.svg"
+                            size="sm" 
+                            altIcon="edit collection" 
+                            label="edit"
+                        />
+                        <IconButton 
+                            handleOnClick={() => handleClick('delete')}
+                            srcIcon="/delete-bucket.svg"
+                            size="sm" 
+                            altIcon="delete collection" 
+                            label="delete"
+                        />
+                    </>
+                    : null}
                 </div>
             </div>
         </StyledCard>
