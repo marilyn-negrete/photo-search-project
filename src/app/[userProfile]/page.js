@@ -47,7 +47,7 @@ export default function Profile({ params }) {
     }
     
     const handleCloseDialog = () => setDialog({...dialog, isOpen: false});
-    const handleOpenDialog = () => setDialog({...dialog, isOpen: true, title: "Edit Collection"});
+    const handleOpenDialog = (dialogTitle) => setDialog({...dialog, isOpen: true, title: dialogTitle});
     
     const actionHandler = (e) => {
         e.preventDefault();

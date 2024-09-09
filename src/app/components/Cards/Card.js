@@ -8,7 +8,8 @@ export default function Card(props) {
     const { data, handleOpenDialog, setCollection, visibleCTA } = props;
 
     const handleClick = (cta) => {
-        handleOpenDialog();
+        const newDialogTitle = `${cta} collection`
+        handleOpenDialog(newDialogTitle);
         setCollection(
             { 
                 cta: cta,

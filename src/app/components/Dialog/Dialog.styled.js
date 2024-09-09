@@ -23,6 +23,10 @@ export const DialogHead = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    h4 {
+        text-transform: capitalize;
+    }
 `;
 
 export const DialogBackdrop = styled.div`

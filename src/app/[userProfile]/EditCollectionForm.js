@@ -1,6 +1,8 @@
 import React from 'react'
 import TextField from '@/components/Inputs/TextField';
 import Checkbox from '@/components/Inputs/Checkbox';
+import InputButton from '@/components/Buttons/InputButton';
+import { StyledFormActions } from './UserProfile.styled';
 
 export default function EditCollectionForm(props) {
     const { collection, handleTitleChange, toggleIsPrivate, handleSubmit } = props;
@@ -19,7 +21,15 @@ export default function EditCollectionForm(props) {
             label="Private" 
             id="isPrivate" 
         />
-        <input type="submit" value="Update"/>
+        <StyledFormActions className='form-actions'>
+            <InputButton 
+                id="updateCollection" 
+                name="updateCollection" 
+                value="Update" 
+                elementType="submit" 
+                backgroundColor="black" 
+            />
+        </StyledFormActions>
     </form>
   )
 }
