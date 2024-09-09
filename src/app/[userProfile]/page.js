@@ -11,6 +11,9 @@ import InputButton from "@/components/Buttons/InputButton";
 import Dialog from "@/components/Dialog/Dialog";
 import TextField from "@/components/Inputs/TextField";
 import Checkbox from "@/components/Inputs/Checkbox";
+import ShareCollection from "./ShareCollection";
+import DeleteCollectionForm from "./DeleteCollectionForm";
+import EditCollectionForm from "./EditCollectionForm";
 
 export default function Profile({ params }) {
     const { loggedUser } = useAppContext();
@@ -128,44 +131,25 @@ export default function Profile({ params }) {
                 : ''
             }
             <Dialog dialog={dialog} closeDialog={handleCloseDialog}>
-                { collection.cta === 'edit' ? 
-                <form onSubmit={actionHandler}>
-                    <TextField 
-                        id="collectionTitle" 
-                        label="Title" 
-                        required={false} 
-                        value={collection.title}
-                        handleChange={handleTitleChange}
+                { collection.cta === 'edit' &&
+                    <EditCollectionForm 
+                        collection={collection} 
+                        handleTitleChange={handleTitleChange} 
+                        toggleIsPrivate={toggleIsPrivate} 
+                        handleSubmit={actionHandler}
                     />
-                    <Checkbox
-                        checked={collection.isPrivate}
-                        handleChange={toggleIsPrivate}
-                        label="Private" 
-                        id="isPrivate" 
+                }
+                { collection.cta === 'delete' && 
+                    <DeleteCollectionForm 
+                        collection={collection} 
+                        handleSubmit={actionHandler}
                     />
-                    <input type="submit" value="Update"/>
-                </form>
-                : null
-            }
-
-            { collection.cta === 'delete' ?
-            <>
-                <p>Confirm you want to delete Collection {collection.title}</p>
-
-                <form onSubmit={actionHandler}>
-                    <input type="submit" value="Delete" />
-                </form> 
-            </>
-            : null
-            }
-
-            { collection.cta === 'share'  ?
-             <>
-                Share link! {collection.shareLink}
-             </> 
-             : null
-            }
-
+                }
+                { collection.cta === 'share' && 
+                    <ShareCollection 
+                        collection={collection} 
+                    />
+                }
             </Dialog>
         </>
     )
