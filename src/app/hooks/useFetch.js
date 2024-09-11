@@ -22,11 +22,13 @@ export const useFetch = (url, label) => {
             },
           });
           const result = await response.json();
-          setData(result);
-          // Store data in localStorage
-          if(label !== "no-cache" ) {
-            localStorage.setItem(label, JSON.stringify(result));
-          } 
+          if(response.ok) {
+            setData(result);
+            // Store data in localStorage
+            if(label !== "no-cache" ) {
+              localStorage.setItem(label, JSON.stringify(result));
+            } 
+          }
         }
       } catch (error) {
         setError(error);

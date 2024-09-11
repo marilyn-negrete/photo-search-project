@@ -4,7 +4,8 @@ export const ProfileWrapper = styled.div`
     min-height: 9.3rem;
     padding: 1rem;
     background-color: ${({theme}) => theme.colors.secondary.main};
-    justify-content: space-between;
+    display: flex;
+    align-items: center;
 
     .profile {
         width: 25rem;
@@ -15,8 +16,7 @@ export const ProfileWrapper = styled.div`
         }   
 
         .profile-picture {
-            display: flex;
-            flex: 1;
+            margin-right: 1rem;
             img {
                 border-radius: 50px;
             }

@@ -1,19 +1,17 @@
 'use client'
 import { useAppContext } from "context/AppContext";
-import { chewy400, kalam300, kalam400, kalam700 } from "@/lib/fonts";
-import { useState } from "react";
+import { chewy400 } from "@/lib/fonts";
+import { useState, useEffect } from "react";
 import { useFetch } from "@/hooks/useFetch";
-import Image from "next/image";
-import Loader from "@/components/Loaders/CustomLoading";
-import { ProfileWrapper, ProfileContent, StyledItem } from "./Profile.styled";
+import { ProfileWrapper, ProfileContent } from "./Profile.styled";
 import Card from "@/components/Cards/Card";
 import InputButton from "@/components/Buttons/InputButton";
 import Dialog from "@/components/Dialog/Dialog";
-import TextField from "@/components/Inputs/TextField";
-import Checkbox from "@/components/Inputs/Checkbox";
 import ShareCollection from "./ShareCollection";
 import DeleteCollectionForm from "./DeleteCollectionForm";
 import EditCollectionForm from "./EditCollectionForm";
+import ProfileStats from "./ProfileStats";
+import {updateRequest, deleteRequest} from "@/lib/helpers";
 
 export default function Profile({ params }) {
     const { loggedUser } = useAppContext();
@@ -24,13 +22,19 @@ export default function Profile({ params }) {
         isOpen: false,
         title: ""
     });
-
+    const [collections, setCollections] = useState([]);
     const [collection, setCollection] = useState({
         cta: '',
         title: '',
         isPrivate: false,
         shareLink: '',
     });
+
+    useEffect(() => {
+        if(userCollections.length) {
+            setCollections([...userCollections]);
+        }
+    },[userCollections]);
 
     const toggleIsPrivate = (e) => {        
         setCollection({
@@ -49,66 +53,50 @@ export default function Profile({ params }) {
     const handleCloseDialog = () => setDialog({...dialog, isOpen: false});
     const handleOpenDialog = (dialogTitle) => setDialog({...dialog, isOpen: true, title: dialogTitle});
     
-    const actionHandler = (e) => {
-        e.preventDefault();
-        console.log('submiting ', collection);
+    const handleUpdateCollection = async () => {
+        let theNewCollection = {
+            id: collection.id,
+            title: collection.title,
+            private: collection.isPrivate, 
+        }
+
+        const data = await updateRequest(theNewCollection);
+
+        if(data.ok) {
+            const newCollectionsArr = collections.map(item => item.id === theNewCollection.id ? theNewCollection: item);
+            setCollections([...newCollectionsArr]);
+        }
+
     }
+
+    const handleDeleteCollection = async () => {
+        let theCollection = {
+            id: collection.id
+        }
+
+        const data = await deleteRequest(theCollection);
+
+        if(data.ok) {
+            const newCollectionsArr = collections.filter(el => el.id != theCollection.id);
+            setCollections([...newCollectionsArr]);
+        }
+    }
+
+    // console.log(collections);
 
     return (
         <>
             <ProfileWrapper>
-                {userProfileData ? (
-                    <div className="profile">
-                    <div className="profile-picture">
-                        <Image src={userProfileData.profile_image?.medium || "/no-thumb.png"} alt="user-profile-picture" width={80} height={80}/>
-                    </div>
-                    <div className="profile-details">
-                        <div className="profile-name">
-                            <span className={kalam700.className}>{userProfileData.name}</span>
-                            <span className={kalam300.className}>@{userProfileData.username || '---'}</span>
-                        </div>
-                        <div className="profile-stats">
-                            <StyledItem>
-                                <span className={kalam300.className}>Collections</span>
-                                <div className={kalam400.className}>
-                                    <Image src="/camera.svg" alt="total collections" width={20} height={20}/>
-                                    <span>
-                                        {userProfileData.total_collections || 0}
-                                    </span>
-                                </div>
-                            </StyledItem>
-                            <StyledItem>
-                                <span className={kalam300.className}>Score</span>
-                                <div className={kalam400.className}>
-                                    <Image src="/like.svg" alt="total likes" width={20} height={20}/>
-                                    <span>
-                                        {userProfileData.total_likes || 0}
-                                    </span>
-                                </div>
-                            </StyledItem>
-                            <StyledItem>
-                                <span className={kalam300.className}>Followers</span>
-                                <div className={kalam400.className}>
-                                    <Image src="/followers.svg" alt="followers" width={20} height={20}/>
-                                    <span>
-                                        {userProfileData.followers_count || 0}
-                                    </span>
-                                </div>
-                            </StyledItem>
-                        </div>
-                    </div>
-                </div>
-                ) : <Loader />}
+                <ProfileStats profileStats={userProfileData} />
             </ProfileWrapper>
-            
             {userProfileData ? 
                 <ProfileContent>
                     <h3 className={chewy400.className}>My photos ({userProfileData.total_collections || 0})</h3>
                     <div className="collections-list">
-                        {userCollections.length ? userCollections.map(collection => {
+                        {collections ? collections.map(el => {
                             return <Card 
-                                key={collection.id} 
-                                data={collection} 
+                                key={el.id} 
+                                el={el} 
                                 handleOpenDialog={handleOpenDialog}
                                 setCollection={setCollection}
                                 visibleCTA={profileId === loggedUser.username}
@@ -136,19 +124,17 @@ export default function Profile({ params }) {
                         collection={collection} 
                         handleTitleChange={handleTitleChange} 
                         toggleIsPrivate={toggleIsPrivate} 
-                        handleSubmit={actionHandler}
+                        handleSubmit={handleUpdateCollection}
                     />
                 }
                 { collection.cta === 'delete' && 
                     <DeleteCollectionForm 
                         collection={collection} 
-                        handleSubmit={actionHandler}
+                        handleSubmit={handleDeleteCollection}
                     />
                 }
                 { collection.cta === 'share' && 
-                    <ShareCollection 
-                        collection={collection} 
-                    />
+                    <ShareCollection collection={collection} />
                 }
             </Dialog>
         </>
