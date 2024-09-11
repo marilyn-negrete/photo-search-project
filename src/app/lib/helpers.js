@@ -24,7 +24,7 @@ export const updateRequest = async (collection) => {
 
     const data = await res.json();
 
-    if(data.ok) {
+    if(res.ok) {
         return data;
     } else {
         throw Error `something went wrong`;
@@ -43,7 +43,7 @@ export const deleteRequest = async (collection) => {
 
     const data = await res.json();
 
-    if(data.ok) {
+    if(res.ok) {
         return data;
     } else {
         throw Error `something went wrong`;

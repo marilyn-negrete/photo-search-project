@@ -53,36 +53,38 @@ export default function Profile({ params }) {
     const handleCloseDialog = () => setDialog({...dialog, isOpen: false});
     const handleOpenDialog = (dialogTitle) => setDialog({...dialog, isOpen: true, title: dialogTitle});
     
-    const handleUpdateCollection = async () => {
+    const handleUpdateCollection = (e) => {
+        e.preventDefault();
         let theNewCollection = {
             id: collection.id,
             title: collection.title,
             private: collection.isPrivate, 
         }
 
-        const data = await updateRequest(theNewCollection);
+        const data = updateRequest(theNewCollection);
 
-        if(data.ok) {
+        if(data) {
             const newCollectionsArr = collections.map(item => item.id === theNewCollection.id ? theNewCollection: item);
             setCollections([...newCollectionsArr]);
         }
 
     }
 
-    const handleDeleteCollection = async () => {
+    const handleDeleteCollection = (e) => {
+        e.preventDefault();
         let theCollection = {
             id: collection.id
         }
 
-        const data = await deleteRequest(theCollection);
+        const data = deleteRequest(theCollection);
 
-        if(data.ok) {
+        if(data) {
             const newCollectionsArr = collections.filter(el => el.id != theCollection.id);
             setCollections([...newCollectionsArr]);
         }
     }
 
-    // console.log(collections);
+    console.log({collections, collection});
 
     return (
         <>
