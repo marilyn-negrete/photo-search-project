@@ -14,14 +14,6 @@ export const StyledIconButton = styled.button`
     justify-content: center;
     align-self: center;
 
-    /* ${({size}) => size ==='lg' && css`
-        height: 4rem;
-        width: 4rem;
-        position: absolute;
-        bottom: 5rem;
-        right: 1rem;
-    `} */
-
     .icon-btn-label {
         margin-left: .5rem;
     }
@@ -36,6 +28,13 @@ export const StyledSquareButton = styled.input`
     border: 1px solid;
     cursor: pointer;
 
+    &.thin-btn {
+        padding: .5rem;
+        width: 10rem;
+        align-self: center;
+        margin-top: 1rem;
+    }
+
     &:disabled {
         background-color: rgb(0 0 0 / 30%);
         cursor: not-allowed;
@@ -48,6 +47,12 @@ export const StyledSquareButton = styled.input`
 
     &.btn-black {
         background-color: black;
+        color: white;
+    }
+
+    &.btn-brown {
+        background-color: ${({ theme }) => theme.colors.primary.main };
+        border-color: ${({ theme }) => theme.colors.primary.main };
         color: white;
     }
 `;

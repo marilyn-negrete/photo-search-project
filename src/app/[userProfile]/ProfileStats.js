@@ -3,6 +3,7 @@ import { kalam300, kalam400, kalam700 } from "@/lib/fonts";
 import { StyledItem } from './Profile.styled';
 import Loader from "@/components/Loaders/CustomLoading";
 import Image from 'next/image';
+import InputButton from '@/components/Buttons/InputButton';
 
 export default function ProfileStats(props) {
     const { profileStats } = props;
@@ -48,6 +49,16 @@ export default function ProfileStats(props) {
                             </div>
                         </StyledItem>
                     </div>
+                    <InputButton
+                        id="editProfile"
+                        name="editProfile"
+                        handleOnClick={() => console.log('open modal to edit user info')}
+                        value="Edit Profile"
+                        elementType="button"
+                        backgroundColor="brown"
+                        disabled={false}
+                        className="thin-btn"
+                    />
                 </div>
             </div>
             ) : <Loader />}

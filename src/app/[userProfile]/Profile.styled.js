@@ -23,6 +23,9 @@ export const ProfileWrapper = styled.div`
         }
 
         .profile-details {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             flex: 3;
 
             .profile-name {
