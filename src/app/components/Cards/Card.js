@@ -5,26 +5,18 @@ import { StyledCard } from './Card.styled';
 import { kalam300 } from "@/lib/fonts";
 
 export default function Card(props) {
-    const { el, handleOpenDialog, setCollection, visibleCTA } = props;
+    const { el, handleOpenDialog, setCollection, setAction, visibleCTA } = props;
     
     const handleClick = (cta) => {
-        const newDialogTitle = `${cta} collection`
-        handleOpenDialog(newDialogTitle);
-        setCollection(
-            { 
-                cta: cta,
-                id: el.id,
-                title: el.title,
-                isPrivate: el.private,
-                shareLink: el.links.html
-            }
-        );
+        setAction(cta);
+        handleOpenDialog(`${cta} collection`);
+        setCollection({...el});
     }
 
     return (
         <StyledCard>
             <div className="col-1">
-                <Image src={el.cover_photo ? el.cover_photo.urls.small : '/no-thumb.png'} width={70} height={70} alt={el.title}/>
+                <Image src={el.cover_photo ? el.cover_photo.urls.small : el.thumbnailSrc} width={70} height={70} alt={el.title}/>
             </div>
             <div className="col-2">
                 <p className={`title ${kalam300.className}`}>{el.title}</p>

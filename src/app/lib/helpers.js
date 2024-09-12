@@ -12,23 +12,17 @@ export const getLocalStorage = (key) => {
 
 export const getJWToken = () => `Bearer ` + JSON.parse(window.localStorage.getItem('token'));
 
-export const updateRequest = async (collection) => {
-    const res = await fetch(`${process.env.API_URL}/collections/${collection.id}`, {
+export const updateRequest = async (obj, url) => {
+    const res = await fetch(`${process.env.API_URL}${url}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
             Authorization: getJWToken(),
         },
-        body: JSON.stringify(collection)
+        body: JSON.stringify(obj)
     });
-
     const data = await res.json();
-
-    if(res.ok) {
-        return data;
-    } else {
-        throw Error `something went wrong`;
-    }
+    return res.ok ? data : new Error `Update helper: something went wrong`;
 }
 
 export const deleteRequest = async (collection) => {
@@ -40,12 +34,5 @@ export const deleteRequest = async (collection) => {
         },
         body: JSON.stringify(collection)
     });
-
-    const data = await res.json();
-
-    if(res.ok) {
-        return data;
-    } else {
-        throw Error `something went wrong`;
-    }
+    return res.ok ? data : new Error `Delete helper: something went wrong`;
 }

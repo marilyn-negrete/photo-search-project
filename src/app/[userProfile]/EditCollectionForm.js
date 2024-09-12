@@ -2,7 +2,7 @@ import React from 'react'
 import TextField from '@/components/Inputs/TextField';
 import Checkbox from '@/components/Inputs/Checkbox';
 import InputButton from '@/components/Buttons/InputButton';
-import { StyledFormActions } from './UserProfile.styled';
+import { StyledFormActions } from './Profile.styled';
 
 export default function EditCollectionForm(props) {
     const { collection, handleTitleChange, toggleIsPrivate, handleSubmit } = props;

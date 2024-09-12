@@ -22,12 +22,12 @@ export default function Profile({ params }) {
         isOpen: false,
         title: ""
     });
+    const [action, setAction] = useState('');
     const [collections, setCollections] = useState([]);
     const [collection, setCollection] = useState({
-        cta: '',
+        id: '',
         title: '',
-        isPrivate: false,
-        shareLink: '',
+        private: false
     });
 
     useEffect(() => {
@@ -39,7 +39,7 @@ export default function Profile({ params }) {
     const toggleIsPrivate = (e) => {        
         setCollection({
             ...collection,
-            isPrivate: !collection.isPrivate,
+            private: !collection.private,
         });
     }
 
@@ -53,43 +53,38 @@ export default function Profile({ params }) {
     const handleCloseDialog = () => setDialog({...dialog, isOpen: false});
     const handleOpenDialog = (dialogTitle) => setDialog({...dialog, isOpen: true, title: dialogTitle});
     
-    const handleUpdateCollection = (e) => {
+    const handleUpdateCollection = async (e) => {
         e.preventDefault();
-        let theNewCollection = {
-            id: collection.id,
-            title: collection.title,
-            private: collection.isPrivate, 
-        }
-
-        const data = updateRequest(theNewCollection);
-
+        let theNewCollection = {...collection}
+        const data = await updateRequest(theNewCollection, `$/collections/${collection.id}}`);
         if(data) {
             const newCollectionsArr = collections.map(item => item.id === theNewCollection.id ? theNewCollection: item);
             setCollections([...newCollectionsArr]);
         }
-
+        handleCloseDialog();
     }
 
-    const handleDeleteCollection = (e) => {
+    const handleDeleteCollection = async (e) => {
         e.preventDefault();
-        let theCollection = {
-            id: collection.id
-        }
+        let theCollection = {id: collection.id}
 
-        const data = deleteRequest(theCollection);
-
-        if(data) {
-            const newCollectionsArr = collections.filter(el => el.id != theCollection.id);
+        const data = await deleteRequest(theCollection);
+        if(data.ok) {
+            const newCollectionsArr = collections.filter(el => el.id !== theCollection.id);
             setCollections([...newCollectionsArr]);
         }
+        handleCloseDialog();
     }
-
-    console.log({collections, collection});
 
     return (
         <>
             <ProfileWrapper>
-                <ProfileStats profileStats={userProfileData} />
+                <ProfileStats 
+                    profileStats={userProfileData}
+                    dialog={dialog}
+                    handleOpenDialog={handleOpenDialog} 
+                    handleCloseDialog={handleCloseDialog} 
+                />
             </ProfileWrapper>
             {userProfileData ? 
                 <ProfileContent>
@@ -101,6 +96,7 @@ export default function Profile({ params }) {
                                 el={el} 
                                 handleOpenDialog={handleOpenDialog}
                                 setCollection={setCollection}
+                                setAction={setAction}
                                 visibleCTA={profileId === loggedUser.username}
                                 />
                         }) : "This user doesn't have collections created yet"}
@@ -121,7 +117,7 @@ export default function Profile({ params }) {
                 : ''
             }
             <Dialog dialog={dialog} closeDialog={handleCloseDialog}>
-                { collection.cta === 'edit' &&
+                { action === 'edit' &&
                     <EditCollectionForm 
                         collection={collection} 
                         handleTitleChange={handleTitleChange} 
@@ -129,13 +125,13 @@ export default function Profile({ params }) {
                         handleSubmit={handleUpdateCollection}
                     />
                 }
-                { collection.cta === 'delete' && 
+                { action === 'delete' && 
                     <DeleteCollectionForm 
                         collection={collection} 
                         handleSubmit={handleDeleteCollection}
                     />
                 }
-                { collection.cta === 'share' && 
+                { action === 'share' && 
                     <ShareCollection collection={collection} />
                 }
             </Dialog>

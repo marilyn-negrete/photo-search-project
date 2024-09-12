@@ -1,6 +1,6 @@
 import React from 'react'
 import InputButton from '@/components/Buttons/InputButton';
-import { StyledFormActions } from './UserProfile.styled';
+import { StyledFormActions } from './Profile.styled';
 
 export default function DeleteCollectionForm(props) {
     const { collection, handleSubmit } = props;

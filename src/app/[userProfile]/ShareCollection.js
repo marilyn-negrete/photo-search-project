@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyledSharing, StyledText } from './UserProfile.styled';
+import { StyledSharing, StyledText } from './Profile.styled';
 
 export default function ShareCollection(props) {
     const { collection } = props;

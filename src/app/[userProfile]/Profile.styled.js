@@ -34,6 +34,10 @@ export const ProfileWrapper = styled.div`
                 margin-bottom: 1rem;
             }
 
+            .profile-bio p {
+                margin-top: 0;
+            }
+
             .profile-stats {
                 display:flex;
                 justify-content: space-between;
@@ -79,4 +83,15 @@ export const StyledItem = styled.div`
         }
     }
 
+`;
+
+export const StyledSharing = styled.div`
+    border-radius: 5px;
+    background-color: #ddffdd;
+    padding: 1rem;
+`;
+
+export const StyledFormActions = styled.div`
+    display: flex;
+    justify-content: flex-end;
 `;
