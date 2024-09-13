@@ -16,7 +16,7 @@ const TopNav = (props) => {
   return (
     <>
       <NavWrapper className={position} open={isMenuOpen}>
-        <Link href="/">
+        <Link href="/feed">
           <Image
             width={30}
             height={30}

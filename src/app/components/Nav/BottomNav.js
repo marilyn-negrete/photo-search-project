@@ -51,7 +51,7 @@ const BottomNav = (props) => {
 
             </div>
             <div>
-                <Link href={`/${loggedUser.username}`}>
+                <Link href={`/mna96`}>
                     <Image
                         alt="user-option"
                         src="/user.png"

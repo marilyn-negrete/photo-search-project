@@ -13,6 +13,9 @@ const SideBar = (props) => {
                 <Item onClick={handleToggleMenu}>
                     <Link href="/mna96">My Profile</Link>
                 </Item>
+                <Item onClick={handleToggleMenu}>
+                    <Link href="/">Log out</Link>
+                </Item>
             </Items>
        </SideBarWrapper>
     )

@@ -3,12 +3,15 @@ import Image from "next/image";
 
 export const CarouselWrapper = styled.div`
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     overflow-x: auto;
     max-width: 71rem;
     margin: 0 auto;
+    @media only screen and (max-width: 622px) {
+        justify-content: flex-start;
+    } 
 `;
-
+ 
 export const CarouselItem = styled.div`
     display: flex;
     flex-direction: column;

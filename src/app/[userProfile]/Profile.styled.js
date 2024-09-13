@@ -56,6 +56,7 @@ export const StyledAbout = styled.div `
     }
 
     .profile-bio {
+        width: 100%;
         .profile-name {
             display: flex;
             flex-direction: column;
