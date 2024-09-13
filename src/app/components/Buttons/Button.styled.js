@@ -30,8 +30,6 @@ export const StyledSquareButton = styled.input`
 
     &.thin-btn {
         padding: .5rem;
-        width: 10rem;
-        align-self: center;
         margin-top: 1rem;
     }
 

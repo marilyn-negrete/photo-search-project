@@ -1,52 +1,20 @@
 import styled from "styled-components";
 
-export const ProfileWrapper = styled.div`
+export const ProfileHero = styled.div`
     min-height: 9.3rem;
     padding: 1rem;
     background-color: ${({theme}) => theme.colors.secondary.main};
     display: flex;
     align-items: center;
 
-    .profile {
+    .insights {
         width: 25rem;
         display: flex;
+        flex-direction: column;
         margin: 0 auto;
         @media only screen and (max-width: 425px) {
             max-width: 20rem;
         }   
-
-        .profile-picture {
-            margin-right: 1rem;
-            img {
-                border-radius: 50px;
-            }
-        }
-
-        .profile-details {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            flex: 3;
-
-            .profile-name {
-                display:flex;
-                flex-direction: column;
-                margin-bottom: 1rem;
-            }
-
-            .profile-bio p {
-                margin-top: 0;
-            }
-
-            .profile-stats {
-                display:flex;
-                justify-content: space-between;
-
-                span {
-                    display: block;
-                }
-            }
-        }
     }
 `;
 
@@ -66,25 +34,6 @@ export const ProfileContent = styled.div`
     }
 `;
 
-export const StyledItem = styled.div`
-    margin-right: .25rem;
-    div {
-        display: flex;
-        align-items: center;
-
-        img {
-            margin-right: .25rem;
-            object-fit: contain;
-        }
-        span {
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            overflow: hidden;
-        }
-    }
-
-`;
-
 export const StyledSharing = styled.div`
     border-radius: 5px;
     background-color: #ddffdd;
@@ -94,4 +43,43 @@ export const StyledSharing = styled.div`
 export const StyledFormActions = styled.div`
     display: flex;
     justify-content: flex-end;
+`;
+
+export const StyledAbout = styled.div `
+    display: flex;
+
+    .profile-picture {
+        margin-right: 1rem;
+        img {
+            border-radius: 50px;
+        }
+    }
+
+    .profile-bio {
+        .profile-name {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+`
+
+export const StyledStats = styled.div`
+    display: flex;
+    justify-content: space-between;
+    
+    .item {
+        display: flex;
+        align-items: center;
+
+        img {
+            margin-right: .25rem;
+            object-fit: contain;
+        }
+
+        span {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+    }
 `;

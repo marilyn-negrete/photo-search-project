@@ -3,20 +3,20 @@ import { useAppContext } from "context/AppContext";
 import { chewy400 } from "@/lib/fonts";
 import { useState, useEffect } from "react";
 import { useFetch } from "@/hooks/useFetch";
-import { ProfileWrapper, ProfileContent } from "./Profile.styled";
+import { ProfileHero, ProfileContent } from "./Profile.styled";
 import Card from "@/components/Cards/Card";
 import InputButton from "@/components/Buttons/InputButton";
 import Dialog from "@/components/Dialog/Dialog";
 import ShareCollection from "./ShareCollection";
 import DeleteCollectionForm from "./DeleteCollectionForm";
 import EditCollectionForm from "./EditCollectionForm";
-import ProfileStats from "./ProfileStats";
+import ProfileInsights from "./ProfileInsights";
 import {updateRequest, deleteRequest} from "@/lib/helpers";
 
 export default function Profile({ params }) {
     const { loggedUser } = useAppContext();
     const profileId = params.userProfile;
-    const [userProfileData, userProfileDataError, userProfileDataLoading] = useFetch(`${process.env.API_URL}/users/${profileId}`, "no-cache");
+    const [profileData, profileDataError, profileDataLoading] = useFetch(`${process.env.API_URL}/users/${profileId}`, "no-cache");
     const [userCollections, userCollectionsError, userCollectionsLoading] = useFetch(`${process.env.API_URL}/users/${profileId}/collections?per_page=4`, "no-cache");
     const [dialog, setDialog] = useState({
         isOpen: false,
@@ -78,31 +78,34 @@ export default function Profile({ params }) {
 
     return (
         <>
-            <ProfileWrapper>
-                <ProfileStats 
-                    profileStats={userProfileData}
+            <ProfileHero>
+                <ProfileInsights 
+                    profileData={profileData}
                     dialog={dialog}
                     handleOpenDialog={handleOpenDialog} 
                     handleCloseDialog={handleCloseDialog} 
                 />
-            </ProfileWrapper>
-            {userProfileData ? 
+            </ProfileHero>
+
+            {collections ? 
                 <ProfileContent>
-                    <h3 className={chewy400.className}>My photos ({userProfileData.total_collections || 0})</h3>
+                    <h3 className={chewy400.className}>My photos ({profileData.total_collections || 0})</h3>
                     <div className="collections-list">
-                        {collections ? collections.map(el => {
-                            return <Card 
-                                key={el.id} 
-                                el={el} 
-                                handleOpenDialog={handleOpenDialog}
-                                setCollection={setCollection}
-                                setAction={setAction}
-                                visibleCTA={profileId === loggedUser.username}
+                        {collections.map(el => {
+                            return (
+                                <Card 
+                                    key={el.id} 
+                                    el={el} 
+                                    handleOpenDialog={handleOpenDialog}
+                                    setCollection={setCollection}
+                                    setAction={setAction}
+                                    visibleCTA={profileId === loggedUser.username}
                                 />
-                        }) : "This user doesn't have collections created yet"}
+                            )
+                        })}
                     </div>
 
-                    { userProfileData.total_collections > 5 ? 
+                    { collections > 5 ? 
                         <InputButton 
                             id="loadMoreCollections" 
                             name="loadMoreCollections" 
@@ -114,7 +117,7 @@ export default function Profile({ params }) {
                         /> 
                     : null }
                 </ProfileContent>
-                : ''
+                : "This user doesn't have collections created yet"
             }
             <Dialog dialog={dialog} closeDialog={handleCloseDialog}>
                 { action === 'edit' &&
