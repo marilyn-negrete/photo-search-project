@@ -1,12 +1,18 @@
 import { SideBarWrapper, Items, Item } from "./SideBar.styled";
+import Link from "next/link";
 
-const SideBar = () => {
+const SideBar = (props) => {
+    const { handleToggleMenu } = props;
+
     return(
        <SideBarWrapper>
             <Items>
-                <Item>One</Item>
-                <Item>Two</Item>
-                <Item>Three</Item>
+                <Item onClick={handleToggleMenu} >
+                    <Link href="/feed">Feed</Link>
+                </Item>
+                <Item onClick={handleToggleMenu}>
+                    <Link href="/mna96">My Profile</Link>
+                </Item>
             </Items>
        </SideBarWrapper>
     )

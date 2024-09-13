@@ -105,7 +105,7 @@ export default function Profile({ params }) {
                         })}
                     </div>
 
-                    { collections > 5 ? 
+                    { profileData.total_collections > 5 ? 
                         <InputButton 
                             id="loadMoreCollections" 
                             name="loadMoreCollections" 

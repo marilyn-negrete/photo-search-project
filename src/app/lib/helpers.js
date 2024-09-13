@@ -22,7 +22,7 @@ export const updateRequest = async (obj, url) => {
         body: JSON.stringify(obj)
     });
     const data = await res.json();
-    return res.ok ? data : new Error `Update helper: something went wrong`;
+    return res.ok ? res : new Error `Update helper: something went wrong`;
 }
 
 export const deleteRequest = async (collection) => {

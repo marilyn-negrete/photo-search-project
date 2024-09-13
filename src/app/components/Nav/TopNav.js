@@ -33,7 +33,7 @@ const TopNav = (props) => {
           alt={isMenuOpen ? "close-menu" : "open-menu"}
         />
       </NavWrapper>
-      {isMenuOpen ? <TheSideBar isMenuOpen /> : null}
+      {isMenuOpen ? <TheSideBar handleToggleMenu={handleToggleMenu} /> : null}
     </>
   );
 };

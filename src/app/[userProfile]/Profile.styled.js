@@ -70,6 +70,7 @@ export const StyledStats = styled.div`
     .item {
         display: flex;
         align-items: center;
+        flex-direction: column;
 
         img {
             margin-right: .25rem;

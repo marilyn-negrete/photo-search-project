@@ -49,7 +49,10 @@ export default function ProfileInsights(props) {
         e.preventDefault();
         let newProfile = {...profile}
         const data = await updateRequest(newProfile, '/me');
-        if(data.ok) setProfile({...newProfile});
+        if(data.ok) { 
+            setProfile(newProfile);
+        };
+        handleCloseDialog();
     }
 
     return (
