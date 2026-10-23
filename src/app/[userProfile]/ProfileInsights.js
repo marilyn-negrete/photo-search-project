@@ -8,58 +8,67 @@ import EditProfileForm from './EditProfileForm';
 import { updateRequest } from '@/lib/helpers';
 import About from './About';
 
-export default function ProfileInsights(props) {
-    const { profileData } = props;
-    const [profile, setProfile] = useState({
-        first_name: '',
-        last_name: '',
-        location: '',
-        bio: '',
-        instagram_username: '',
-        twitter_username: ''
-    });
-    
+const INITIAL_FORM_DATA = {
+    first_name: '',
+    last_name: '',
+    location: '',
+    bio: '',
+    instagram_username: '',
+    twitter_username: ''
+}
+
+export default function ProfileInsights({userProfile, setUserProfile}) {
+    const [formData, setFormData] = useState(INITIAL_FORM_DATA);
     const [dialog, setDialog] = useState({
         isOpen: false,
         title: ""
     });
-
     const handleCloseDialog = () => setDialog({...dialog, isOpen: false});
     const handleOpenDialog = (dialogTitle) => setDialog({...dialog, isOpen: true, title: dialogTitle});
 
     const handleFieldChange = (e) => {
-        setProfile({
-            ...profile,
+        setFormData((prev) =>({
+            ...prev,
             [e.target.id]: e.target.value
-        });
-    }    
+        }));
+    }
 
     useEffect(() => {
-        setProfile({
-            first_name: profileData.first_name,
-            last_name: profileData.last_name,
-            location: profileData.location,
-            bio: profileData.bio,
-            instagram_username: profileData.instagram_username,
-            twitter_username: profileData.twitter_username
+        if (!userProfile) return;
+        setFormData({
+            first_name: userProfile.first_name,
+            last_name: userProfile.last_name,
+            location: userProfile.location,
+            bio: userProfile.bio,
+            instagram_username: userProfile.instagram_username,
+            twitter_username: userProfile.twitter_username
         });
-    },[profileData]);
+    },[userProfile]);
 
     const handleEditProfile = async (e) => {
         e.preventDefault();
-        let newProfile = {...profile}
-        const data = await updateRequest(newProfile, '/me');
-        if(data.ok) { 
-            setProfile(newProfile);
-        };
+        const { data, status } = await updateRequest(formData, '/me');
+        if(status === 'success') { 
+            setUserProfile((prev) => ({
+                ...prev,
+                first_name: data.first_name,
+                last_name: data.last_name,
+                location: data.location,
+                bio: data.bio,
+                instagram_username: data.instagram_username,
+                twitter_username: data.twitter_username,
+            }))
+        } else {
+            console.error('user profile could not be updated');
+        }
         handleCloseDialog();
     }
 
     return (
         <>
-        {profileData ? (
+        {userProfile ? (
             <div className="insights">
-                <About profileData={profileData} />
+                <About userProfile={userProfile} />
                 <InputButton
                     id="editProfile"
                     name="editProfile"
@@ -73,7 +82,7 @@ export default function ProfileInsights(props) {
             </div>
             ) : <Loader />}
             <Dialog dialog={dialog} closeDialog={handleCloseDialog}>
-                <EditProfileForm profile={profile} handleFieldChange={handleFieldChange} onSubmit={handleEditProfile} />
+                <EditProfileForm formData={formData} handleFieldChange={handleFieldChange} onSubmit={handleEditProfile} />
             </Dialog>
         </>
   )

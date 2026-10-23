@@ -13,6 +13,21 @@ import EditCollectionForm from "./EditCollectionForm";
 import ProfileInsights from "./ProfileInsights";
 import {updateRequest, deleteRequest} from "@/lib/helpers";
 
+const INITIAL_USER_PROFILE = {
+    username: '',
+    name: '',
+    first_name: '',
+    last_name: '',
+    location: '',
+    bio: '',
+    instagram_username: '',
+    twitter_username: '',
+    total_collections: 0,
+    total_likes: 0,
+    followers_count: 0,
+    profile_image: ''
+}
+
 export default function Profile({ params }) {
     const { loggedUser } = useAppContext();
     const profileId = params.userProfile;
@@ -29,12 +44,34 @@ export default function Profile({ params }) {
         title: '',
         private: false
     });
+    const [userProfile, setUserProfile] = useState(INITIAL_USER_PROFILE);
 
     useEffect(() => {
         if(userCollections.length) {
             setCollections([...userCollections]);
         }
     },[userCollections]);
+
+    useEffect(() => {
+        if(profileData) {
+            console.log(profileData);
+            
+            setUserProfile({
+                username: profileData.username,
+                name: profileData.name,
+                first_name: profileData.first_name,
+                last_name: profileData.last_name,
+                location: profileData.location,
+                bio: profileData.bio,
+                instagram_username: profileData.instagram_username,
+                twitter_username: profileData.twitter_username,
+                total_collections: profileData.total_collections,
+                total_likes: profileData.total_likes,
+                followers_count: 0,
+                profile_image: profileData.profile_image?.medium || profileData.profile_image?.small 
+            })
+        }
+    },[profileData]);
 
     const toggleIsPrivate = (e) => {        
         setCollection({
@@ -55,22 +92,20 @@ export default function Profile({ params }) {
     
     const handleUpdateCollection = async (e) => {
         e.preventDefault();
-        let theNewCollection = {...collection}
-        const data = await updateRequest(theNewCollection, `$/collections/${collection.id}}`);
-        if(data) {
-            const newCollectionsArr = collections.map(item => item.id === theNewCollection.id ? theNewCollection: item);
-            setCollections([...newCollectionsArr]);
+        const { status } = await updateRequest(collection, `/collections/${collection.id}`);
+        if(status === 'success') {
+            const updatedCollections = collections.map(item => item.id === collection.id ? collection : item);
+            setCollections([...updatedCollections]);
         }
         handleCloseDialog();
     }
 
     const handleDeleteCollection = async (e) => {
         e.preventDefault();
-        let theCollection = {id: collection.id}
+        const { data, status } = await deleteRequest(collection);
 
-        const data = await deleteRequest(theCollection);
-        if(data.ok) {
-            const newCollectionsArr = collections.filter(el => el.id !== theCollection.id);
+        if(status === 'success') {
+            const newCollectionsArr = collections.filter(el => el.id !== collection.id);
             setCollections([...newCollectionsArr]);
         }
         handleCloseDialog();
@@ -80,7 +115,8 @@ export default function Profile({ params }) {
         <>
             <ProfileHero>
                 <ProfileInsights 
-                    profileData={profileData}
+                    setUserProfile={setUserProfile}
+                    userProfile={userProfile}
                     dialog={dialog}
                     handleOpenDialog={handleOpenDialog} 
                     handleCloseDialog={handleCloseDialog} 
@@ -89,7 +125,7 @@ export default function Profile({ params }) {
 
             {collections ? 
                 <ProfileContent>
-                    <h3 className={chewy400.className}>My photos ({profileData.total_collections || 0})</h3>
+                    <h3 className={chewy400.className}>My photos ({userProfile.total_collections})</h3>
                     <div className="collections-list">
                         {collections.map(el => {
                             return (
@@ -105,7 +141,7 @@ export default function Profile({ params }) {
                         })}
                     </div>
 
-                    { profileData.total_collections > 5 ? 
+                    { userProfile.total_collections > 5 ? 
                         <InputButton 
                             id="loadMoreCollections" 
                             name="loadMoreCollections" 
