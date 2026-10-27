@@ -28,6 +28,8 @@ export const useFetch = (url, label) => {
             if(label !== "no-cache" ) {
               localStorage.setItem(label, JSON.stringify(result));
             } 
+          } else {
+           setError('Unsplash API - Request failed');
           }
         }
       } catch (error) {
