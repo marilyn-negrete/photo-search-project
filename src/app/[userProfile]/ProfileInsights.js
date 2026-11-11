@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { useState, useEffect } from "react";
 import { kalam400 } from "@/lib/fonts";
 import Loader from "@/components/Loaders/CustomLoading";
@@ -48,16 +48,15 @@ export default function ProfileInsights({userProfile, setUserProfile}) {
     const handleEditProfile = async (e) => {
         e.preventDefault();
         const { data, status } = await updateRequest(formData, '/me');
-        if(status === 'success') { 
-            setUserProfile((prev) => ({
-                ...prev,
+        if(status === 'success') {
+            handleChangeUserProfile({
                 first_name: data.first_name,
                 last_name: data.last_name,
                 location: data.location,
                 bio: data.bio,
                 instagram_username: data.instagram_username,
                 twitter_username: data.twitter_username,
-            }))
+            });
         } else {
             console.error('user profile could not be updated');
         }

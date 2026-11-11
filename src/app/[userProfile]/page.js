@@ -54,19 +54,8 @@ export default function Profile({ params }) {
 
     useEffect(() => {
         if(profileData) {
-            console.log(profileData);
-            
             setUserProfile({
-                username: profileData.username,
-                name: profileData.name,
-                first_name: profileData.first_name,
-                last_name: profileData.last_name,
-                location: profileData.location,
-                bio: profileData.bio,
-                instagram_username: profileData.instagram_username,
-                twitter_username: profileData.twitter_username,
-                total_collections: profileData.total_collections,
-                total_likes: profileData.total_likes,
+                ...profileData,
                 followers_count: 0,
                 profile_image: profileData.profile_image?.medium || profileData.profile_image?.small 
             })
@@ -96,8 +85,8 @@ export default function Profile({ params }) {
         if(status === 'success') {
             const updatedCollections = collections.map(item => item.id === collection.id ? collection : item);
             setCollections([...updatedCollections]);
+            handleCloseDialog();
         }
-        handleCloseDialog();
     }
 
     const handleDeleteCollection = async (e) => {
@@ -105,17 +94,24 @@ export default function Profile({ params }) {
         const { data, status } = await deleteRequest(collection);
 
         if(status === 'success') {
-            const newCollectionsArr = collections.filter(el => el.id !== collection.id);
+            const newCollectionsArr = collections.filter(item => item.id !== collection.id);
             setCollections([...newCollectionsArr]);
+            handleCloseDialog();
         }
-        handleCloseDialog();
+    }
+
+    const handleChangeUserProfile = (theUser) => {
+        setUserProfile((prev) => ({
+            ...prev,
+            ...theUser
+        }))
     }
 
     return (
         <>
             <ProfileHero>
                 <ProfileInsights 
-                    setUserProfile={setUserProfile}
+                    handleChangeUserProfile={handleChangeUserProfile}
                     userProfile={userProfile}
                     dialog={dialog}
                     handleOpenDialog={handleOpenDialog} 
